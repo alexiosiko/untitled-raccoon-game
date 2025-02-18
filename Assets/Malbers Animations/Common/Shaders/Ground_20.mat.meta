@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: de3f4753ad99ddd4791206d831d03b71
+labels:
+- AllCreature
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90110
+  packageName: 'Poly Art: Raccoon'
+  packageVersion: 3.9
+  assetPath: Assets/Malbers Animations/Common/Shaders/Ground_20.mat
+  uploadId: 651676
