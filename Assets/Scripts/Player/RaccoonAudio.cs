@@ -37,13 +37,17 @@ public class RaccoonAudio : MonoBehaviour
             {
                 Play("grass-footsteps", false);
                 source.volume = 0f;
+				source.DOKill();
                 source.DOFade(1f, 0.1f);
             }
         }
         else
             // If the character stops, fade out and stop the audio
             if (source.isPlaying)
-                source.DOFade(0f, 0.1f).OnComplete(() => source.Stop());
+			{
+				source.DOKill(	);
+				source.DOFade(0f, 0.1f).OnComplete(() => source.Stop());
+			}
     }
 
     private void Play(string name, bool force = true)

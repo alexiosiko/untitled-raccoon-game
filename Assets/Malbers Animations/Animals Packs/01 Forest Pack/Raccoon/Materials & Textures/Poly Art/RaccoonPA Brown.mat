@@ -12,7 +12,6 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - DR_ENABLE_LIGHTMAP_DIR
   - DR_OUTLINE_ON
   - _BASEMAP_PREMULTIPLY
   - _CELPRIMARYMODE_SINGLE
@@ -99,7 +98,7 @@ Material:
     - _BaseMapPremultiply: 1
     - _Blend: 0
     - _BumpScale: 1
-    - _CameraDistanceImpact: 0
+    - _CameraDistanceImpact: 1
     - _CelExtraEnabled: 0
     - _CelNumSteps: 3
     - _CelPrimaryMode: 1
@@ -186,7 +185,7 @@ Material:
     - _Color7: {r: 0.1102941, g: 0.07373821, b: 0.0405493, a: 0.166}
     - _Color8: {r: 0.71323526, g: 0.63453346, b: 0.5349264, a: 0.122}
     - _Color9: {r: 0.31617647, g: 0.26446912, b: 0.2162089, a: 0.134}
-    - _ColorDim: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDim: {r: 0, g: 0, b: 0, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimExtra: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}

@@ -12,7 +12,6 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - DR_ENABLE_LIGHTMAP_DIR
   - DR_OUTLINE_ON
   - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY
@@ -185,7 +184,7 @@ Material:
     - _Color7: {r: 0.85294116, g: 0.78650516, b: 0.70242214, a: 0.23529412}
     - _Color8: {r: 0.85294116, g: 0.78650516, b: 0.70242214, a: 0.23529412}
     - _Color9: {r: 0.85294116, g: 0.78650516, b: 0.70242214, a: 0.23529412}
-    - _ColorDim: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDim: {r: 0, g: 0, b: 0, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}

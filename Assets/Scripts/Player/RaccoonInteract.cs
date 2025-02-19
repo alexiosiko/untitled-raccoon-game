@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 public class RaccoonInteract : MonoBehaviour
 {
@@ -6,7 +7,12 @@ public class RaccoonInteract : MonoBehaviour
     {
 		Highlight();
 		if (Input.GetKeyDown(KeyCode.E))
-			Interact();
+		{
+			if (RaccoonGrab.Singleton.grabable != null)
+				RaccoonGrab.Singleton.Drop();
+			else
+				Interact();
+		}
     }
 	void Interact()
 	{
