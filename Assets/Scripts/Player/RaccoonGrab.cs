@@ -11,7 +11,7 @@ public class RaccoonGrab : MonoBehaviour
 		grabable.SetGrabState();
 		grabable.transform.SetParent(grabTransform);
 		grabable.transform.DOLocalMove(new (0, 0, 0), 0.5f);
-		animator.SetBool("Standing", true);
+		animator.SetBool("Carrying", true);
 	}
 	public void Drop()
 	{
@@ -19,7 +19,7 @@ public class RaccoonGrab : MonoBehaviour
 		grabable.DOKill();
 		grabable.transform.SetParent(GameObject.Find("--- ENVIROMENT ---").transform);
 		grabable = null;
-		animator.SetBool("Standing", false);
+		animator.SetBool("Carrying", false);
 
 	}
 	public void GrabOrDrop(Grabable grabable)

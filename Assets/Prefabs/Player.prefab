@@ -157,6 +157,9 @@ MonoBehaviour:
   rotationSpeed: 1
   bobbingSpeed: 14
   bobbingAmount: 0.05
+  zoomSpeed: 2
+  minZoom: 2
+  maxZoom: 10
 --- !u!1 &8421873344106589866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,6 +1008,10 @@ PrefabInstance:
       propertyPath: m_CullingMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 137395908122663056, guid: c196544281a05d3458d7463c28062c02, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1012,9 +1019,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8005994281758766103}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1013213472216314, guid: c196544281a05d3458d7463c28062c02, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4264195591781993552}
     - targetCorrespondingSourceObject: {fileID: 1013213472216314, guid: c196544281a05d3458d7463c28062c02, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6385431751250248597}
@@ -1036,31 +1040,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1013213472216314, guid: c196544281a05d3458d7463c28062c02, type: 3}
   m_PrefabInstance: {fileID: 4094213734637044493}
   m_PrefabAsset: {fileID: 0}
---- !u!143 &4264195591781993552
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4094344014332352503}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 0.68
-  m_Radius: 0.25
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.33, z: 0.16}
 --- !u!114 &6385431751250248597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,6 +1053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputSmoothingSpeed: 5
+  jumpForce: 5
 --- !u!114 &8503384430293931210
 MonoBehaviour:
   m_ObjectHideFlags: 0
