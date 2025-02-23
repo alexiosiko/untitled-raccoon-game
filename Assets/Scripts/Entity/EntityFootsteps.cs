@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+[RequireComponent(typeof(AudioSource))]
 public class EntityFootsteps : MonoBehaviour
 {
     [SerializeField] private AudioClip[] footstepClips;

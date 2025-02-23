@@ -3,12 +3,13 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
-public class AIAnimationController : MonoBehaviour
+[RequireComponent(typeof(EntityFootsteps))]
+public class EntityController : Interactable
 {
-	[SerializeField] Transform destinationTransform;
-	[SerializeField] NavMeshAgent agent;
-	[SerializeField] Animator animator;
-    void Update()
+	[HideInInspector] public Transform destinationTransform;
+	[HideInInspector] public Animator animator;
+	[HideInInspector] public  NavMeshAgent agent;
+    protected virtual void Update()
     {
 		if (destinationTransform)
 			agent.SetDestination(destinationTransform.position);
@@ -27,4 +28,10 @@ public class AIAnimationController : MonoBehaviour
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);
     }
+	protected virtual void Awake()
+	{
+		animator = GetComponent<Animator>();
+		agent = GetComponent<NavMeshAgent>();
+	}
+	public override void Action() {}
 }

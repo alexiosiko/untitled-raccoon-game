@@ -1,9 +1,6 @@
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
-	public virtual void Highlight() {}
-	public virtual void Action() {
-		print("Action on: " + this);
-	}
+	public abstract void Action();
 }

@@ -5,7 +5,6 @@ public class RaccoonInteract : MonoBehaviour
 	float interactRadius = 3f;
     void Update()
     {
-		Highlight();
 		if (Input.GetKeyDown(KeyCode.E))
 		{
 			if (RaccoonGrab.Singleton.grabable != null)
@@ -16,12 +15,16 @@ public class RaccoonInteract : MonoBehaviour
     }
 	void Interact()
 	{
-		Collider[] hitColliders = Physics.OverlapSphere(transform.position, interactRadius, LayerMask.GetMask("Interactable"));
-		if (hitColliders.Length == 0)
-			return;
-
-		Interactable i = hitColliders[0].GetComponent<Interactable>();
-		i.Action();
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, interactRadius);
+		for (int i = 0; i < hitColliders.Length; i++)
+		{
+			Interactable interactable = hitColliders[i].GetComponent<Interactable>();
+			if (interactable)
+			{
+				interactable.Action();
+				return;
+			}
+		}
 	}
 	void Highlight()
 	{
@@ -33,7 +36,7 @@ public class RaccoonInteract : MonoBehaviour
 			Interactable interactable = collider.GetComponent<Interactable>();
 			if (interactable != null)
 			{
-				interactable.Highlight();
+				// interactable.Highlight();
 			}
 		}
 	}

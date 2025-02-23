@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RaccoonPA Red Panda
+  m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
+  m_Parent: {fileID: 2100000, guid: 443ce745581d9284c9a79218f8ab6c6e, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _CELPRIMARYMODE_SINGLE
+  - _DETAILMAPBLENDINGMODE_MULTIPLY
+  - _GRADIENTSPACE_WORLD
+  - _OUTLINESPACE_SCREEN
+  - _TEXTUREBLENDINGMODE_MULTIPLY
+  m_InvalidKeywords:
+  - _UNITYSHADOWMODE_NONE
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - SRPDEFAULTUNLIT
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 3af6e6186ee19214a8c9bb72e618fed3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BaseMapPremultiply: 0
+    - _CameraDistanceImpact: 0
+    - _Flatness: 1
+    - _LightFalloffSize: 0
+    - _OutlineEnabled: 0
+    - _VertexColorsEnabled: 0
+    m_Colors:
+    - _Color1: {r: 0.45588237, g: 0.20927715, b: 0.11732267, a: 0.153}
+    - _Color10: {r: 0.25735295, g: 0.1504525, b: 0.121107265, a: 0}
+    - _Color11: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 0.647}
+    - _Color12: {r: 0.50735295, g: 0.50735295, b: 0.50735295, a: 0.128}
+    - _Color2: {r: 0.45588237, g: 0.20927715, b: 0.11732267, a: 0.153}
+    - _Color3: {r: 0.14705884, g: 0.11570071, b: 0.11570071, a: 0.234}
+    - _Color4: {r: 0.14705884, g: 0.11570071, b: 0.11570071, a: 0.234}
+    - _Color5: {r: 0.85294116, g: 0.78650516, b: 0.70242214, a: 0.23529412}
+    - _Color6: {r: 0.31617647, g: 0.1332901, b: 0.065095164, a: 0.153}
+    - _Color7: {r: 0.85294116, g: 0.78650516, b: 0.70242214, a: 0.23529412}
+    - _Color8: {r: 0.85294116, g: 0.78650516, b: 0.70242214, a: 0.23529412}
+    - _Color9: {r: 0.85294116, g: 0.78650516, b: 0.70242214, a: 0.23529412}
+    - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
+    - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
+    - _Color_14: {r: 0.125, g: 0.10357505, b: 0.065257356, a: 0.541}
+    - _Color_16: {r: 0, g: 0, b: 0, a: 1}
+    - _FlatRimColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
+    - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

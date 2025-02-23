@@ -17,7 +17,7 @@ public class RaccoonGrab : MonoBehaviour
 	{
 		grabable.SetDropState();
 		grabable.DOKill();
-		grabable.transform.SetParent(GameObject.Find("--- Enviroment ---").transform);
+		grabable.transform.SetParent(GameObject.Find("--- ENVIROMENT ---").transform);
 		grabable = null;
 		animator.SetBool("Standing", false);
 
