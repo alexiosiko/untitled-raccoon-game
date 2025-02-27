@@ -1,5 +1,13 @@
 fileFormatVersion: 2
 guid: 3b32a6c700c715c41a28a2e8924f9037
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90110
+  packageName: 'Poly Art: Raccoon'
+  packageVersion: 3.9
+  assetPath: Assets/Malbers Animations/Animals Packs/01 Forest Pack/Raccoon/Anims/Raccoon
+    Jump.FBX
+  uploadId: 651676
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -460,8 +468,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -491,8 +497,8 @@ ModelImporter:
       loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -665,8 +671,8 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -693,7 +699,7 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
@@ -1095,8 +1101,7 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 42b16888dccfed94fb39302aa553204d,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 42b16888dccfed94fb39302aa553204d, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
@@ -1108,11 +1113,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 90110
-  packageName: 'Poly Art: Raccoon'
-  packageVersion: 3.9
-  assetPath: Assets/Malbers Animations/Animals Packs/01 Forest Pack/Raccoon/Anims/Raccoon
-    Jump.FBX
-  uploadId: 651676
