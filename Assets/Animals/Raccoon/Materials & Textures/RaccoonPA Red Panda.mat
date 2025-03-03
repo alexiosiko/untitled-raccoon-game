@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 2100000, guid: 443ce745581d9284c9a79218f8ab6c6e, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - DR_OUTLINE_ON
   - DR_OUTLINE_SMOOTH_NORMALS
   - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY
@@ -41,7 +42,7 @@ Material:
     - _CameraDistanceImpact: 0
     - _Flatness: 1
     - _LightFalloffSize: 0
-    - _OutlineEnabled: 0
+    - _OutlineEnabled: 1
     - _VertexColorsEnabled: 0
     m_Colors:
     - _Color1: {r: 0.45588237, g: 0.20927715, b: 0.11732267, a: 0.153}

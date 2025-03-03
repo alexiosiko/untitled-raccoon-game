@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum BabyRaccoonState {
@@ -9,35 +7,29 @@ public enum BabyRaccoonState {
 	WaitingForFood,
 	Eating
 }
-public class BabyRaccoonStateManager : EntityController
+public class BabyRaccoon : EntityController
 {
-	public AudioClip meowClip;
-    [SerializeField] AudioSource source;
     public BabyRaccoonState state;
     void Start()
     {
         EnterState(state);
     }
-
     protected override void Update()
     {
         base.Update();
         UpdateState();
     }
-
     public override void Action()
     {
         base.Action();
         ActionState();
     }
-
     public void SetState(BabyRaccoonState newState)
     {
 		ExitState();
         state = newState;
         EnterState(state);
     }
-
     void EnterState(BabyRaccoonState state)
     {
         switch (state)
@@ -46,7 +38,7 @@ public class BabyRaccoonStateManager : EntityController
 				destinationTransform = GameObject.Find("Mom").transform;
 				break;
             case BabyRaccoonState.WaitingForFood:
-				source.clip = meowClip;
+				source.clip = Resources.Load<AudioClip>("/Audio/cat-meow.mp3");
 				source.PlayDelayed(1);
 				destinationTransform = GameObject.Find("Truck").transform;
                 DialogueManager.Singleton.StartNarration("Your baby seems to be hungry ... maybe you can find some food from around the corner.", 5000);
@@ -59,7 +51,6 @@ public class BabyRaccoonStateManager : EntityController
                 break;
         }
     }
-
     void UpdateState()
     {
         switch (state)
@@ -120,6 +111,7 @@ public class BabyRaccoonStateManager : EntityController
     async void Cry()
     {
 		await Task.Delay(Random.Range(3, 7) * 1000);
+
 		source.Play();
     }
 }

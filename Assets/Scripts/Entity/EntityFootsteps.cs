@@ -9,6 +9,11 @@ public class EntityFootsteps : MonoBehaviour
 		float x = animator.GetFloat("Horizontal");
 		float y = animator.GetFloat("Vertical");
 		float speed = Math.Max(Math.Abs(x), Math.Abs(y));
+		if (footstepClips.Length == 0)
+		{
+			// Debug.LogError("Footstepsclip length is  0");
+			return;
+		}
 		AudioClip clip = footstepClips[UnityEngine.Random.Range(0, footstepClips.Length)];
 		float scale = speed;
 		if (scale < 0.1f)
@@ -17,7 +22,6 @@ public class EntityFootsteps : MonoBehaviour
 	}
 	AudioSource audioSource;
 	Animator animator;
-
     void Awake()
     {
 		animator = GetComponent<Animator>();
