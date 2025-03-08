@@ -845,6 +845,5 @@ AssetOrigin:
   productId: 90110
   packageName: 'Poly Art: Raccoon'
   packageVersion: 3.9
-  assetPath: Assets/Malbers Animations/Animals Packs/01 Forest Pack/Raccoon/Anims/Raccoon
-    IdleAttack.FBX
+  assetPath: Assets/Animals/Raccoon/Anims/Raccoon IdleAttack.FBX
   uploadId: 651676

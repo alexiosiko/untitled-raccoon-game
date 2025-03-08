@@ -9,7 +9,7 @@ public class EntityFootsteps : MonoBehaviour
 		float x = animator.GetFloat("Horizontal");
 		float y = animator.GetFloat("Vertical");
 		float speed = Math.Max(Math.Abs(x), Math.Abs(y));
-		if (footstepClips.Length == 0)
+		if  (footstepClips.Length == 0)
 		{
 			// Debug.LogError("Footstepsclip length is  0");
 			return;

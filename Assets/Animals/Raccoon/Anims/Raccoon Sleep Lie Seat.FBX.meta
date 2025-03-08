@@ -1133,6 +1133,5 @@ AssetOrigin:
   productId: 90110
   packageName: 'Poly Art: Raccoon'
   packageVersion: 3.9
-  assetPath: Assets/Malbers Animations/Animals Packs/01 Forest Pack/Raccoon/Anims/Raccoon
-    Sleep Lie Seat.FBX
+  assetPath: Assets/Animals/Raccoon/Anims/Raccoon Sleep Lie Seat.FBX
   uploadId: 651676

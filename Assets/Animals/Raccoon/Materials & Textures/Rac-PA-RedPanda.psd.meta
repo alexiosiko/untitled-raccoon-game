@@ -77,6 +77,5 @@ AssetOrigin:
   productId: 90110
   packageName: 'Poly Art: Raccoon'
   packageVersion: 3.9
-  assetPath: Assets/Malbers Animations/Animals Packs/01 Forest Pack/Raccoon/Materials
-    & Textures/Poly Art/Rac-PA-RedPanda.psd
+  assetPath: Assets/Animals/Raccoon/Materials & Textures/Rac-PA-RedPanda.psd
   uploadId: 651676

@@ -1008,6 +1008,5 @@ AssetOrigin:
   productId: 90110
   packageName: 'Poly Art: Raccoon'
   packageVersion: 3.9
-  assetPath: Assets/Malbers Animations/Animals Packs/01 Forest Pack/Raccoon/Anims/Raccoon
-    Rolling.FBX
+  assetPath: Assets/Animals/Raccoon/Anims/Raccoon Rolling.FBX
   uploadId: 651676

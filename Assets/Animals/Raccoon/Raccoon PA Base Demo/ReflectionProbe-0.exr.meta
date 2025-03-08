@@ -130,6 +130,5 @@ AssetOrigin:
   productId: 90110
   packageName: 'Poly Art: Raccoon'
   packageVersion: 3.9
-  assetPath: Assets/Malbers Animations/Animals Packs/01 Forest Pack/Raccoon/Raccoon
-    PA Base Demo/ReflectionProbe-0.exr
+  assetPath: Assets/Animals/Raccoon/Raccoon PA Base Demo/ReflectionProbe-0.exr
   uploadId: 651676
