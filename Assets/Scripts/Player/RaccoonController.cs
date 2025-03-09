@@ -136,7 +136,7 @@ public class RaccoonController : MonoBehaviour
 		animator.SetBool("isGrounded", isGrounded);
 		
 		// Debugging: Draw the box and contact point
-		Debug.DrawRay(centerOfRaccoon, centerOfRaccoon + Vector3.down * rayLength);
+		Debug.DrawLine(centerOfRaccoon, centerOfRaccoon + Vector3.down * rayLength, Color.red);
 	}
 
 
@@ -156,11 +156,11 @@ public class RaccoonController : MonoBehaviour
 
 	void CheckClimbOver()
 	{
-		Vector3 topCenter = transform.position + Vector3.up / 1.25f;
-		Debug.DrawLine(topCenter, topCenter + transform.forward * climbingHorizontalDistance);
+		Vector3 topCenterAndBack = transform.position + Vector3.up / 1.25f;
+		Debug.DrawLine(topCenterAndBack, topCenterAndBack + transform.forward * climbingHorizontalDistance / 1.2f, Color.cyan);
 
 		// If not hit a climbable, Climb over
-		if (!Physics.Raycast(topCenter, transform.forward, out RaycastHit hit, climbingHorizontalDistance, LayerMask.GetMask("Climbable")))
+		if (!Physics.Raycast(topCenterAndBack, transform.forward, out RaycastHit hit, climbingHorizontalDistance / 1.2f, LayerMask.GetMask("Climbable")))
 			SetState(RaccoonState.ClimbOver);
 	}
 
@@ -207,7 +207,7 @@ public class RaccoonController : MonoBehaviour
     [SerializeField] float groundCheckDistance = 0.1f;
     private Animator animator;
 	private Collider walkingCollider;
-	float climbingHorizontalDistance = 2f;
+	float climbingHorizontalDistance = 0.8f;
 	Rigidbody rb;
 	Vector3 centerOfRaccoon;
 }
