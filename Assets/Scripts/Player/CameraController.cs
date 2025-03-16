@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
         offset = offset.normalized * distance;
 
         // Update camera position
-        transform.position = target.position + rotation * offset;
-        transform.LookAt(target);
+        transform.position = target.position + rotation * offset; // Vector3.up to give a little oomf up
+        transform.LookAt(target.position + Vector3.up /2 );
     }
 }
