@@ -46,7 +46,6 @@ public class RaccoonController : MonoBehaviour
 			case RaccoonState.JumpOff:
 				animator.SetBool("Climbing", false);
 				animator.SetTrigger("Jump");
-				ResetRotationXZ();
 				Invoke(nameof(SetWalkingState), 1f);
 				break;
 			case RaccoonState.ClimbOver:
@@ -96,7 +95,7 @@ public class RaccoonController : MonoBehaviour
 	}
 	void HandleClimbing()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (!startClimbingDelay && Input.GetKeyDown(KeyCode.Space))
 		{
 			SetState(RaccoonState.JumpOff);
 			return;
@@ -139,6 +138,8 @@ public class RaccoonController : MonoBehaviour
     {
         float rawHorizontal = Input.GetAxis("Horizontal");
         float rawVertical = Input.GetAxis("Vertical");
+		if (Input.GetKey(KeyCode.Space))
+			rawVertical *= 1.5f;
         smoothHorizontal = Mathf.Lerp(smoothHorizontal, rawHorizontal, inputSmoothingSpeed * Time.deltaTime);
         smoothVertical = Mathf.Lerp(smoothVertical, rawVertical, inputSmoothingSpeed * Time.deltaTime);
     }
@@ -170,8 +171,8 @@ public class RaccoonController : MonoBehaviour
 			Quaternion targetRotation = Quaternion.LookRotation(forwardDirection);
 			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
 
-			
-			// transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 4);
+			// Vector3 newPos = hit.point + hit.normal / 2f;
+			// transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime);
 		}
 	}
 	void ResetRotationXZ()

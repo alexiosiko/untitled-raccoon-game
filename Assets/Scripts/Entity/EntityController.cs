@@ -19,7 +19,6 @@ public class EntityController : Interactable
 		agent = GetComponent<NavMeshAgent>();
 
     	agent.updatePosition = false;
-
     }
 
     protected virtual void Update()
