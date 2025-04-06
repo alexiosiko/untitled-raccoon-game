@@ -2,6 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 enum RaccoonState
 {	
+	Grabbing,
 	Carrying,
 	JumpOff,
 	ClimbOver,
@@ -27,19 +28,10 @@ public class RaccoonController : MonoBehaviour
 			case RaccoonState.Climbing: 	HandleClimbing(); break;
 		}
 	}
-	void HandleFalling()
-	{
-		if (animator.GetBool("isGrounded"))
-			SetState(RaccoonState.Walking);
-	}
-	void HandleJumping()
-	{
-		if (animator.GetBool("isGrounded"))
-			SetState(RaccoonState.Walking);
-	}
-
+	
 	void SetState(RaccoonState state)
 	{
+		ExitState(); 
 		currentState = state;
 		switch (state)
 		{
@@ -49,6 +41,7 @@ public class RaccoonController : MonoBehaviour
 				Invoke(nameof(SetWalkingState), 1f);
 				break;
 			case RaccoonState.ClimbOver:
+				Invoke(nameof(JumpOffForwardPush), 0.2f);
 				Invoke(nameof(SetWalkingState), 1.25f);
 				animator.SetTrigger("ClimbOver");
 				animator.SetBool("Climbing", false);
@@ -62,7 +55,9 @@ public class RaccoonController : MonoBehaviour
 				break;
 			case RaccoonState.Climbing:
 				startClimbingDelay = true;
-				Invoke(nameof(StopClimbingDelay), 1.5f);
+				CancelInvoke(nameof(StopClimbingDelay));
+				CancelInvoke(nameof(DisableCollider));
+				Invoke(nameof(StopClimbingDelay), 2f);
 				Invoke(nameof(DisableCollider), 0.25f);
 				rb.useGravity = false;
 				animator.SetBool("Climbing", true);
@@ -70,7 +65,7 @@ public class RaccoonController : MonoBehaviour
 				// Hover from climbable
 				if (Physics.Raycast(centerOfRaccoon, transform.forward, out RaycastHit hit, climbingHorizontalDistance, LayerMask.GetMask("Climbable")))
 				{
-					Vector3 newPos = hit.point + Vector3.down / 10f + hit.normal / 5f;
+					Vector3 newPos = hit.point + Vector3.down / 10f + hit.normal / 4f;
 					transform.DOMove(newPos, 0.75f);
 				}
 				
@@ -81,6 +76,23 @@ public class RaccoonController : MonoBehaviour
 				break;
 		}
 	}
+	void ExitState()
+	{
+		// switch (currentState)
+		// {
+
+		// }
+	}
+	void HandleFalling()
+	{
+		if (animator.GetBool("isGrounded"))
+			SetState(RaccoonState.Walking);
+	}
+	void HandleJumping()
+	{
+		if (animator.GetBool("isGrounded"))
+			SetState(RaccoonState.Walking);
+	}
 	void HandleWalking()
 	{
 		Debug.DrawLine(centerOfRaccoon, transform.position + Vector3.up / 4f + transform.forward * climbingHorizontalDistance, Color.magenta);
@@ -88,8 +100,6 @@ public class RaccoonController : MonoBehaviour
 		{
 			if (CanClimb())
 				SetState(RaccoonState.Climbing);
-			else
-				SetState(RaccoonState.Jumping);
 		}
 			
 	}
@@ -136,28 +146,44 @@ public class RaccoonController : MonoBehaviour
 
     void UpdateInput()
     {
-        float rawHorizontal = Input.GetAxis("Horizontal");
+		float rawHorizontal = Input.GetAxis("Horizontal");
         float rawVertical = Input.GetAxis("Vertical");
-		if (Input.GetKey(KeyCode.Space))
-			rawVertical *= 1.5f;
-        smoothHorizontal = Mathf.Lerp(smoothHorizontal, rawHorizontal, inputSmoothingSpeed * Time.deltaTime);
-        smoothVertical = Mathf.Lerp(smoothVertical, rawVertical, inputSmoothingSpeed * Time.deltaTime);
+		if (!Input.GetKey(KeyCode.Space)) // Space to walk
+		{
+			rawHorizontal *= 1 + rawVertical;
+			rawVertical *= 2f;
+		}
+        smoothHorizontal = Mathf.Lerp(smoothHorizontal, rawHorizontal, inputSmoothingSpeed * Time.deltaTime * 2f);
+        smoothVertical = Mathf.Lerp(smoothVertical, rawVertical, inputSmoothingSpeed * Time.deltaTime / 2);
     }
 
     void UpdateAnimatorParameters()
     {
-        animator.SetFloat("Horizontal", smoothHorizontal);
-        animator.SetFloat("Vertical", smoothVertical);
+        animator.SetFloat("Left", smoothHorizontal);
+        animator.SetFloat("Forward", smoothVertical);
     }
 
 	void CheckClimbOver()
 	{
-		Vector3 topCenterAndBack = transform.position + Vector3.up / 1.25f;
+		Vector3 topCenterAndBack = transform.position + Vector3.up / 1.05f;
 		Debug.DrawLine(topCenterAndBack, topCenterAndBack + transform.forward * climbingHorizontalDistance / 1.2f, Color.cyan);
+	
+	    Vector3 halfExtents = Vector3.one / 8f;
 
-		// If not hit a climbable, Climb over
-		if (!Physics.Raycast(topCenterAndBack, transform.forward, out RaycastHit hit, climbingHorizontalDistance / 1.2f, LayerMask.GetMask("Climbable")))
+		if (!Physics.BoxCast(topCenterAndBack, halfExtents, transform.forward, Quaternion.identity, climbingHorizontalDistance / 1.2f))
 			SetState(RaccoonState.ClimbOver);
+
+	}
+	void OnDrawGizmos()
+	{
+		Vector3 topCenterAndBack = transform.position + Vector3.up / 1.05f;
+		Vector3 halfExtents = Vector3.one / 8f;
+		Quaternion orientation = Quaternion.identity;
+		Vector3 direction = transform.forward * (climbingHorizontalDistance / 1.2f);
+
+		Gizmos.color = Color.cyan;
+		Gizmos.matrix = Matrix4x4.TRS(topCenterAndBack, orientation, Vector3.one);
+		Gizmos.DrawWireCube(Vector3.zero + direction, halfExtents * 2f);
 	}
 
 	void PositionAndRotateClimb()
@@ -193,13 +219,16 @@ public class RaccoonController : MonoBehaviour
         walkingCollider = GetComponent<Collider>();
 		rb = GetComponent<Rigidbody>();
     }
-	bool CanClimb() => Physics.Raycast(centerOfRaccoon, transform.forward, out RaycastHit hit, climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
+	bool CanClimb()
+	{
+		return Physics.Raycast(centerOfRaccoon, transform.forward, out RaycastHit hit, climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
+	}
 	void EnableGravity() => rb.useGravity = true;
 	void SetWalkingState() => SetState(RaccoonState.Walking);
 	void DisableCollider() => walkingCollider.enabled = false;
 	[SerializeField] RaccoonState currentState;
-    float smoothHorizontal = 0f;
-   	float smoothVertical = 0f;
+	float smoothHorizontal;
+	float smoothVertical;
     float inputSmoothingSpeed = 5f;
     [SerializeField] float groundCheckDistance = 0.1f;
     private Animator animator;
@@ -207,4 +236,9 @@ public class RaccoonController : MonoBehaviour
 	float climbingHorizontalDistance = 0.8f;
 	Rigidbody rb;
 	Vector3 centerOfRaccoon;
+	public void JumpOffForwardPush()  
+	{
+		rb.AddForce(transform.forward * 5f);
+	}
+
 }

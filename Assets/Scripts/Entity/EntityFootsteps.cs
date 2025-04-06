@@ -6,6 +6,7 @@ public class EntityFootsteps : MonoBehaviour
     [SerializeField] private AudioClip[] footstepClips;
     public void PlayFootstepSound()
 	{
+		return;
 		float x = animator.GetFloat("Horizontal");
 		float y = animator.GetFloat("Vertical");
 		float speed = Math.Max(Math.Abs(x), Math.Abs(y));

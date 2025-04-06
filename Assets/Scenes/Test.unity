@@ -265,9 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cde0f77b472c6459557a33d93d79a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationTransform: {fileID: 604889409}
-  agent: {fileID: 126153982}
+  destinationTransform: {fileID: 0}
   animator: {fileID: 126153983}
+  agent: {fileID: 126153982}
 --- !u!195 &126153982
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -627,9 +627,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cde0f77b472c6459557a33d93d79a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationTransform: {fileID: 604889409}
-  agent: {fileID: 302284697}
+  destinationTransform: {fileID: 0}
   animator: {fileID: 302284694}
+  agent: {fileID: 302284697}
 --- !u!195 &302284697
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -984,7 +984,7 @@ Transform:
   m_GameObject: {fileID: 420891091}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1051,11 +1051,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0c16f0ea935ea64297ca1d4d55d9746, type: 3}
---- !u!4 &604889409 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4097758275982694281, guid: c242fba14c07c6b49a927e79bd08da47, type: 3}
-  m_PrefabInstance: {fileID: 2497621914225274937}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &612740262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1603,9 +1598,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cde0f77b472c6459557a33d93d79a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationTransform: {fileID: 604889409}
-  agent: {fileID: 892559091}
+  destinationTransform: {fileID: 0}
   animator: {fileID: 892559092}
+  agent: {fileID: 892559091}
 --- !u!195 &892559091
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2053,6 +2048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d91af9a4bfb8487479364de1dcdc1616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactive: 0
 --- !u!135 &1167416204
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2785,7 +2781,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.10666666
+  m_VoxelSize: 0.083333336
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 51299d90b9f1c024095f20628f45e337, type: 2}
   m_BuildHeightMesh: 0
@@ -2807,7 +2803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1686021177305034388, guid: ebee340de387f334f9ac44e044abd8fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.007543505
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 1686021177305034388, guid: ebee340de387f334f9ac44e044abd8fb, type: 3}
       propertyPath: m_LocalPosition.z

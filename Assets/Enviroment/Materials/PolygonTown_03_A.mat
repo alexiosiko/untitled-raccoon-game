@@ -12,19 +12,19 @@ Material:
   m_Parent: {fileID: 2100000, guid: 465b43787f0dc5a4f8692f074f54c897, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - DR_OUTLINE_ON
   - DR_OUTLINE_SMOOTH_NORMALS
-  - _CELPRIMARYMODE_SINGLE
+  - DR_SPECULAR_ON
   - _DETAILMAPBLENDINGMODE_MULTIPLY
   - _GRADIENTSPACE_WORLD
   - _NORMALMAP
   - _OUTLINESPACE_SCREEN
   - _TEXTUREBLENDINGMODE_MULTIPLY
+  - _UNITYSHADOWMODE_COLOR
   - _UNITYSHADOW_OCCLUSION
   m_InvalidKeywords:
+  - _CELPRIMARYMODE_NONE
   - _DETAIL_MULX2
   - _METALLICGLOSSMAP
-  - _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -38,10 +38,6 @@ Material:
     m_TexEnvs:
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2988fd463bbe658479c5ab2a314b3bc8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
