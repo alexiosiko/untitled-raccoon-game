@@ -1,5 +1,5 @@
-using UnityEditor;
 using UnityEngine;
+
 [RequireComponent(typeof(RaccoonGrab))]
 public class RaccoonInteract : MonoBehaviour
 {

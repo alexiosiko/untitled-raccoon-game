@@ -12,12 +12,14 @@ public class CameraController : MonoBehaviour
     public float zoomSpeed = 2f;
     public float minZoom = 2f;
     public float maxZoom = 10f;
-
     private float xRotation = 0f;
     private float yRotation = 0f;
     private Vector3 offset;
-
-    void Awake()
+	public static bool freeze = false;
+	void Start()
+	{
+	}
+	void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -26,6 +28,11 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+		if (freeze)
+			return;
+
+
+
         // Mouse input
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -34,6 +41,7 @@ public class CameraController : MonoBehaviour
         xRotation -= mouseY;
         yRotation += mouseX;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
         Quaternion rotation = Quaternion.Euler(xRotation, yRotation, 0f);
 
         // Scroll input for zoom
