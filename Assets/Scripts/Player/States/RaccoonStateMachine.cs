@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.InputSystem.Utilities;
 
 public enum RaccoonState
 {	
@@ -24,7 +23,6 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
     public Vector3 centerOfRaccoon;
     
     // Movement parameters
-    public float climbingHorizontalDistance = 0.8f;
     public float moveSpeed = 5f;
     public float rotationSpeed = 10f;
     public Vector3 MoveInput { get; private set; }
@@ -70,22 +68,19 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
 	}
 	public void ForwardForce() 
 	{
-		print("forward force");
 		rb.AddForce(transform.forward * 50f);
 	}
 	
 	public bool IsGrounded(float lengthMultiplier = 1)
 	{
-		float rayLength = 0.4f * lengthMultiplier;
+		float rayLength = 0.4f;
 		int layerMask = ~LayerMask.GetMask("Entity"); // Exclude "Entity" layer
 		Debug.DrawLine(centerOfRaccoon, centerOfRaccoon + Vector3.down * rayLength, Color.red);
 		return Physics.Raycast(centerOfRaccoon, Vector3.down, rayLength, layerMask);
 	}
 
 
-    public bool CanClimb() => Physics.Raycast(centerOfRaccoon, transform.forward, climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
-	public void SetWalkingState() => TransitionToState(RaccoonState.Walking);
-	public void SetFallingState() => TransitionToState(RaccoonState.Falling);
+   
 	public float smoothHorizontal;
 	public float smoothVertical;
 	void OnDrawGizmos()
@@ -93,7 +88,7 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
 		Vector3 topCenterAndBack = transform.position + Vector3.up / 1f; // This value is also in child;
 		Vector3 halfExtents = Vector3.one / 8f;
 		Quaternion orientation = Quaternion.identity;
-		Vector3 direction = transform.forward * (climbingHorizontalDistance / 1.05f);
+		Vector3 direction = transform.forward * (RaccoonClimbingState.climbingHorizontalDistance / 1.05f);
 
 		Gizmos.color = Color.cyan;
 		Gizmos.matrix = Matrix4x4.TRS(topCenterAndBack, orientation, Vector3.one);
@@ -116,4 +111,8 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
         // Set initial state
         TransitionToState(RaccoonState.Walking);
     }
+	public void SetWalkingState() => TransitionToState(RaccoonState.Walking);
+	public void SetFallingState() => TransitionToState(RaccoonState.Falling);
+	public void ApplyRootMotion() => animator.applyRootMotion = true;
+
 }

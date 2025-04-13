@@ -1,5 +1,5 @@
 using System;
-using UnityEngine;
+
 public abstract class BaseState<EState> where EState : Enum
 {
 	public BaseState(EState key) => StateKey = key;

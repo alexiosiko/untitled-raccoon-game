@@ -10,23 +10,20 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 
     public override void EnterState()
     {
-		Debug.Log(machine.animator.applyRootMotion);
-		
-        machine.walkingCollider.enabled = false;
 		machine.animator.applyRootMotion = false;
-		Debug.Log(machine.animator.applyRootMotion);
 		machine.ForwardForce();
     }
 
     public override void UpdateState()
     {
-
     }
 
     public override RaccoonState GetNextState()
 	{
-        if (machine.IsGrounded(3))
+        if (machine.animator.GetBool("IsGrounded"))
+		{
           	return RaccoonState.Walking;
+		}
 		else
 			return StateKey;
 	}
@@ -35,8 +32,10 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 
     public override void ExitState()
     {
+		machine.Invoke(nameof(machine.ApplyRootMotion), 0f);
+
         machine.walkingCollider.enabled = true;
-		machine.animator.applyRootMotion = true;
-	
+		machine.smoothHorizontal = 0;
+		machine.smoothVertical = 0;
 	}
 }

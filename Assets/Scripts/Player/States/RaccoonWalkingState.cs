@@ -12,6 +12,7 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 
     public override void EnterState()
     {
+
 		startClimbingDelay = true;
 		machine.StartCoroutine(RemoveClimbingDelay());
 
@@ -44,6 +45,5 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 		yield return new WaitForSeconds(1.5f);
 		startClimbingDelay = false;
 	} 
-	bool CanClimb() => Physics.Raycast(machine.centerOfRaccoon, machine.transform.forward, out RaycastHit hit, machine.climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
-
+	bool CanClimb() => Physics.Raycast(machine.centerOfRaccoon, machine.transform.forward, out RaycastHit hit, RaccoonClimbingState.climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
 }
