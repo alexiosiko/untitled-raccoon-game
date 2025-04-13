@@ -11,7 +11,7 @@ public class RaccoonClimbingOverState : BaseState<RaccoonState>
 		machine.animator.SetTrigger("ClimbOver");
 		machine.animator.SetBool("Climbing", false);
 		
-		machine.Invoke("SetWalkingState", 1.5f);
+		machine.Invoke("SetWalkingState", 1.4f);
 	}
 
 	public override void ExitState()

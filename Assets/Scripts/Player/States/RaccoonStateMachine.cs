@@ -74,9 +74,9 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
 		rb.AddForce(transform.forward * 50f);
 	}
 	
-	public bool IsGrounded()
+	public bool IsGrounded(float lengthMultiplier = 1)
 	{
-		float rayLength = 0.4f;
+		float rayLength = 0.4f * lengthMultiplier;
 		int layerMask = ~LayerMask.GetMask("Entity"); // Exclude "Entity" layer
 		Debug.DrawLine(centerOfRaccoon, centerOfRaccoon + Vector3.down * rayLength, Color.red);
 		return Physics.Raycast(centerOfRaccoon, Vector3.down, rayLength, layerMask);

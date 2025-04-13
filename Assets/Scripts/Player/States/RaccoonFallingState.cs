@@ -25,7 +25,7 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 
     public override RaccoonState GetNextState()
 	{
-        if (machine.IsGrounded())
+        if (machine.IsGrounded(3))
           	return RaccoonState.Walking;
 		else
 			return StateKey;
