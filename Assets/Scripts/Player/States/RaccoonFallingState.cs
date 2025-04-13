@@ -13,9 +13,9 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 		Debug.Log(machine.animator.applyRootMotion);
 		
         machine.walkingCollider.enabled = false;
-		// machine.animator.applyRootMotion = false;
+		machine.animator.applyRootMotion = false;
 		Debug.Log(machine.animator.applyRootMotion);
-		// machine.ForwardForce();
+		machine.ForwardForce();
     }
 
     public override void UpdateState()

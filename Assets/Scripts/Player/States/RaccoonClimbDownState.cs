@@ -1,3 +1,6 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
 public class RaccoonClimbingDownState : BaseState<RaccoonState>
 {
 	RaccoonStateMachine machine;
@@ -8,7 +11,9 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 	
 	public override void EnterState()
 	{
-		machine.Invoke("SetWalkingState", 1.25f);
+		// Make sure this length is the correct length of the animation clip
+		float animationLength = 0.5f;
+		machine.Invoke(nameof(machine.SetFallingState), animationLength);
 	}
 
 	public override void ExitState()

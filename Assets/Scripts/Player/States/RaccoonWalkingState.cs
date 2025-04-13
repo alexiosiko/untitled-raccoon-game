@@ -31,14 +31,13 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 			return RaccoonState.Climbing;
 
 		if (machine.animator.GetBool("IsGrounded") == false)
-			return RaccoonState.Falling;
+			return RaccoonState.ClimbingDown;
 
 		return RaccoonState.Walking; // Stay in this state for now
 	}
 
     public override void ExitState()
     {
-        Debug.Log("Exiting Walking State");
     }
 	IEnumerator RemoveClimbingDelay()
 	{

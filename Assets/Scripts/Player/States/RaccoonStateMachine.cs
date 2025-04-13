@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem.Utilities;
 
 public enum RaccoonState
 {	
@@ -15,6 +16,7 @@ public enum RaccoonState
 [RequireComponent(typeof(Animator), typeof(Rigidbody), typeof(Collider))]
 public class RaccoonStateMachine : StateMachine<RaccoonState>
 {
+	[SerializeField] string currentState;
     // Public properties for states to access
     public Animator animator;
     public Rigidbody rb;
@@ -29,6 +31,7 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
     void LateUpdate()
     {
 		base.Update();
+		currentState = CurrentState.ToString();
 
         // Update center point for raycasts
         centerOfRaccoon = transform.position + Vector3.up / 4 + transform.forward / 4f;
@@ -68,21 +71,23 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
 	public void ForwardForce() 
 	{
 		print("forward force");
-		rb.AddForce(transform.forward * 20f);
+		rb.AddForce(transform.forward * 50f);
 	}
 	
-    public bool IsGrounded()
-    {
-        float rayLength = 0.4f;
+	public bool IsGrounded()
+	{
+		float rayLength = 0.4f;
+		int layerMask = ~LayerMask.GetMask("Entity"); // Exclude "Entity" layer
 		Debug.DrawLine(centerOfRaccoon, centerOfRaccoon + Vector3.down * rayLength, Color.red);
-        return Physics.Raycast(centerOfRaccoon, Vector3.down, rayLength);
-    }
+		return Physics.Raycast(centerOfRaccoon, Vector3.down, rayLength, layerMask);
+	}
+
 
     public bool CanClimb() => Physics.Raycast(centerOfRaccoon, transform.forward, climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
-	void SetWalkingState() => TransitionToState(RaccoonState.Walking);
-	// void SetFallingState() => TransitionToState(RaccoonState.Falling);
-	float smoothHorizontal;
-	float smoothVertical;
+	public void SetWalkingState() => TransitionToState(RaccoonState.Walking);
+	public void SetFallingState() => TransitionToState(RaccoonState.Falling);
+	public float smoothHorizontal;
+	public float smoothVertical;
 	void OnDrawGizmos()
 	{
 		Vector3 topCenterAndBack = transform.position + Vector3.up / 1f; // This value is also in child;
