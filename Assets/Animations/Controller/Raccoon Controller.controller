@@ -696,7 +696,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Jump Down
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1199878344221936847}
@@ -722,7 +722,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Falling 1
+  m_Name: Falling
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1150,7 +1150,7 @@ AnimatorStateMachine:
     m_Position: {x: -660, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1441354674524696021}
-    m_Position: {x: -650, y: 390, z: 0}
+    m_Position: {x: -630, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1137754061899785502}
     m_Position: {x: -1070, y: 380, z: 0}
