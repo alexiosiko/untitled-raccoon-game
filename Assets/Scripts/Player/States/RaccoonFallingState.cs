@@ -35,7 +35,7 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 		machine.Invoke(nameof(machine.ApplyRootMotion), 0f);
 
         machine.walkingCollider.enabled = true;
-		machine.smoothHorizontal = 0;
-		machine.smoothVertical = 0;
+		machine.controller.smoothHorizontal = 0;
+		machine.controller.smoothVertical = 0;
 	}
 }

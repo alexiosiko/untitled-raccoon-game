@@ -47,5 +47,5 @@ public class EntityController : Interactable
     }
 
 
-    public override void Action() {}
+    public override void Action(MonoBehaviour caller) {}
 }

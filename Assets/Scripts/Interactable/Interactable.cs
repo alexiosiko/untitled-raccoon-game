@@ -2,5 +2,5 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-	public abstract void Action();
+	public abstract void Action(MonoBehaviour caller);
 }

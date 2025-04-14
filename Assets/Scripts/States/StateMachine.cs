@@ -20,10 +20,10 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
 		else if (!IsTransitioningState)
 		{
 			Debug.Log("Transition to " + nextStateKey);
-			TransitionToState(nextStateKey);
+			SetState(nextStateKey);
 		}
 	}
-	public void TransitionToState(EState stateKey)
+	public void SetState(EState stateKey)
 	{
 		IsTransitioningState = true;
 		CurrentState?.ExitState();

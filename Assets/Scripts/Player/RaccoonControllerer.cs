@@ -234,7 +234,6 @@ public class RaccoonControllerrrr : MonoBehaviour
 	float smoothHorizontal;
 	float smoothVertical;
     float inputSmoothingSpeed = 5f;
-    [SerializeField] float groundCheckDistance = 0.1f;
     private Animator animator;
 	private Collider walkingCollider;
 	float climbingHorizontalDistance = 0.8f;

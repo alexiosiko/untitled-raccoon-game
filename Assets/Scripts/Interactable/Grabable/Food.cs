@@ -1,9 +1,12 @@
+using UnityEngine;
+
 public class Food : Grabable
 {
-	public override void Action()
+	public override void Action(MonoBehaviour sender)
 	{
+		base.Action(sender);
 
-		base.Action();
+		GetComponent<Collider>().enabled = false;
 	}
 
 }

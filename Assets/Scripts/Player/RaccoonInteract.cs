@@ -1,18 +1,17 @@
 using UnityEngine;
 
-[RequireComponent(typeof(RaccoonGrab))]
 public class RaccoonInteract : MonoBehaviour
 {
 	float interactRadius = 3f;
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.E))
-		{
-			if (RaccoonGrab.Singleton.grabable != null)
-				RaccoonGrab.Singleton.Drop();
-			else
-				Interact();
-		}
+		// if (Input.GetKeyDown(KeyCode.E))
+		// {
+		// 	if (RaccoonGrab.Singleton.grabable != null)
+		// 		RaccoonGrab.Singleton.Drop();
+		// 	else
+		// 		Interact();
+		// }
     }
 	void Interact()
 	{
@@ -22,7 +21,7 @@ public class RaccoonInteract : MonoBehaviour
 			Interactable interactable = hitColliders[i].GetComponent<Interactable>();
 			if (interactable)
 			{
-				interactable.Action();
+				interactable.Action(this);
 				return;
 			}
 		}

@@ -3,7 +3,7 @@ using UnityEngine;
 public class RaccoonWalkingState : BaseState<RaccoonState>
 {
     private RaccoonStateMachine machine;
-    private bool startClimbingDelay;
+    private bool delay;
 
     public RaccoonWalkingState(RaccoonStateMachine machine) : base(RaccoonState.Walking)
     {
@@ -12,8 +12,8 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 
     public override void EnterState()
     {
-
-		startClimbingDelay = true;
+		machine.animator.CrossFade("Walking", 0.2f);
+		delay = true;
 		machine.StartCoroutine(RemoveClimbingDelay());
 
         machine.walkingCollider.enabled = true;
@@ -23,16 +23,22 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 
     public override void UpdateState()
     {
-
+		if (Input.GetKeyDown(KeyCode.Space))
+			Interact(machine);
     }
 	
     public override RaccoonState GetNextState()
 	{
-		if (!startClimbingDelay && Input.GetKeyDown(KeyCode.Space) && CanClimb())
+		if (delay)
+			return RaccoonState.Walking;
+
+		if (!delay && Input.GetKeyDown(KeyCode.Space) && RaccoonClimbingState.CanClimb(machine))
 			return RaccoonState.Climbing;
 
 		if (machine.animator.GetBool("IsGrounded") == false)
 			return RaccoonState.ClimbingDown;
+
+		
 
 		return RaccoonState.Walking; // Stay in this state for now
 	}
@@ -40,10 +46,25 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
     public override void ExitState()
     {
     }
+	public static void Interact(RaccoonStateMachine machine)
+	{
+		Vector3 centerEatingSpot = machine.controller.centerOfRaccoon + machine.transform.forward / 3f;
+		Debug.DrawLine(machine.controller.centerOfRaccoon, centerEatingSpot, Color.black);
+		Collider[] colliders = Physics.OverlapSphere(centerEatingSpot, 0.25f);
+		foreach (var c in colliders)
+		{
+			Interactable i = c.GetComponent<Interactable>();
+			if (i)
+			{
+				i.Action(machine);
+				return;
+			}
+		}
+	}
+	
 	IEnumerator RemoveClimbingDelay()
 	{
-		yield return new WaitForSeconds(1.5f);
-		startClimbingDelay = false;
+		yield return new WaitForSeconds(1f);
+		delay = false;
 	} 
-	bool CanClimb() => Physics.Raycast(machine.centerOfRaccoon, machine.transform.forward, out RaycastHit hit, RaccoonClimbingState.climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
 }

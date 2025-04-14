@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RaccoonClimbingState : BaseState<RaccoonState>
 {
-    private RaccoonStateMachine machine;
-    private bool startClimbingDelay;
+    RaccoonStateMachine machine;
+    bool delay;
     public static float climbingHorizontalDistance = 0.8f;
+	[SerializeField] 
 
     public RaccoonClimbingState(RaccoonStateMachine machine) : base(RaccoonState.Climbing)
     {
@@ -15,14 +16,15 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 
     public override void EnterState()
     {
-		startClimbingDelay = true;
+		machine.climbingCollider.enabled = true;
+		delay = true;
 		machine.StartCoroutine(RemoveClimbingParams());
         machine.animator.SetBool("Climbing", true);
         machine.walkingCollider.enabled = false;
         machine.rb.useGravity = false;
         
         // Hover from climbable
-        if (Physics.Raycast(machine.centerOfRaccoon, machine.transform.forward, 
+        if (Physics.Raycast(machine.controller.centerOfRaccoon, machine.transform.forward, 
             out RaycastHit hit, climbingHorizontalDistance, LayerMask.GetMask("Climbable")))
         {
 			// Place position
@@ -37,22 +39,23 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 
         PositionAndRotateClimb();
 
-        if (!startClimbingDelay)
+        if (!delay)
             CheckClimbOver();
     }
 	IEnumerator RemoveClimbingParams()
 	{
 		yield return new WaitForSeconds(1.5f);
-		startClimbingDelay = false;
+		delay = false;
 	} 
 
     public override void ExitState()
     {
+		machine.climbingCollider.enabled = false;
         machine.animator.SetBool("Climbing", false);
     }
     private void PositionAndRotateClimb()
     {
-        if (Physics.Raycast(machine.centerOfRaccoon, machine.transform.forward, 
+        if (Physics.Raycast(machine.controller.centerOfRaccoon, machine.transform.forward, 
             out RaycastHit hit, climbingHorizontalDistance, LayerMask.GetMask("Climbable")))
         {
             Vector3 forwardDirection = -hit.normal;
@@ -72,14 +75,20 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
         if (!Physics.BoxCast(topCenterAndBack, halfExtents, machine.transform.forward, 
             Quaternion.identity, climbingHorizontalDistance / 1.2f))
         {
-            machine.TransitionToState(RaccoonState.ClimbingOver);
+            machine.SetState(RaccoonState.ClimbingOver);
         }
     }
     public override RaccoonState GetNextState()
 	{
-		if (!startClimbingDelay && Input.GetKeyDown(KeyCode.Space) && machine.animator.GetBool("IsGrounded"))
+		if (!delay && Input.GetKeyDown(KeyCode.Space) && machine.animator.GetBool("IsGrounded"))
 			return RaccoonState.ClimbingDown;
 
 		return StateKey;
+	}
+	public static bool CanClimb(RaccoonStateMachine machine)
+	{
+
+		return Physics.Raycast( machine.controller.centerOfRaccoon, machine.transform.forward, out RaycastHit hit, RaccoonClimbingState.climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
+	
 	}
 }
