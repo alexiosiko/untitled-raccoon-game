@@ -15,14 +15,15 @@ public class RaccoonEatingState : BaseState<RaccoonState>
 	public override void EnterState()
 	{
 		machine.animator.CrossFade("Eating", 0.5f);
- 	    consumable.transform.SetParent(machine.mouthTransform);
-		consumable.transform.DOLocalMove(Vector3.zero, 0.5f);
+
 	}
 
 
 	public override void ExitState()
 	{
 		consumable = null;
+		machine.animator.CrossFade("Walking", 0.25f);
+
 	}
 
 	public override RaccoonState GetNextState()

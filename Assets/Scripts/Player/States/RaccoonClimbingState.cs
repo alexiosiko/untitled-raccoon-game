@@ -29,7 +29,7 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
         {
 			// Place position
             Vector3 newPos = hit.point + Vector3.down / 10f + hit.normal / 4f;
-            machine.transform.DOMove(newPos, 1.2f);
+            machine.transform.DOMove(newPos, 0.7f);
         }
     }
 

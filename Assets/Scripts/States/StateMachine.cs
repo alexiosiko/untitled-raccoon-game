@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
 {
-	protected Dictionary<EState, BaseState<EState>> States = new ();
+	public Dictionary<EState, BaseState<EState>> States = new ();
 	protected BaseState<EState> CurrentState;  
 	protected bool IsTransitioningState = false;
 	void Start() => CurrentState.EnterState();

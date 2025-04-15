@@ -20,21 +20,26 @@ public class Grabable : Interactable
 	public void SetGrabState(MonoBehaviour sender)
 	{
 		var machine = sender as RaccoonStateMachine;
-		machine.transform.SetParent(machine.mouthTransform);
-		machine.transform.DOLocalMove(Vector3.zero, 0.3f);
+		transform.SetParent(machine.mouthTransform);
+		transform.DOLocalMove(Vector3.zero, 0.3f);
+		transform.DOLocalRotate(Vector3.zero, 0.5f);
 		collider.enabled = false;
 		rb.isKinematic = true;
         rb.detectCollisions = false;
 
 	}
-	public void SetDropState()
+	public void SetDropState(MonoBehaviour sender)
 	{
-		collider.enabled = true;
-		rb.isKinematic = false;
-        rb.detectCollisions = true;
+		var machine = sender as RaccoonStateMachine;
 		transform.SetParent(GameObject.Find("--- ENVIROMENT ---").transform);
 
+		Invoke(nameof(EnableCollider), 0.1f);
+		rb.isKinematic = false;
+        rb.detectCollisions = true;
+		rb.AddForce(machine.transform.forward * 20f);
+
 	}
+	void EnableCollider() => collider.enabled = true;
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody>();	

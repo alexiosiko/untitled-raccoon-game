@@ -23,8 +23,9 @@ public class RaccoonGrabbingState : BaseState<RaccoonState>
 	}
 	public override void ExitState()
 	{
-		grabable.SetDropState();
+		grabable.SetDropState(machine);
 		grabable.GetComponent<Rigidbody>().AddForce(machine.transform.forward * 2f);
+		machine.animator.CrossFade("Walking", 0.25f);
 	}
 
 	public override RaccoonState GetNextState()

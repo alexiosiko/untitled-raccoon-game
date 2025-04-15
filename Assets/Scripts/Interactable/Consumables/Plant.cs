@@ -13,8 +13,12 @@ public class Plant : Consumable
 	}
 	async void EatPlant(MonoBehaviour sender)
 	{
+		RaccoonStateMachine machine = sender as RaccoonStateMachine;
+		transform.SetParent(machine.mouthTransform);
+		transform.DOLocalRotate(Vector3.zero, 0.5f);
+		transform.DOLocalMove(Vector3.zero, 0.5f);
+		await Task.Delay(1000);
 		transform.DOScaleY(0, 1f);
-		// transform.DOLookAt(sender.transform.position, 0.25f);
 		await transform.DOLocalRotate(new Vector3(90, transform.localEulerAngles.x, transform.localEulerAngles.z), 0.5f).AsyncWaitForCompletion();
 		await transform.DOScale(Vector3.zero, 1f).AsyncWaitForCompletion();
 		sender.SendMessage(nameof(RaccoonStateMachine.SetWalkingState));

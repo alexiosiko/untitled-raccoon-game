@@ -12,7 +12,6 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 
     public override void EnterState()
     {
-		machine.animator.CrossFade("Walking", 0.2f);
 		delay = true;
 		machine.StartCoroutine(RemoveClimbingDelay());
 
@@ -23,19 +22,18 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 
     public override void UpdateState()
     {
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (!delay && Input.GetKeyDown(KeyCode.Space))
 			Interact(machine);
     }
 	
     public override RaccoonState GetNextState()
 	{
-		if (delay)
-			return RaccoonState.Walking;
 
 		if (!delay && Input.GetKeyDown(KeyCode.Space) && RaccoonClimbingState.CanClimb(machine))
 			return RaccoonState.Climbing;
 
-		if (machine.animator.GetBool("IsGrounded") == false)
+		var climbState = machine.States[RaccoonState.ClimbingDown] as RaccoonClimbingDownState;
+		if (climbState.CanClimbDown())
 			return RaccoonState.ClimbingDown;
 
 		

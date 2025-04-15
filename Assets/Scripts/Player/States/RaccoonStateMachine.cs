@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum RaccoonState
 {
+	Biting,
 	Eating,	
 	Grabbing,
 	Falling,
@@ -29,7 +30,7 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
         Vector3 targetRotation = new(0f, currentRotation.y, 0f);
         transform.DOLocalRotate(targetRotation, 0.2f, RotateMode.Fast);
     }
-	public void ForwardForce() => rb.AddForce(transform.forward * 50f);
+	public void ForwardForce() => rb.AddForce(transform.forward * 30f);
 	public override void Awake()
     {
         // Get required components
@@ -46,6 +47,7 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
         States.Add(RaccoonState.Falling, 		new RaccoonFallingState(this));
         States.Add(RaccoonState.Eating, 		new RaccoonEatingState(this));
         States.Add(RaccoonState.Grabbing, 		new RaccoonGrabbingState(this));
+        States.Add(RaccoonState.Biting, 		new RaccoonBitingState(this));
         
         // Set initial state
         SetState(RaccoonState.Walking);
