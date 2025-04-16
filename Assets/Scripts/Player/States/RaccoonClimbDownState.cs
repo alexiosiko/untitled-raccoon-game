@@ -39,7 +39,6 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 		#if UNITY_EDITOR
 		Debug.DrawLine(forwardPosAndUp, forwardPosAndUp + Vector3.down * distance, Color.white, 1f);
 		#endif
-		Debug.Log(Physics.BoxCast(forwardPosAndUp, boxHalfExtents, Vector3.down, Quaternion.identity, distance));
 		return !Physics.BoxCast(forwardPosAndUp, boxHalfExtents, Vector3.down, Quaternion.identity, distance);
 
 		

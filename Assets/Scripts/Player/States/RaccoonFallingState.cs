@@ -32,7 +32,7 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 
     public override void ExitState()
     {
-		machine.Invoke(nameof(machine.ApplyRootMotion), 0f);
+		machine.animator.applyRootMotion = true;
 
         machine.walkingCollider.enabled = true;
 		machine.controller.smoothHorizontal = 0;

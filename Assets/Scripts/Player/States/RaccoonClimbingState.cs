@@ -80,8 +80,10 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
     }
     public override RaccoonState GetNextState()
 	{
+
 		if (!delay && Input.GetKeyDown(KeyCode.Space) && machine.animator.GetBool("IsGrounded"))
-			return RaccoonState.ClimbingDown;
+
+			return RaccoonState.ClimbingCancel;
 
 		return StateKey;
 	}

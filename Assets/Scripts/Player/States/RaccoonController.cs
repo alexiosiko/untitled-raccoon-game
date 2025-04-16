@@ -25,7 +25,6 @@ public class RaccoonController : MonoBehaviour
 			~LayerMask.GetMask("Entity") // Exclude Entity layer
 		);
 		
-		// Optional: Visualize the ground check in editor
 		#if UNITY_EDITOR
 		Debug.DrawRay(boxCenter, Vector3.down * maxDistance, isGrounded ? Color.green : Color.red, 0.1f);
 		#endif
