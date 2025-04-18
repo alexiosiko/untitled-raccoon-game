@@ -8,7 +8,13 @@ public class Plant : Consumable
 	{
 		base.Action(sender);
 		GetComponent<Collider>().enabled = false;
-		sender.SendMessage(nameof(RaccoonStateMachine.SetEatingState), this);
+
+
+		var machine = sender as RaccoonStateMachine;
+		var eatingState = machine.States[RaccoonState.Eating] as RaccoonEatingState;
+		machine.SetState(RaccoonState.Eating);
+		eatingState.consumable = this;
+		
 		EatPlant(sender);
 	}
 	async void EatPlant(MonoBehaviour sender)
@@ -18,10 +24,12 @@ public class Plant : Consumable
 		transform.DOLocalRotate(Vector3.zero, 0.5f);
 		transform.DOLocalMove(Vector3.zero, 0.5f);
 		await Task.Delay(1000);
+		Debug.Log(machine);
+
 		transform.DOScaleY(0, 1f);
 		await transform.DOLocalRotate(new Vector3(90, transform.localEulerAngles.x, transform.localEulerAngles.z), 0.5f).AsyncWaitForCompletion();
 		await transform.DOScale(Vector3.zero, 1f).AsyncWaitForCompletion();
-		sender.SendMessage(nameof(RaccoonStateMachine.SetWalkingState));
+		machine.SetState(RaccoonState.Walking);
 		Destroy(gameObject);
 	}
 }

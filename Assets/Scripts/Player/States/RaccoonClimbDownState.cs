@@ -37,7 +37,7 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 		Vector3 boxHalfExtents = new Vector3(0.25f, 0.05f, 0.4f); // Wide but flat box
 		float distance = 1f;
 		#if UNITY_EDITOR
-		Debug.DrawLine(forwardPosAndUp, forwardPosAndUp + Vector3.down * distance, Color.white, 1f);
+		Debug.DrawLine(forwardPosAndUp, forwardPosAndUp + Vector3.down * distance, Color.white);
 		#endif
 		return !Physics.BoxCast(forwardPosAndUp, boxHalfExtents, Vector3.down, Quaternion.identity, distance);
 

@@ -36,6 +36,8 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 		if (climbState.CanClimbDown())
 			return RaccoonState.ClimbingDown;
 
+			
+
 		
 
 		return RaccoonState.Walking; // Stay in this state for now

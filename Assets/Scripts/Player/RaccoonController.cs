@@ -11,7 +11,7 @@ public class RaccoonController : MonoBehaviour
 	public bool IsGrounded()
 	{
 		// Define ground check parameters
-		Vector3 boxCenter = centerOfRaccoon + Vector3.down * 0.1f; // Slightly below raccoon
+		Vector3 boxCenter = centerOfRaccoon + Vector3.down * 0f; // Slightly below raccoon
 		Vector3 boxHalfExtents = new Vector3(0.25f, 0.05f, 0.7f); // Wide but flat box
 		float maxDistance = 0.4f; // How far to check downward
 		
@@ -26,7 +26,7 @@ public class RaccoonController : MonoBehaviour
 		);
 		
 		#if UNITY_EDITOR
-		Debug.DrawRay(boxCenter, Vector3.down * maxDistance, isGrounded ? Color.green : Color.red, 0.1f);
+		Debug.DrawRay(boxCenter, Vector3.down * maxDistance, isGrounded ? Color.green : Color.red);
 		#endif
 		
 		return isGrounded;
@@ -42,13 +42,13 @@ public class RaccoonController : MonoBehaviour
 		}
 
 
-		smoothHorizontal = Mathf.Lerp(smoothHorizontal, rawHorizontal,  Time.deltaTime * 5f);
-		smoothVertical = Mathf.Lerp(smoothVertical, rawVertical, Time.deltaTime * 2f);
+		smoothLeft = Mathf.Lerp(smoothLeft, rawHorizontal,  Time.deltaTime * 10f);
+		smoothForward = Mathf.Lerp(smoothForward, rawVertical, Time.deltaTime * 3f);
 	}
 	void UpdateAnimatorParameters()
 	{
-		animator.SetFloat("Left", smoothHorizontal);
-		animator.SetFloat("Forward", smoothVertical);
+		animator.SetFloat("Left", smoothLeft);
+		animator.SetFloat("Forward", smoothForward);
 
 		animator.SetBool("IsGrounded", IsGrounded());
 	}
@@ -59,8 +59,13 @@ public class RaccoonController : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		walkingCollider = GetComponent<Collider>();
 	}
-	[HideInInspector] public float smoothHorizontal;
-	[HideInInspector] public float smoothVertical;
+	public void ForceWalk()
+	{
+		smoothLeft = Mathf.Clamp(smoothLeft, -1f, 1f);
+		smoothForward = Mathf.Clamp(smoothForward, -2f, 1f);
+	}
+	[HideInInspector] public float smoothLeft;
+	[HideInInspector] public float smoothForward;
 	[HideInInspector] public Vector3 centerOfRaccoon;
 	[HideInInspector] public Animator Animator;
     [HideInInspector] public Rigidbody rb;

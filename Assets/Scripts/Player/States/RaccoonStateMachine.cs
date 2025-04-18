@@ -5,7 +5,7 @@ using UnityEngine;
 public enum RaccoonState
 {
 	ClimbingCancel,
-	Biting,
+	Dragging,
 	Eating,	
 	Grabbing,
 	Falling,
@@ -48,7 +48,7 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
         States.Add(RaccoonState.Falling, 		new RaccoonFallingState(this));
         States.Add(RaccoonState.Eating, 		new RaccoonEatingState(this));
         States.Add(RaccoonState.Grabbing, 		new RaccoonGrabbingState(this));
-        States.Add(RaccoonState.Biting, 		new RaccoonBitingState(this));
+        States.Add(RaccoonState.Dragging, 		new RaccoonDraggingState(this));
 		States.Add(RaccoonState.ClimbingCancel, new RaccoonClimbingCancelState(this));
         
         // Set initial state
@@ -56,18 +56,6 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
     }
 	public void SetWalkingState() => SetState(RaccoonState.Walking);
 	public void SetFallingState() => SetState(RaccoonState.Falling);
-	public void SetEatingState(Interactable consumable)
-	{
-		var state =  States[RaccoonState.Eating] as RaccoonEatingState;
-		state.consumable = consumable;
-		SetState(RaccoonState.Eating);
-	}
-	public void SetGrabbingState(Grabable grabable)
-	{
-		var state =  States[RaccoonState.Grabbing] as RaccoonGrabbingState;
-		state.grabable = grabable;
-		SetState(RaccoonState.Grabbing);
-	}
 	[SerializeField] string currentStateName;
 	public Transform mouthTransform;
 	public Transform grabTransform;

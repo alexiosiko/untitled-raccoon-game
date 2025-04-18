@@ -16,8 +16,8 @@ public class RaccoonClimbingOverState : BaseState<RaccoonState>
 
 	public override void ExitState()
 	{
-		machine.controller.smoothHorizontal = 0;
-		machine.controller.smoothVertical = 0;
+		machine.controller.smoothLeft = 0;
+		machine.controller.smoothForward = 0;
 	}
 
 	public override RaccoonState GetNextState()

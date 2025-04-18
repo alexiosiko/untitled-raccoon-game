@@ -13,7 +13,7 @@ public class RaccoonClimbingCancelState : BaseState<RaccoonState>
 	{
 		machine.animator.CrossFade("Climb Cancel", 0.25f);
 		machine.climbingCollider.enabled = false;
-		machine.Invoke(nameof(machine.SetWalkingState), 0.75f);
+		machine.Invoke(nameof(machine.SetWalkingState), 0.5f);
 		machine.StartCoroutine(DoMove());
 		
 	}
@@ -32,7 +32,10 @@ public class RaccoonClimbingCancelState : BaseState<RaccoonState>
 
 	public override void ExitState()
 	{
+		machine.walkingCollider.enabled = true;
 		machine.animator.CrossFade("Walking", 0.25f);
+		machine.controller.smoothLeft = 0;
+		machine.controller.smoothForward = 0;
 
 	}
 

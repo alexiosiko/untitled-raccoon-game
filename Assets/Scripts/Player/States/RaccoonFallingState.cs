@@ -35,7 +35,8 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 		machine.animator.applyRootMotion = true;
 
         machine.walkingCollider.enabled = true;
-		machine.controller.smoothHorizontal = 0;
-		machine.controller.smoothVertical = 0;
+		machine.controller.smoothLeft = 0;
+		machine.controller.smoothForward = 0;
+		
 	}
 }
