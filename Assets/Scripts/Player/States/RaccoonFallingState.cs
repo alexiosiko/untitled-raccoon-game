@@ -10,8 +10,10 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 
     public override void EnterState()
     {
+		machine.rb.useGravity = true;
 		machine.animator.applyRootMotion = false;
-		machine.ForwardForce();
+		machine.animator.CrossFade("Falling", 0.25f);
+		// machine.ForwardForce();
     }
 
     public override void UpdateState()
@@ -21,9 +23,7 @@ public class RaccoonFallingState : BaseState<RaccoonState>
     public override RaccoonState GetNextState()
 	{
         if (machine.animator.GetBool("IsGrounded"))
-		{
-          	return RaccoonState.Walking;
-		}
+          	return RaccoonState.Landing;
 		else
 			return StateKey;
 	}
@@ -33,7 +33,7 @@ public class RaccoonFallingState : BaseState<RaccoonState>
     public override void ExitState()
     {
 		machine.animator.applyRootMotion = true;
-
+		machine.animator.CrossFade("Landing", 0.25f);
         machine.walkingCollider.enabled = true;
 		machine.controller.smoothLeft = 0;
 		machine.controller.smoothForward = 0;

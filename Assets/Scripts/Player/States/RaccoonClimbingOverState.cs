@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+
 public class RaccoonClimbingOverState : BaseState<RaccoonState>
 {
 	RaccoonStateMachine machine;
@@ -8,10 +12,8 @@ public class RaccoonClimbingOverState : BaseState<RaccoonState>
 	
 	public override void EnterState()
 	{
-		machine.animator.SetTrigger("ClimbOver");
-		machine.animator.SetBool("Climbing", false);
-		
-		machine.Invoke(nameof(machine.SetWalkingState), 1.1f);
+		machine.animator.CrossFade("Climb Over", 0.25f);
+		machine.SetState(RaccoonState.Walking, 1.3f);
 	}
 
 	public override void ExitState()

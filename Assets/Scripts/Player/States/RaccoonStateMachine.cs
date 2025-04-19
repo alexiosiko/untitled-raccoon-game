@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum RaccoonState
 {
+	Landing,
 	ClimbingCancel,
 	Dragging,
 	Eating,	
@@ -50,19 +51,19 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
         States.Add(RaccoonState.Grabbing, 		new RaccoonGrabbingState(this));
         States.Add(RaccoonState.Dragging, 		new RaccoonDraggingState(this));
 		States.Add(RaccoonState.ClimbingCancel, new RaccoonClimbingCancelState(this));
+		States.Add(RaccoonState.Landing,		new RaccoonLandingState(this));
         
         // Set initial state
         SetState(RaccoonState.Walking);
     }
-	public void SetWalkingState() => SetState(RaccoonState.Walking);
-	public void SetFallingState() => SetState(RaccoonState.Falling);
+
 	[SerializeField] string currentStateName;
 	public Transform mouthTransform;
 	public Transform grabTransform;
     [HideInInspector] public Animator animator;
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Collider walkingCollider;
-    public Collider climbingCollider;
+    // public Collider climbingCollider;
 	[HideInInspector] public RaccoonController controller;
 
 

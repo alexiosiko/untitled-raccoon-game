@@ -1,27 +1,30 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class RaccoonDraggingState : BaseState<RaccoonState>
 {
     private RaccoonStateMachine machine;
-    public Draggable draggable;
+    static Draggable draggable;
 	bool delay = false;
 
 	[Header("Drag Settings")]
     float dragForce = 5f; // Force multiplier
-	float offsetY;
+	static Vector3 dragPoint;
+	Vector3 dragOffset;
 
     public RaccoonDraggingState(RaccoonStateMachine machine) : base(RaccoonState.Dragging)
     {
         this.machine = machine;
     }
 
-    public override void EnterState()
-    {
-		offsetY = machine.controller.centerOfRaccoon.y - draggable.transform.position.y;
+	public override void EnterState()
+	{    
+		// Calculate offset from object's position to the hit point
+		dragOffset = draggable.transform.position - dragPoint;
 		delay = true;
 		machine.StartCoroutine(RemoveDelay());
-    }
+	}
 
     public override void ExitState()
     {
@@ -40,22 +43,39 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
             return RaccoonState.Walking;
         return RaccoonState.Dragging;
     }
+	public static bool CanDrag(RaccoonStateMachine machine)
+	{
+		Ray ray = new (machine.controller.centerOfRaccoon, machine.transform.forward);
+		if (Physics.Raycast(ray, out RaycastHit hit, 1f))
+		{
+			Draggable d = hit.collider.GetComponent<Draggable>();
+			if (d)
+			{
+				draggable = d;
+				dragPoint = hit.point;
+				d.Action(machine);
+				return true;
+			}
 
+		}
+		return false;
+	}
     public override void UpdateState()
     {
-		machine.controller.ForceWalk();
-		Vector3 dragToPosition = machine.controller.centerOfRaccoon + machine.transform.forward * 1f;
-		dragToPosition.y += offsetY; 
-		Vector3 directionWithDistance = dragToPosition - draggable.transform.position;	
+        machine.controller.ForceWalk();
+        
+        // Calculate target position (maintain original offset from hit point)
+        Vector3 targetPosition = dragPoint + dragOffset;
+        
+        // Get direction to target position
+        Vector3 forceDirection = (targetPosition - draggable.transform.position);
+        
+        // Apply force towards the target position
+        draggable.rb.AddForce(forceDirection * dragForce, ForceMode.Acceleration);
 
-		// Apply force (stronger when farther away)
-        draggable.rb.AddForce(directionWithDistance * dragForce, ForceMode.Acceleration);
-
-
-
-		#if UNITY_EDITOR
-		Debug.DrawLine(machine.controller.centerOfRaccoon, dragToPosition, Color.yellow);
-		#endif
+        // Visual debug
+        Debug.DrawLine(draggable.transform.position, targetPosition, Color.red);
+        Debug.DrawRay(dragPoint, Vector3.up * 0.5f, Color.green); // Show drag point
     }
 
 	float dragSpeed = 1f;

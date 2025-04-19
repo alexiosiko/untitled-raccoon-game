@@ -30,7 +30,22 @@ public class RaccoonEatingState : BaseState<RaccoonState>
 	{
 		return StateKey;
 	}
-
+	public static bool CanEat(RaccoonStateMachine machine)
+	{
+		Vector3 centerEatingSpot = machine.controller.centerOfRaccoon + machine.transform.forward / 3f;
+		Debug.DrawLine(machine.controller.centerOfRaccoon, centerEatingSpot, Color.black);
+		Collider[] colliders = Physics.OverlapSphere(centerEatingSpot, 0.25f);
+		foreach (var c in colliders)
+		{
+			Consumable i = c.GetComponent<Consumable>();
+			if (i)
+			{
+				i.Action(machine);
+				return true;
+			}
+		}
+		return false;
+	}
 	public override void UpdateState()
 	{
 	}

@@ -11,7 +11,6 @@ public class Grabable : Interactable
 	{
 		// if (!interactive)
 		// 	return;
-
 		
 		var machine = sender as RaccoonStateMachine;
 		var eatingState = machine.States[RaccoonState.Grabbing] as RaccoonGrabbingState;

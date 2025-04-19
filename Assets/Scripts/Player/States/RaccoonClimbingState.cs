@@ -16,7 +16,7 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 
     public override void EnterState()
     {
-		machine.climbingCollider.enabled = true;
+		// machine.climbingCollider.enabled = true;
 		delay = true;
 		machine.StartCoroutine(RemoveClimbingParams());
         machine.animator.SetBool("Climbing", true);
@@ -50,7 +50,7 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 
     public override void ExitState()
     {
-		machine.climbingCollider.enabled = false;
+		// machine.climbingCollider.enabled = false;
         machine.animator.SetBool("Climbing", false);
     }
     private void PositionAndRotateClimb()

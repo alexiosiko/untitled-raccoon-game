@@ -12,8 +12,8 @@ public class RaccoonClimbingCancelState : BaseState<RaccoonState>
 	public override void EnterState()
 	{
 		machine.animator.CrossFade("Climb Cancel", 0.25f);
-		machine.climbingCollider.enabled = false;
-		machine.Invoke(nameof(machine.SetWalkingState), 0.5f);
+		// machine.climbingCollider.enabled = false;
+		machine.SetState(RaccoonState.Walking, 0.6f);
 		machine.StartCoroutine(DoMove());
 		
 	}

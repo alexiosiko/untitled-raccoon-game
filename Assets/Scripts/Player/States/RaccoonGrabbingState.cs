@@ -34,7 +34,21 @@ public class RaccoonGrabbingState : BaseState<RaccoonState>
 			return RaccoonState.Walking;
 		return StateKey;
 	}
+	public static bool CanGrab(RaccoonStateMachine machine)
+	{
+		Ray ray = new (machine.controller.centerOfRaccoon, machine.transform.forward);
+		if (Physics.Raycast(ray, out RaycastHit hit, 1f))
+		{
+			Grabable i = hit.collider.GetComponent<Grabable>();
+			if (i)
+			{
+				i.Action(machine);
+				return true;
+			}
 
+		}
+		return false;
+	}
 	public override void UpdateState()
 	{
 	}
