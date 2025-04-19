@@ -37,8 +37,13 @@ public class RaccoonController : MonoBehaviour
 		float rawVertical = Input.GetAxis("Vertical");
 		if (Input.GetKey(KeyCode.Space)) // Space to walk
 		{
-			rawHorizontal *= 1 + rawVertical;
+			rawHorizontal *= 2;
 			rawVertical *= 2f;
+		}
+		else
+		{
+			if (rawVertical < 0)
+				rawVertical*= 2f;
 		}
 
 

@@ -1,11 +1,15 @@
 public class RaccoonDiggingState : BaseState<RaccoonState>
 {
-	public RaccoonDiggingState(RaccoonState key) : base(key)
+	RaccoonStateMachine machine;
+	public RaccoonDiggingState(RaccoonStateMachine machine) : base(RaccoonState.Digging)
 	{
+		this.machine = machine;
 	}
 
 	public override void EnterState()
 	{
+		machine.animator.CrossFade("Digging", 0.2f);
+		machine.SetState(RaccoonState.Walking, 2f);
 	}
 
 	public override void ExitState()

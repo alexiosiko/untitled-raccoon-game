@@ -6,6 +6,7 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 {
     RaccoonStateMachine machine;
     bool delay;
+	bool climbOverDelay;
     public static float climbingHorizontalDistance = 0.8f;
 	[SerializeField] 
 
@@ -18,6 +19,8 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
     {
 		// machine.climbingCollider.enabled = true;
 		delay = true;
+		climbOverDelay = true;
+		machine.StartCoroutine(RemoveClimbingParams());
 		machine.StartCoroutine(RemoveClimbingParams());
         machine.animator.SetBool("Climbing", true);
         machine.walkingCollider.enabled = false;
@@ -35,16 +38,13 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 
     public override void UpdateState()
     {
-        
-
         PositionAndRotateClimb();
-
-        if (!delay)
-            CheckClimbOver();
     }
 	IEnumerator RemoveClimbingParams()
 	{
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(0.5f);
+		climbOverDelay = false;
+		yield return new WaitForSeconds(1f);
 		delay = false;
 	} 
 
@@ -67,22 +67,17 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
             );
         }
     }
-    private void CheckClimbOver()
-    {
-        Vector3 topCenterAndBack = machine.transform.position + Vector3.up / 1.05f; // This value is also in parentw
-        Vector3 halfExtents = Vector3.one / 8f;
 
-        if (!Physics.BoxCast(topCenterAndBack, halfExtents, machine.transform.forward, 
-            Quaternion.identity, climbingHorizontalDistance / 1.2f))
-        {
-            machine.SetState(RaccoonState.ClimbingOver);
-        }
-    }
     public override RaccoonState GetNextState()
 	{
+		Vector3 topCenterAndBack = machine.transform.position + Vector3.up / 1.05f; // This value is also in parentw
+        Vector3 halfExtents = Vector3.one / 8f;
+
+        if (!climbOverDelay &&  !Physics.BoxCast(topCenterAndBack, halfExtents, machine.transform.forward, 
+            Quaternion.identity, climbingHorizontalDistance / 1.2f))
+            return RaccoonState.ClimbingOver;
 
 		if (!delay && Input.GetKeyDown(KeyCode.Space) && machine.animator.GetBool("IsGrounded"))
-
 			return RaccoonState.ClimbingCancel;
 
 		return StateKey;

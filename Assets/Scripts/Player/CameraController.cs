@@ -97,18 +97,4 @@ public class CameraController : MonoBehaviour
         // Look at target with offset
         transform.LookAt(target.position + targetOffset);
     }
-
-    // Public method to temporarily override camera position (for cutscenes, etc.)
-    public void SetTemporaryOffset(Vector3 newOffset, float duration)
-    {
-        StartCoroutine(TemporaryOffsetCoroutine(newOffset, duration));
-    }
-
-    private System.Collections.IEnumerator TemporaryOffsetCoroutine(Vector3 newOffset, float duration)
-    {
-        Vector3 originalOffset = offset;
-        offset = newOffset;
-        yield return new WaitForSeconds(duration);
-        offset = originalOffset;
-    }
 }

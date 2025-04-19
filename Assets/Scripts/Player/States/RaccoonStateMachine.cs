@@ -1,9 +1,9 @@
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum RaccoonState
 {
+	Digging,
 	Landing,
 	ClimbingCancel,
 	Dragging,

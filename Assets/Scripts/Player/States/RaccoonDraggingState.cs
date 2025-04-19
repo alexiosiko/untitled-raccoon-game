@@ -1,45 +1,58 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 public class RaccoonDraggingState : BaseState<RaccoonState>
 {
     private RaccoonStateMachine machine;
-    static Draggable draggable;
+    private static Draggable draggable;
+    private SpringJoint mouthSpringJoint;
+    private Vector3 grabLocalPoint;
 	bool delay = false;
-
-	[Header("Drag Settings")]
-    float dragForce = 5f; // Force multiplier
-	static Vector3 dragPoint;
-	Vector3 dragOffset;
-
+	public static Vector3 hitPoint;
+    [Header("Joint Settings")]
+    [SerializeField] private float maxGrabDistance = 1.5f;
+    [SerializeField] private float jointSpring = 500f;
+    [SerializeField] private float jointDamper = 10f;
     public RaccoonDraggingState(RaccoonStateMachine machine) : base(RaccoonState.Dragging)
     {
         this.machine = machine;
+        mouthSpringJoint = machine.mouthTransform.GetComponent<SpringJoint>();
     }
 
-	public override void EnterState()
-	{    
-		// Calculate offset from object's position to the hit point
-		dragOffset = draggable.transform.position - dragPoint;
+    public override void EnterState()
+    {
 		delay = true;
 		machine.StartCoroutine(RemoveDelay());
-	}
+		grabLocalPoint = draggable.transform.InverseTransformPoint(hitPoint);
+		SetupGrabJoint(draggable, grabLocalPoint);
+
+    }
+
+    private void SetupGrabJoint(Draggable draggable, Vector3 localGrabPoint)
+    {
+        mouthSpringJoint.connectedBody = draggable.rb;
+        mouthSpringJoint.anchor = Vector3.zero; // Mouth's position
+        mouthSpringJoint.connectedAnchor = localGrabPoint;
+        mouthSpringJoint.spring = jointSpring;
+        mouthSpringJoint.damper = jointDamper;
+        mouthSpringJoint.enableCollision = true; // Maintain physics interactions
+		mouthSpringJoint.anchor = new (0, 0.25f, 0);
+    }
+
+    public override void UpdateState()
+    {
+        // SpringJoint handles physics automatically
+    }
 
     public override void ExitState()
     {
+		mouthSpringJoint.connectedBody = null;
         draggable = null;
-        machine.animator.CrossFade("Walking", 0.25f);
     }
-	IEnumerator RemoveDelay()
-	{
-		yield return new WaitForSeconds(0.5f);
-		delay = false;
-	}
+
     public override RaccoonState GetNextState()
     {
-        // Transition to Walking when releasing drag
-        if (!delay && Input.GetKeyDown(KeyCode.Space)) // Use your input method
+        if (!delay && Input.GetKeyDown(KeyCode.Space))
             return RaccoonState.Walking;
         return RaccoonState.Dragging;
     }
@@ -52,7 +65,7 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
 			if (d)
 			{
 				draggable = d;
-				dragPoint = hit.point;
+				hitPoint = hit.point;
 				d.Action(machine);
 				return true;
 			}
@@ -60,25 +73,9 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
 		}
 		return false;
 	}
-    public override void UpdateState()
-    {
-        machine.controller.ForceWalk();
-        
-        // Calculate target position (maintain original offset from hit point)
-        Vector3 targetPosition = dragPoint + dragOffset;
-        
-        // Get direction to target position
-        Vector3 forceDirection = (targetPosition - draggable.transform.position);
-        
-        // Apply force towards the target position
-        draggable.rb.AddForce(forceDirection * dragForce, ForceMode.Acceleration);
-
-        // Visual debug
-        Debug.DrawLine(draggable.transform.position, targetPosition, Color.red);
-        Debug.DrawRay(dragPoint, Vector3.up * 0.5f, Color.green); // Show drag point
-    }
-
-	float dragSpeed = 1f;
-	float maxDragSpeed = 1f;
-	float dragTurnSpeed = 1f;
+	IEnumerator RemoveDelay()
+	{
+		yield return new WaitForSeconds(0.25f);
+		delay = false;
+	}
 }
