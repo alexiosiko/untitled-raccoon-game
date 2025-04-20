@@ -19,8 +19,8 @@ public class RaccoonAudio : MonoBehaviour
     private void Update()
     {
         // Retrieve movement parameters from the Animator
-        float horizontal = animator.GetFloat("Horizontal");
-        float vertical = animator.GetFloat("Vertical");
+        float horizontal = animator.GetFloat("Left");
+        float vertical = animator.GetFloat("Forward");
 
         // Calculate the magnitude of movement
         float movementMagnitude = new Vector2(horizontal, vertical).magnitude;

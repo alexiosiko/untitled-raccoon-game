@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1078356622167040194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3266759500571243716}
+  m_Layer: 7
+  m_Name: Grab Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3266759500571243716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078356622167040194}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.014603791, y: 0.0692998, z: -0.64710397, w: -0.75910527}
+  m_LocalPosition: {x: -0.009, y: 0.307, z: -0.015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3660057806231539892}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5036484075641486111
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,12 +127,12 @@ GameObject:
   - component: {fileID: 3051463389192655501}
   - component: {fileID: 9187233831997575884}
   m_Layer: 7
-  m_Name: Head Bit Rig
+  m_Name: Hands Rigs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3051463389192655501
 Transform:
   m_ObjectHideFlags: 0
@@ -284,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 300
-  invertY: 1
+  invertY: 0
   target: {fileID: 3660057806231539842}
   targetOffset: {x: 0, y: 0.5, z: 0}
   smoothSpeed: 0.125
@@ -329,8 +360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429695992994697386}
-  - component: {fileID: 7880520020881787605}
-  - component: {fileID: 5313795318748459918}
+  - component: {fileID: 1788558678474534284}
   m_Layer: 7
   m_Name: Constraint
   m_TagString: Untagged
@@ -353,7 +383,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3051463389192655501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7880520020881787605
+--- !u!114 &1788558678474534284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,34 +392,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7913296957614374629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cc7a8682579ed40b78098b21f626ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  rotationSpeed: 5
-  lockVerticalRotation: 1
---- !u!114 &5313795318748459918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7913296957614374629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
+  m_Script: {fileID: 11500000, guid: 796b75e345bd64d47a31edd757bd2670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Weight: 1
   m_Data:
-    m_Root: {fileID: 0}
-    m_Mid: {fileID: 0}
-    m_Tip: {fileID: 0}
+    m_Root: {fileID: 3660057806231539798}
+    m_Tip: {fileID: 3660057806231540214}
     m_Target: {fileID: 0}
-    m_Hint: {fileID: 0}
-    m_TargetPositionWeight: 1
-    m_TargetRotationWeight: 1
-    m_HintWeight: 1
+    m_ChainRotationWeight: 1
+    m_TipRotationWeight: 1
+    m_MaxIterations: 15
+    m_Tolerance: 0.0001
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
 --- !u!1 &9021881312916016032
@@ -2376,6 +2390,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 400276, guid: 42b16888dccfed94fb39302aa553204d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3051463389192655501}
+    - targetCorrespondingSourceObject: {fileID: 400290, guid: 42b16888dccfed94fb39302aa553204d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3266759500571243716}
     - targetCorrespondingSourceObject: {fileID: 400118, guid: 42b16888dccfed94fb39302aa553204d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6724795898480913104}
@@ -2990,7 +3007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStateName: 
   mouthTransform: {fileID: 6724795898480913104}
-  grabTransform: {fileID: 3660057806231539732}
+  grabTransform: {fileID: 3266759500571243716}
   animator: {fileID: 0}
   rb: {fileID: 0}
   walkingCollider: {fileID: 0}

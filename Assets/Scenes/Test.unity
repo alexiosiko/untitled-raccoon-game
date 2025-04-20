@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cde0f77b472c6459557a33d93d79a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationTransform: {fileID: 0}
+  destinationTransform: {fileID: 786318528}
   animator: {fileID: 126153983}
   agent: {fileID: 126153982}
 --- !u!195 &126153982
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cde0f77b472c6459557a33d93d79a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationTransform: {fileID: 0}
+  destinationTransform: {fileID: 786318528}
   animator: {fileID: 302284694}
   agent: {fileID: 302284697}
 --- !u!195 &302284697
@@ -1598,7 +1598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cde0f77b472c6459557a33d93d79a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationTransform: {fileID: 0}
+  destinationTransform: {fileID: 786318528}
   animator: {fileID: 892559092}
   agent: {fileID: 892559091}
 --- !u!195 &892559091
@@ -2783,7 +2783,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 51299d90b9f1c024095f20628f45e337, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 417408d4423a12845be311da0a17e843, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &1776948632
 PrefabInstance:

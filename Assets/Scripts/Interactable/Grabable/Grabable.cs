@@ -9,20 +9,14 @@ public class Grabable : Interactable
 	public bool interactive = true;
 	public override void Action(MonoBehaviour sender)
 	{
-		// if (!interactive)
-		// 	return;
-		
-		var machine = sender as RaccoonStateMachine;
-		var eatingState = machine.States[RaccoonState.Grabbing] as RaccoonGrabbingState;
-		eatingState.grabable = this;
 	}
 	
 	
 	public void SetGrabState(MonoBehaviour sender)
 	{
 		var machine = sender as RaccoonStateMachine;
-		transform.SetParent(machine.mouthTransform);
-		transform.DOLocalMove(Vector3.zero, 0.3f);
+		transform.SetParent(machine.grabTransform);
+		transform.DOLocalMove(Vector3.zero, 0.5f);
 		transform.DOLocalRotate(Vector3.zero, 0.5f);
 		collider.enabled = false;
 		rb.isKinematic = true;

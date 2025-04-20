@@ -33,8 +33,8 @@ public class EntityController : Interactable
 		smoothHorizontal = Mathf.Lerp(smoothHorizontal, localVelocity.x, Time.deltaTime);
         smoothVertical = Mathf.Lerp(smoothVertical, localVelocity.z, Time.deltaTime * 3);
 
-		animator.SetFloat("Horizontal", smoothHorizontal);
-		animator.SetFloat("Vertical", smoothVertical); 
+		animator.SetFloat("Forward", smoothHorizontal);
+		animator.SetFloat("Left", smoothVertical); 
     }
 
 	void OnAnimatorMove()

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum RaccoonState
 {
+	StartGrabbing,
 	Digging,
 	Landing,
 	ClimbingCancel,
@@ -52,6 +53,7 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
         States.Add(RaccoonState.Dragging, 		new RaccoonDraggingState(this));
 		States.Add(RaccoonState.ClimbingCancel, new RaccoonClimbingCancelState(this));
 		States.Add(RaccoonState.Landing,		new RaccoonLandingState(this));
+		States.Add(RaccoonState.StartGrabbing,	new RaccoonStartGrabbingState(this));
         
         // Set initial state
         SetState(RaccoonState.Walking);

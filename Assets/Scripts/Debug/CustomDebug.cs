@@ -49,4 +49,35 @@ public static class CustomDebug
 
         return edges;
     }
+	/// <summary>
+    /// Draws a wireframe sphere in the Scene view.
+    /// </summary>
+    /// <param name="center">Center of the sphere</param>
+    /// <param name="radius">Radius of the sphere</param>
+    /// <param name="rotation">Orientation of the sphere (affects the wireframe)</param>
+    /// <param name="color">Color of the debug lines</param>
+    /// <param name="duration">How long the lines should remain visible</param>
+    /// <param name="segments">Number of segments for the sphere (higher = smoother)</param>
+    public static void DebugSphere(Vector3 center, float radius, Quaternion rotation, Color color, float duration = 0, int segments = 16)
+    {
+        // Draw three perpendicular circles to create a wireframe sphere
+        DrawCircle(center, radius, rotation * Vector3.up, rotation * Vector3.forward, color, duration, segments);    // XY plane
+        DrawCircle(center, radius, rotation * Vector3.forward, rotation * Vector3.right, color, duration, segments);  // XZ plane
+        DrawCircle(center, radius, rotation * Vector3.right, rotation * Vector3.up, color, duration, segments);      // YZ plane
+    }
+
+    private static void DrawCircle(Vector3 center, float radius, Vector3 normal, Vector3 axis, Color color, float duration, int segments)
+    {
+        Vector3 perpendicular = Vector3.Cross(normal, axis).normalized * radius;
+        Vector3 lastPoint = center + perpendicular;
+        
+        for (int i = 1; i <= segments; i++)
+        {
+            float angle = (i / (float)segments) * Mathf.PI * 2;
+            Vector3 nextPoint = center + (Quaternion.AngleAxis(angle * Mathf.Rad2Deg, normal) * perpendicular);
+            
+            Debug.DrawLine(lastPoint, nextPoint, color, duration);
+            lastPoint = nextPoint;
+        }
+    }
 }

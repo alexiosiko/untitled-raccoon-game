@@ -15,9 +15,7 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
 			return;
 		EState nextStateKey = CurrentState.GetNextState();
 		if (nextStateKey.Equals(CurrentState.StateKey))
-		{
 			CurrentState.UpdateState();
-		}
 		else if (!IsTransitioningState)
 		{
 			Debug.Log("Transition to " + nextStateKey);
