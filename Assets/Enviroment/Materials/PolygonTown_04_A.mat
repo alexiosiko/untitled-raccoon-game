@@ -12,7 +12,6 @@ Material:
   m_Parent: {fileID: 2100000, guid: 8f568d2330fd6a44b9007af8d0d0331e, type: 2}
   m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
-  - DR_ENABLE_LIGHTMAP_DIR
   - _BASEMAP_PREMULTIPLY
   - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY
@@ -20,7 +19,8 @@ Material:
   - _OUTLINESPACE_OBJECT
   - _TEXTUREBLENDINGMODE_MULTIPLY
   - _UNITYSHADOWMODE_COLOR
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ALLOWALPHAOVERFLOW_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

@@ -172,20 +172,21 @@
             #pragma multi_compile_fragment _ _LIGHT_COOKIES
             #endif
             #if UNITY_VERSION >= 202220 && UNITY_VERSION < 600000
-            #pragma multi_compile _ _FORWARD_PLUS
             #pragma multi_compile_fragment _ _WRITE_RENDERING_LAYERS
             #endif
             #if UNITY_VERSION >= 600000
+            #pragma multi_compile _ _FORWARD_PLUS
             #pragma multi_compile _ EVALUATE_SH_MIXED EVALUATE_SH_VERTEX
             #define _ENVIRONMENTREFLECTIONS_OFF 1 // Fixes flickering when Probe Blending is enabled on Renderer.
-            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
-            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
-            #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
-            #pragma multi_compile _ _FORWARD_PLUS
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
             #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
             #else
             #pragma multi_compile_fragment _ _SHADOWS_SOFT
+            #endif
+            #if UNITY_VERSION >= 60000012
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
             #endif
 
             // -------------------------------------
@@ -204,8 +205,8 @@
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
             #if defined(FLAT_KIT_DOTS_INSTANCING_ON)
-            #pragma target 4.5							// Uncomment to enable DOTs instancing
-            #pragma multi_compile _ DOTS_INSTANCING_ON	// Uncomment to enable DOTs instancing
+            #pragma target 4.5
+            #pragma multi_compile _ DOTS_INSTANCING_ON
             #endif
 
             // Detail map.
@@ -375,8 +376,8 @@
             // GPU Instancing
             #pragma multi_compile_instancing
             #if defined(FLAT_KIT_DOTS_INSTANCING_ON)
-            #pragma target 4.5							// Uncomment to enable DOTs instancing
-            #pragma multi_compile _ DOTS_INSTANCING_ON	// Uncomment to enable DOTs instancing
+            #pragma target 4.5
+            #pragma multi_compile _ DOTS_INSTANCING_ON
             #endif
 
             // -------------------------------------
@@ -440,13 +441,14 @@
             #pragma multi_compile_fragment _ _LIGHT_LAYERS
             #if UNITY_VERSION >= 600000
             #define _ENVIRONMENTREFLECTIONS_OFF 1 // Fixes flickering when Probe Blending is enabled on Renderer.
-            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
-            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
-            #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
-            #pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
             #else
             #pragma multi_compile_fragment _ _SHADOWS_SOFT
+            #endif
+            #if UNITY_VERSION >= 60000012
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
             #endif
 
             // -------------------------------------
@@ -457,15 +459,17 @@
             #pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
             #pragma multi_compile _ SHADOWS_SHADOWMASK
             #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
+            #if UNITY_VERSION >= 600000
             #pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
+            #endif
 
             //--------------------------------------
             // GPU Instancing
             #pragma multi_compile_instancing
             #pragma instancing_options renderinglayer
             #if defined(FLAT_KIT_DOTS_INSTANCING_ON)
-            #pragma target 4.5							// Uncomment to enable DOTs instancing
-            #pragma multi_compile _ DOTS_INSTANCING_ON	// Uncomment to enable DOTs instancing
+            #pragma target 4.5
+            #pragma multi_compile _ DOTS_INSTANCING_ON
             #endif
 
             #pragma vertex LitPassVertexSimple
@@ -506,8 +510,8 @@
             // GPU Instancing
             #pragma multi_compile_instancing
             #if defined(FLAT_KIT_DOTS_INSTANCING_ON)
-            #pragma target 4.5							// Uncomment to enable DOTs instancing
-            #pragma multi_compile _ DOTS_INSTANCING_ON	// Uncomment to enable DOTs instancing
+            #pragma target 4.5
+            #pragma multi_compile _ DOTS_INSTANCING_ON
             #endif
 
             #include "LibraryUrp/StylizedInput.hlsl"
@@ -555,8 +559,8 @@
             // GPU Instancing
             #pragma multi_compile_instancing
             #if defined(FLAT_KIT_DOTS_INSTANCING_ON)
-            #pragma target 4.5							// Uncomment to enable DOTs instancing
-            #pragma multi_compile _ DOTS_INSTANCING_ON	// Uncomment to enable DOTs instancing
+            #pragma target 4.5
+            #pragma multi_compile _ DOTS_INSTANCING_ON
             #endif
 
             #include "LibraryUrp/StylizedInput.hlsl"

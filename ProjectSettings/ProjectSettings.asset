@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 92dca2e3327197e4eba17dd08a7490ac
+  productGUID: 1adef885add23174db9153d3efae3ee5
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Untitled Racoon Game
+  productName: New
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -838,7 +838,6 @@ PlayerSettings:
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
-    Standalone: 0
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}
@@ -855,14 +854,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Untitled Racoon Game
+  metroPackageName: New
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Untitled Racoon Game
+  metroApplicationDescription: New
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -933,10 +932,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: f732ed7e-7b29-4cde-bb6d-d16615295b84
+  cloudProjectId: d9db6338-d4d7-4bb8-97e9-a64936a14114
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Untitled Racoon Game
+  projectName: New
   organizationId: alexiosiko
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

@@ -16,11 +16,6 @@ public class ScreenRenderPass : ScriptableRenderPass {
     private ProfilingSampler _profilingSampler;
     private RTHandle _copiedColor;
 
-#if UNITY_6000_0_OR_NEWER
-    private RenderTextureDescriptor _texDescriptor = new(Screen.width, Screen.height,
-        RenderTextureFormat.Default, 0);
-#endif
-
     private const string TexName = "_BlitTexture";
     private static readonly int BlitTextureShaderID = Shader.PropertyToID(TexName);
 
@@ -58,14 +53,11 @@ public class ScreenRenderPass : ScriptableRenderPass {
             return;
         }
 
-        {
-            _texDescriptor.width = cameraData.cameraTargetDescriptor.width;
-            _texDescriptor.height = cameraData.cameraTargetDescriptor.height;
-            _texDescriptor.depthBufferBits = 0;
-        }
+        RenderTextureDescriptor texDescriptor = cameraData.cameraTargetDescriptor;
+        texDescriptor.depthBufferBits = 0;
 
         TextureHandle srcCamColor = resourceData.activeColorTexture;
-        TextureHandle dst = UniversalRenderer.CreateRenderGraphTexture(renderGraph, _texDescriptor, TexName, false);
+        TextureHandle dst = UniversalRenderer.CreateRenderGraphTexture(renderGraph, texDescriptor, TexName, false);
 
         // This check is to avoid an error from the material preview in the scene.
         if (!srcCamColor.IsValid() || !dst.IsValid()) {

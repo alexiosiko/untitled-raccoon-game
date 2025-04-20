@@ -66,15 +66,22 @@
         Lighting Off
         ZWrite[_ZWrite]
 
-    	HLSLINCLUDE
-    	#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Version.hlsl"
-    	ENDHLSL
+        HLSLINCLUDE
+        #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Version.hlsl"
+        ENDHLSL
 
         Pass
         {
             HLSLPROGRAM
+    	    // #define FLAT_KIT_DOTS_INSTANCING_ON // Uncomment to enable DOTS instancing
             #pragma prefer_hlslcc gles
+    	    
+            #if defined(FLAT_KIT_DOTS_INSTANCING_ON)
+            #pragma target 4.5
+            #pragma multi_compile _ DOTS_INSTANCING_ON
+            #else
             #pragma target 2.0
+    	    #endif
 
             #pragma shader_feature_local _COLORMODE_LINEAR _COLORMODE_GRADIENT_TEXTURE
             #pragma shader_feature_local _FOAMMODE_NONE _FOAMMODE_GRADIENT_NOISE _FOAMMODE_TEXTURE
