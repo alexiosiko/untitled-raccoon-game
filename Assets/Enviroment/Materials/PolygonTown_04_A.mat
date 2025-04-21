@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 2100000, guid: 8f568d2330fd6a44b9007af8d0d0331e, type: 2}
   m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
+  - DR_ENABLE_LIGHTMAP_DIR
   - _BASEMAP_PREMULTIPLY
   - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY

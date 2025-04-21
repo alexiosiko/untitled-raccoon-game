@@ -12,21 +12,22 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - DR_OUTLINE_ON
   - _BASEMAP_PREMULTIPLY
-  - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY
+  - _EMISSION
   - _GRADIENTSPACE_LOCAL
   - _OUTLINESPACE_OBJECT
   - _TEXTUREBLENDINGMODE_MULTIPLY
   - _UNITYSHADOWMODE_COLOR
   - _UNITYSHADOW_OCCLUSION
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _CELPRIMARYMODE_NONE
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 1985
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - SRPDEFAULTUNLIT
   m_LockedProperties: 
@@ -72,7 +73,7 @@ Material:
     - _CameraDistanceImpact: 0
     - _CelExtraEnabled: 0
     - _CelNumSteps: 3
-    - _CelPrimaryMode: 1
+    - _CelPrimaryMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _Depth: 100
@@ -84,7 +85,7 @@ Material:
     - _FlatRimSize: 0.36
     - _FlatSpecularEdgeSmoothness: 0
     - _FlatSpecularSize: 0
-    - _Flatness: 0
+    - _Flatness: 1
     - _FlatnessExtra: 1
     - _Glossiness: 0.5
     - _GradientAngle: 0
@@ -99,22 +100,22 @@ Material:
     - _LightmapDirectionYaw: 0
     - _Metallic: 0
     - _OutlineDepthOffset: 0.137
-    - _OutlineEnabled: 1
+    - _OutlineEnabled: 0
     - _OutlineScale: 1
     - _OutlineSpace: 1
-    - _OutlineWidth: 9.26
+    - _OutlineWidth: 1
     - _OverrideLightmapDir: 0
     - _QueueOffset: -15
     - _RimEnabled: 0
-    - _SelfShadingSize: 0.48
+    - _SelfShadingSize: 1
     - _SelfShadingSizeExtra: 0.6
-    - _ShadowEdgeSize: 0
+    - _ShadowEdgeSize: 0.39
     - _ShadowEdgeSizeExtra: 0.05
     - _SpecularEnabled: 0
     - _SrcBlend: 1
     - _Surface: 0
     - _TextureBlendingMode: 0
-    - _TextureImpact: 1
+    - _TextureImpact: 0
     - _UnityShadowMode: 2
     - _UnityShadowOcclusion: 1
     - _UnityShadowPower: 0.786
@@ -125,9 +126,9 @@ Material:
     - _VertexExtrusionSmoothNormals: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorDim: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDim: {r: 0, g: 0, b: 0, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimExtra: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDimSteps: {r: 1, g: 1, b: 1, a: 1}
