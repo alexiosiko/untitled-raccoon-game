@@ -10,7 +10,6 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
 	bool delay = false;
 	public static Vector3 hitPoint;
     [Header("Joint Settings")]
-    [SerializeField] private float maxGrabDistance = 1.5f;
     [SerializeField] private float jointSpring = 500f;
     [SerializeField] private float jointDamper = 10f;
     public RaccoonDraggingState(RaccoonStateMachine machine) : base(RaccoonState.Dragging)

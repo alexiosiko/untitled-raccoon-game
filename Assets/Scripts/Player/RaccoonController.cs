@@ -1,3 +1,5 @@
+using Unity.Mathematics;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class RaccoonController : MonoBehaviour
@@ -12,21 +14,22 @@ public class RaccoonController : MonoBehaviour
 	{
 		// Define ground check parameters
 		Vector3 boxCenter = centerOfRaccoon + Vector3.down * 0f; // Slightly below raccoon
-		Vector3 boxHalfExtents = new Vector3(0.25f, 0.05f, 0.7f); // Wide but flat box
+		Vector3 boxHalfExtents = new Vector3(0.2f, 0.05f, 0.3f); // Wide but flat box
 		float maxDistance = 0.4f; // How far to check downward
-		
+		Quaternion orientation = transform.rotation;
 		// Perform the box cast
 		bool isGrounded = Physics.BoxCast(
 			boxCenter, 
 			boxHalfExtents, 
 			Vector3.down, 
-			Quaternion.identity, 
+			orientation, 
 			maxDistance, 
 			~LayerMask.GetMask("Entity") // Exclude Entity layer
 		);
 		
 		#if UNITY_EDITOR
-		Debug.DrawRay(boxCenter, Vector3.down * maxDistance, isGrounded ? Color.green : Color.red);
+		Debug.DrawLine(boxCenter, boxCenter +  Vector3.down * maxDistance);
+		CustomDebug.DrawBox(boxCenter + Vector3.down * maxDistance, boxHalfExtents, orientation, isGrounded ? Color.green : Color.red);
 		#endif
 		
 		return isGrounded;

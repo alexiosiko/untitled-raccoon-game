@@ -14,6 +14,8 @@ public class RaccoonLandingState : BaseState<RaccoonState>
 
 	public override void ExitState()
 	{
+		machine.controller.smoothLeft = 0;
+		machine.controller.smoothForward = 0;
 	}
 
 	public override RaccoonState GetNextState()

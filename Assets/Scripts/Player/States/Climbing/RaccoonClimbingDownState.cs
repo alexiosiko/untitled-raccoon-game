@@ -40,9 +40,9 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 		float distance = 1f;
 		#if UNITY_EDITOR
 		// Draw the box cast area (for debugging)
-		Debug.DrawLine(forwardPosAndUp, forwardPosAndUp + Vector3.down * distance, Color.white);
+		Debug.DrawLine(forwardPosAndUp, forwardPosAndUp + Vector3.down * distance, Color.white, 0.5f);
 		// Optional: Draw the box itself
-		CustomDebug.DebugBox(forwardPosAndUp + Vector3.down * distance, boxHalfExtents, Quaternion.identity, Color.cyan);
+		CustomDebug.DrawBox(forwardPosAndUp + Vector3.down * distance, boxHalfExtents, Quaternion.identity, Color.cyan);
 		#endif
 		return !Physics.BoxCast(forwardPosAndUp, boxHalfExtents, Vector3.down, Quaternion.identity, distance, ~entityLayer);
 

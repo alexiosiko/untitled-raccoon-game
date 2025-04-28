@@ -48,7 +48,6 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 
 		if (!delay && Input.GetKeyDown(KeyCode.Space))
 		{
-			Debug.Log("Trying");
 			if (RaccoonDraggingState.CanDrag(machine) == true)
 				return RaccoonState.Dragging;
 			

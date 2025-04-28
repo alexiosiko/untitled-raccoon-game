@@ -12,6 +12,7 @@ public class RaccoonFallingState : BaseState<RaccoonState>
     {
 		machine.rb.useGravity = true;
 		machine.animator.applyRootMotion = false;
+		machine.walkingCollider.enabled = true;
 		machine.animator.CrossFade("Falling", 0.25f);
 		// machine.ForwardForce();
     }
@@ -22,10 +23,24 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 
     public override RaccoonState GetNextState()
 	{
-        if (machine.animator.GetBool("IsGrounded"))
+        if (CanLand())
           	return RaccoonState.Landing;
 		else
 			return StateKey;
+	}
+	bool CanLand()
+	{
+		Vector3 startPos = machine.controller.centerOfRaccoon ;
+		Vector3 boxHalfExtents = new Vector3(0.25f, 0.05f, 0.3f); // Wide but flat box
+		LayerMask entityLayer = LayerMask.GetMask("Entity");
+		float distance = 0.4f;
+		#if UNITY_EDITOR
+		// Draw the box cast area (for debugging)
+		Debug.DrawLine(startPos, startPos + Vector3.down * distance, Color.black, 0.5f);
+		// Optional: Draw the box itself
+		CustomDebug.DrawBox(startPos + Vector3.down * distance, boxHalfExtents, Quaternion.identity, Color.black);
+		#endif
+		return Physics.BoxCast(startPos, boxHalfExtents, Vector3.down, Quaternion.identity, distance, ~entityLayer);
 	}
 
 
@@ -35,8 +50,7 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 		machine.animator.applyRootMotion = true;
 		machine.animator.CrossFade("Landing", 0.25f);
         machine.walkingCollider.enabled = true;
-		machine.controller.smoothLeft = 0;
-		machine.controller.smoothForward = 0;
+
 		
 	}
 }

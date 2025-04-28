@@ -6,14 +6,14 @@ public static class CustomDebug
     /// Draws a wireframe box in the Scene view.
     /// </summary>
     /// <param name="center">Center of the box</param>
-    /// <param name="size">Half-extents (size from center to edge)</param>
+    /// <param name="halfExtents">Half-extents (size from center to edge)</param>
     /// <param name="rotation">Orientation of the box</param>
     /// <param name="color">Color of the debug lines</param>
     /// <param name="duration">How long the lines should remain visible</param>
-    public static void DebugBox(Vector3 center, Vector3 size, Quaternion rotation, Color color, float duration = 0)
+    public static void DrawBox(Vector3 center, Vector3 halfExtents, Quaternion rotation, Color color, float duration = 0)
     {
         // Calculate box edges
-        Vector3[] edges = GetBoxEdges(center, size, rotation);
+        Vector3[] edges = GetBoxEdges(center, halfExtents, rotation);
 
         // Draw the 12 lines of the box
         Debug.DrawLine(edges[0], edges[1], color, duration);

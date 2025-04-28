@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Consumable : Interactable
 {
+	public static event System.Action<Consumable> OnAnyConsumed;
 	public override void Action(MonoBehaviour sender)
 	{
 		GetComponent<Collider>().enabled = false;
@@ -12,6 +13,9 @@ public class Consumable : Interactable
 		machine.SetState(RaccoonState.Eating);
 		eatingState.consumable = this;
 		Eat(sender);
+
+
+		OnAnyConsumed?.Invoke(this);
 	}
 	async void Eat(MonoBehaviour sender)
 	{

@@ -38,7 +38,13 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
 	{
 		// Stop the specific coroutine if it's running
 		if (setStateCoroutine != null)
+		{
+			#if UNITY_EDITOR
+			Debug.Log("Interuppting SetState coroutine");
+			#endif
 			StopCoroutine(setStateCoroutine);
+
+		}
 		
 		// Start the new coroutine and store the reference
 		setStateCoroutine = StartCoroutine(SetStateCoroutine(stateKey, delay));

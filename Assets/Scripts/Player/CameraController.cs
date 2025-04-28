@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     [Header("Mouse Settings")]
     public float mouseSensitivity = 100f;
-    public bool invertY = true;
+    public bool invertY = false;
     
     [Header("Target Settings")]
     public Transform target;
