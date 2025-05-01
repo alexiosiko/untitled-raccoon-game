@@ -7,45 +7,46 @@ using UnityEngine.AI;
 public class EntityController : Interactable
 {
     public Transform destinationTransform;
+
     [HideInInspector] public Animator animator;
     [HideInInspector] public NavMeshAgent agent;
+
     private float smoothHorizontal = 0f;
     private float smoothVertical = 0f;
     protected AudioSource source;
+
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
-		agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
 
-    	agent.updatePosition = false;
+        agent.updatePosition = false;
+        agent.updateRotation = false;
     }
 
     protected virtual void Update()
     {
         if (destinationTransform)
             agent.SetDestination(destinationTransform.position);
-		else
-			return;
+        else
+            return;
 
-		var localVelocity = transform.InverseTransformDirection(agent.velocity);
+        var localVelocity = transform.InverseTransformDirection(agent.velocity);
 
-		smoothHorizontal = Mathf.Lerp(smoothHorizontal, localVelocity.x, Time.deltaTime);
-        smoothVertical = Mathf.Lerp(smoothVertical, localVelocity.z, Time.deltaTime * 3);
+        smoothHorizontal = Mathf.Lerp(smoothHorizontal, localVelocity.x, Time.deltaTime * 3f);
+        smoothVertical = Mathf.Lerp(smoothVertical, localVelocity.z, Time.deltaTime * 3f);
 
-		animator.SetFloat("Forward", smoothHorizontal);
-		animator.SetFloat("Left", smoothVertical); 
+        animator.SetFloat("Left", smoothHorizontal);   // Left-right movement
+        animator.SetFloat("Forward", smoothVertical);  // Forward movement
     }
 
-	void OnAnimatorMove()
+    void OnAnimatorMove()
     {
-        // Apply root motion for movement and rotation
-        transform.SetPositionAndRotation(agent.nextPosition, animator.rootRotation);
-
-		// Move the NavMeshAgent to the character's position
-		agent.nextPosition = transform.position;
+        transform.rotation = animator.rootRotation;
+        transform.position = agent.nextPosition;
+        agent.nextPosition = transform.position;
     }
-
 
     public override void Action(MonoBehaviour caller) {}
 }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4181887594852410}
   - component: {fileID: 33208458090139662}
   - component: {fileID: 23199639529526388}
-  - component: {fileID: 64039263472043758}
   m_Layer: 0
   m_Name: SM_Env_Plant_Cabbage_01
   m_TagString: Untagged
@@ -87,25 +86,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64039263472043758
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844450748244578}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43801347439788028, guid: 374dd6bfc028c5d4ba9e18b775f3b08e, type: 2}
