@@ -30,12 +30,16 @@ public class RaccoonClimbingCancelState : BaseState<RaccoonState>
 		}
 	}
 
-	public override void ExitState()
+	public override IEnumerator ExitState()
 	{
 		machine.walkingCollider.enabled = true;
 		machine.animator.CrossFade("Walking", 0.25f);
 		machine.controller.smoothLeft = 0;
 		machine.controller.smoothForward = 0;
+
+		yield return new WaitForSeconds(0.5f);
+
+		
 
 	}
 

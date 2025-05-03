@@ -1,3 +1,5 @@
+using System.Collections;
+
 public class RaccoonStartGrabbingState : BaseState<RaccoonState>
 {
 	RaccoonStateMachine machine;
@@ -12,8 +14,9 @@ public class RaccoonStartGrabbingState : BaseState<RaccoonState>
 		machine.SetState(RaccoonState.Grabbing, 0.375f);
 	}
 
-	public override void ExitState()
+	public override IEnumerator ExitState()
 	{
+		yield return null;
 	}
 
 	public override RaccoonState GetNextState()

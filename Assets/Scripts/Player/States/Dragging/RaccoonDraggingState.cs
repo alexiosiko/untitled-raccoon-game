@@ -11,7 +11,7 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
 	public static Vector3 hitPoint;
     [Header("Joint Settings")]
     [SerializeField] private float jointSpring = 500f;
-    [SerializeField] private float jointDamper = 10f;
+    [SerializeField] private float jointDamper = 3f;
     public RaccoonDraggingState(RaccoonStateMachine machine) : base(RaccoonState.Dragging)
     {
         this.machine = machine;
@@ -21,6 +21,7 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
     public override void EnterState()
     {
 		delay = true;
+		machine.animator.CrossFade("Grabbing", 0.2f);
 		machine.StartCoroutine(RemoveDelay());
 		grabLocalPoint = draggable.transform.InverseTransformPoint(hitPoint);
 		SetupGrabJoint(draggable, grabLocalPoint);
@@ -33,6 +34,8 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
         mouthSpringJoint.anchor = Vector3.zero; // Mouth's position
         mouthSpringJoint.connectedAnchor = localGrabPoint;
         mouthSpringJoint.spring = jointSpring;
+		mouthSpringJoint.minDistance = 0.15f;
+		mouthSpringJoint.maxDistance = 0.2f;
         mouthSpringJoint.damper = jointDamper;
         mouthSpringJoint.enableCollision = true; // Maintain physics interactions
 		mouthSpringJoint.anchor = new (0, 0.25f, 0);
@@ -43,10 +46,11 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
         // SpringJoint handles physics automatically
     }
 
-    public override void ExitState()
+    public override IEnumerator ExitState()
     {
 		mouthSpringJoint.connectedBody = null;
         draggable = null;
+		yield return null;
     }
 
     public override RaccoonState GetNextState()
@@ -60,7 +64,7 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
 		Ray ray = new (machine.controller.centerOfRaccoon, machine.transform.forward);
 		if (Physics.Raycast(ray, out RaycastHit hit, 1f))
 		{
-			Draggable d = hit.collider.GetComponent<Draggable>();
+			Draggable d = hit.collider.GetComponentInParent<Draggable>();
 			if (d)
 			{
 				draggable = d;

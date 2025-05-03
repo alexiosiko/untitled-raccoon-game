@@ -19,12 +19,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Untitled' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'B-thigh.R' has scale animation that will
-      be discarded.\n\t'B-shin.R' has scale animation that will be discarded.\n\t'B-foot.R'
-      has scale animation that will be discarded.\n\t'B-toe.R' has scale animation
-      that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -947,7 +942,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Rig/B-root
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -966,9 +961,9 @@ ModelImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 154271
-  packageName: Basic Motions FREE
-  packageVersion: 2.3.3
-  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Male/Movement/Run/RootMotion/HumanM@Run01_Right
+  productId: 157744
+  packageName: Basic Motions
+  packageVersion: 2.3.4
+  assetPath: Assets/Animations/People/Male/Movement/Run/RootMotion/HumanM@Run01_Right
     [RM].fbx
-  uploadId: 733977
+  uploadId: 750868

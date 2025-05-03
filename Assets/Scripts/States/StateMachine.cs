@@ -7,8 +7,7 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
 {
 	public Dictionary<EState, BaseState<EState>> States = new ();
 	protected BaseState<EState> CurrentState;  
-	protected bool IsTransitioningState = false;
-	void Start() => CurrentState.EnterState();
+	void Start() => CurrentState?.EnterState();
 	protected virtual void Update()
 	{
 		if (CurrentState == null)
@@ -16,46 +15,42 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
 		EState nextStateKey = CurrentState.GetNextState();
 		if (nextStateKey.Equals(CurrentState.StateKey))
 			CurrentState.UpdateState();
-		else if (!IsTransitioningState)
+		else if (transitioningStateCoroutine == null)
 		{
-			Debug.Log("Transition to " + nextStateKey);
+			// Debug.Log("Transition to " + nextStateKey);
 			SetState(nextStateKey);
 		}
 	}
-	public void SetState(EState stateKey)
+	public void SetState(EState stateKey, float delay = 0, bool ignoreExitTime = false)
 	{
-		IsTransitioningState = true;
-		CurrentState?.ExitState();
-		CurrentState = States[stateKey];
-		if (setStateCoroutine != null)
-			StopCoroutine(setStateCoroutine);
-		CurrentState.EnterState();
-		IsTransitioningState = false;
-	}
-	private Coroutine setStateCoroutine;
 
-	public void SetState(EState stateKey, float delay)
-	{
-		// Stop the specific coroutine if it's running
-		if (setStateCoroutine != null)
+		if (transitioningStateCoroutine != null)
 		{
 			#if UNITY_EDITOR
 			Debug.Log("Interuppting SetState coroutine");
 			#endif
-			StopCoroutine(setStateCoroutine);
+			StopCoroutine(transitioningStateCoroutine);
 
 		}
-		
 		// Start the new coroutine and store the reference
-		setStateCoroutine = StartCoroutine(SetStateCoroutine(stateKey, delay));
+		transitioningStateCoroutine = StartCoroutine(TransitioningState(stateKey, delay, ignoreExitTime));
+		
 	}
 
-	IEnumerator SetStateCoroutine(EState stateKey, float delay)
+	IEnumerator TransitioningState(EState stateKey, float delay, bool ignoreExitTime = false)
 	{
-		yield return new WaitForSeconds(delay);
-		SetState(stateKey);
-		setStateCoroutine = null; // Clear the reference when done
-}
-	public abstract void Awake();
+		yield return new WaitForSeconds(delay);	
+		if (ignoreExitTime)
+			CurrentState?.ExitState();
+		else
+			yield return CurrentState?.ExitState();
+		
+		CurrentState = States[stateKey];
+		CurrentState.EnterState();
+		
+		
+		transitioningStateCoroutine = null; // Clear the reference when done
+	}
+	private Coroutine transitioningStateCoroutine;
 
 }

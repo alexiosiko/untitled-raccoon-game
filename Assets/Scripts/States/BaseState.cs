@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 public abstract class BaseState<EState> where EState : Enum
 {
@@ -7,5 +8,5 @@ public abstract class BaseState<EState> where EState : Enum
 	public abstract void EnterState();	
 	public abstract void UpdateState();	
 	public abstract EState GetNextState();
-	public abstract void ExitState();	
+	public abstract IEnumerator ExitState();	
 }

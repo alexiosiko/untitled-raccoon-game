@@ -942,7 +942,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Rig/B-root
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -961,9 +961,8 @@ ModelImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 154271
-  packageName: Basic Motions FREE
-  packageVersion: 2.3.3
-  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Female/Movement/Turn/HumanF@Turn01_Right
-    [RM].fbx
-  uploadId: 733977
+  productId: 157744
+  packageName: Basic Motions
+  packageVersion: 2.3.4
+  assetPath: Assets/Animations/People/Female/Movement/Turn/HumanF@Turn01_Right [RM].fbx
+  uploadId: 750868

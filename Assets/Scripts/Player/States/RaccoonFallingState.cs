@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RaccoonFallingState : BaseState<RaccoonState>
@@ -45,12 +46,13 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 
 
 
-    public override void ExitState()
+    public override IEnumerator ExitState()
     {
+		Debug.Log("Falling done");
 		machine.animator.applyRootMotion = true;
 		machine.animator.CrossFade("Landing", 0.25f);
         machine.walkingCollider.enabled = true;
 
-		
+		yield return null;
 	}
 }

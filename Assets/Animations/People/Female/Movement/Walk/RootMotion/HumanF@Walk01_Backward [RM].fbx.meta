@@ -2,14 +2,6 @@ fileFormatVersion: 2
 guid: b9d3add11541db24eae0595af3ae99d3
 labels:
 - Animation
-AssetOrigin:
-  serializedVersion: 1
-  productId: 154271
-  packageName: Basic Motions FREE
-  packageVersion: 2.3.3
-  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Female/Movement/Walk/RootMotion/HumanF@Walk01_Backward
-    [RM].fbx
-  uploadId: 733977
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -25,7 +17,9 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
-    motionNodeName: 
+    motionNodeName: Rig/B-root
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -41,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 'HumanF@Walk01_Backward [RM]'
+      name: HumanF@Walk01_Backward [RM]
       takeName: Untitled
       internalID: 3094330708855449807
       firstFrame: 0
@@ -950,11 +944,12 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Rig/B-root
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1841c298173cdad4db8df8602c8f1c8d, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1841c298173cdad4db8df8602c8f1c8d,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -966,3 +961,11 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157744
+  packageName: Basic Motions
+  packageVersion: 2.3.4
+  assetPath: Assets/Animations/People/Female/Movement/Walk/RootMotion/HumanF@Walk01_Backward
+    [RM].fbx
+  uploadId: 750868

@@ -1,10 +1,13 @@
 using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(Collider))]
 public class Consumable : Interactable
 {
-	public static event System.Action<Consumable> OnAnyConsumed;
+    [SerializeField] protected UnityEvent onFinish;
+	[SerializeField] int secondsToEat = 2; 
 	public override void Action(MonoBehaviour sender)
 	{
 		GetComponent<Collider>().enabled = false;
@@ -15,7 +18,6 @@ public class Consumable : Interactable
 		Eat(sender);
 
 
-		OnAnyConsumed?.Invoke(this);
 	}
 	async void Eat(MonoBehaviour sender)
 	{
@@ -24,12 +26,13 @@ public class Consumable : Interactable
 		transform.DOLocalRotate(Vector3.zero, 0.5f);
 		transform.DOLocalMove(Vector3.zero, 0.5f);
 		await Task.Delay(1000);
-		Debug.Log(machine);
 
 		transform.DOScaleY(0, 1f);
 		await transform.DOLocalRotate(new Vector3(90, transform.localEulerAngles.x, transform.localEulerAngles.z), 0.5f).AsyncWaitForCompletion();
+		await Task.Delay (secondsToEat * 1000 - 1000);
 		await transform.DOScale(Vector3.zero, 1f).AsyncWaitForCompletion();
 		machine.SetState(RaccoonState.Walking);
+		onFinish?.Invoke();
 		Destroy(gameObject);
 	}
 

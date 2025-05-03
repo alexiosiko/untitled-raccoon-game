@@ -22,11 +22,12 @@ public class RaccoonGrabbingState : BaseState<RaccoonState>
 		yield return new WaitForSeconds(1);
 		delay = false;
 	}
-	public override void ExitState()
+	public override IEnumerator ExitState()
 	{
 		grabable.SetDropState(machine);
 		grabable.GetComponent<Rigidbody>().AddForce(machine.transform.forward / 2f);
 		machine.animator.CrossFade("Walking", 0.75f);
+		yield return null;
 	}
 
 	public override RaccoonState GetNextState()
@@ -43,7 +44,7 @@ public class RaccoonGrabbingState : BaseState<RaccoonState>
 		CustomDebug.DebugSphere(pos, radius, Quaternion.identity, Color.green, radius );
 		foreach (var c in colliders)
 		{
-			Grabable i = c.GetComponent<Grabable>();
+			Grabable i = c.GetComponentInParent<Grabable>();
 			if (i)
 			{
 				i.Action(machine);

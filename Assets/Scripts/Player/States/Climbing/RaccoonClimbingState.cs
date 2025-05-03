@@ -48,10 +48,11 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 		delay = false;
 	} 
 
-    public override void ExitState()
+    public override IEnumerator ExitState()
     {
 		// machine.climbingCollider.enabled = false;
         machine.animator.SetBool("Climbing", false);
+		yield return null;
     }
     private void PositionAndRotateClimb()
     {

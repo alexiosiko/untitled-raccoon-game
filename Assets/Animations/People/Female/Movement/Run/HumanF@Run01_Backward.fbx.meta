@@ -963,8 +963,8 @@ ModelImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 154271
-  packageName: Basic Motions FREE
-  packageVersion: 2.3.3
-  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Female/Movement/Run/HumanF@Run01_Backward.fbx
-  uploadId: 733977
+  productId: 157744
+  packageName: Basic Motions
+  packageVersion: 2.3.4
+  assetPath: Assets/Animations/People/Female/Movement/Run/HumanF@Run01_Backward.fbx
+  uploadId: 750868

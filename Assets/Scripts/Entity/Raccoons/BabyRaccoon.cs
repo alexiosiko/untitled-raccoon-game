@@ -14,9 +14,8 @@ public class BabyRaccoon : EntityController
     {
         EnterState(state);
     }
-    protected override void Update()
+	void Update()
     {
-        base.Update();
         UpdateState();
     }
     public override void Action(MonoBehaviour caller)

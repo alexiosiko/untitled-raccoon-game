@@ -24,7 +24,7 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
     void LateUpdate()
     {
 		base.Update();
-		currentStateName = CurrentState.ToString();
+		currentStateName = CurrentState?.ToString();
 
     }
     public void ResetRotationXZ()
@@ -34,7 +34,7 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
         transform.DOLocalRotate(targetRotation, 0.2f, RotateMode.Fast);
     }
 	public void ForwardForce() => rb.AddForce(transform.forward * 30f);
-	public override void Awake()
+	void Awake()
     {
         // Get required components
         walkingCollider = GetComponent<Collider>();

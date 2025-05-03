@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,15 +7,13 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EntityFootsteps))]
 public class EntityController : Interactable
 {
-    public Transform destinationTransform;
-
     [HideInInspector] public Animator animator;
     [HideInInspector] public NavMeshAgent agent;
-
-    private float smoothHorizontal = 0f;
-    private float smoothVertical = 0f;
+	[HideInInspector] public bool isRunning = false;
+    public Transform destinationTransform;
+    float smoothHorizontal = 0f;
+    float smoothVertical = 0f;
     protected AudioSource source;
-
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
@@ -22,30 +21,63 @@ public class EntityController : Interactable
         agent = GetComponent<NavMeshAgent>();
 
         agent.updatePosition = false;
+
         agent.updateRotation = false;
     }
 
-    protected virtual void Update()
-    {
-        if (destinationTransform)
-            agent.SetDestination(destinationTransform.position);
-        else
-            return;
 
-        var localVelocity = transform.InverseTransformDirection(agent.velocity);
+	public void FollowDestination()
+	{
+		if (!destinationTransform)
+			return;
 
-        smoothHorizontal = Mathf.Lerp(smoothHorizontal, localVelocity.x, Time.deltaTime * 3f);
-        smoothVertical = Mathf.Lerp(smoothVertical, localVelocity.z, Time.deltaTime * 3f);
+		agent.SetDestination(destinationTransform.position);
 
-        animator.SetFloat("Left", smoothHorizontal);   // Left-right movement
-        animator.SetFloat("Forward", smoothVertical);  // Forward movement
-    }
+		// Determine the next corner to navigate towards
+		var corners = agent.path.corners;
+		Vector3 next = (corners.Length > 1) ? corners[1] : corners[0];
+		Vector3 toNext = (next - transform.position).normalized;
+		Vector3 localDir = transform.InverseTransformDirection(toNext);
+
+		// Set maximum values based on running state
+		float maxForward = isRunning ? 2f : 1f;
+		float maxHorizontal = isRunning ? 2f : 1f;
+
+		// Smoothly interpolate horizontal movement
+		smoothHorizontal = Mathf.Lerp(
+			smoothHorizontal,
+			localDir.x * maxHorizontal,
+			Time.deltaTime * agent.angularSpeed
+		);
+
+		// Calculate forward movement based on agent velocity
+		Vector3 localVelRaw = transform.InverseTransformDirection(agent.velocity);
+		float forwardInput = Mathf.Clamp(localVelRaw.z / agent.speed, -1f, 1f);
+		float acceleration = 5f;
+		smoothVertical = Mathf.Lerp(
+			smoothVertical,
+			forwardInput * maxForward,
+			Time.deltaTime * acceleration
+		);
+
+		// Apply the calculated values to the animator
+		animator.SetFloat("Left", smoothHorizontal);
+		animator.SetFloat("Forward", smoothVertical);
+	}
+
+
 
     void OnAnimatorMove()
     {
+        // Apply root rotation and position from animations
         transform.rotation = animator.rootRotation;
         transform.position = agent.nextPosition;
-        agent.nextPosition = transform.position;
+        
+        // Get root motion movement from the animator
+        Vector3 rootMotionPosition = animator.deltaPosition;
+        
+        // Move the character controller using root motion
+        agent.nextPosition = transform.position + rootMotionPosition;
     }
 
     public override void Action(MonoBehaviour caller) {}

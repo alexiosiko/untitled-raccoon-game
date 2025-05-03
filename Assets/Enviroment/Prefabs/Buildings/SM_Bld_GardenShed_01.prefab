@@ -119,6 +119,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4262932238702620}
+  - {fileID: 7222263145471705538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33931916049973508
@@ -196,3 +197,85 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 43815344095062194, guid: 3cc524535e375d44caa669726c33927f, type: 2}
+--- !u!1001 &7217765456679134894
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4860399737766368}
+    m_Modifications:
+    - target: {fileID: 1392155918058486, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_Name
+      value: SM_Prop_SecurityLights_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.016002417
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.3494267
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.2246475
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257277996765600481, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_CustomShadowLayers
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257277996765600481, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175754091919267077, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175754091919267077, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175754091919267077, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: be6b10186da090d46835641419cb2459, type: 3}
+--- !u!4 &7222263145471705538 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
+  m_PrefabInstance: {fileID: 7217765456679134894}
+  m_PrefabAsset: {fileID: 0}

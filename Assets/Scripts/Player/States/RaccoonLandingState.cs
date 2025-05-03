@@ -1,3 +1,5 @@
+using System.Collections;
+
 public class RaccoonLandingState : BaseState<RaccoonState>
 {
     private RaccoonStateMachine machine;
@@ -12,10 +14,11 @@ public class RaccoonLandingState : BaseState<RaccoonState>
 		machine.SetState(RaccoonState.Walking, 1f);	
 	}
 
-	public override void ExitState()
+	public override IEnumerator ExitState()
 	{
 		machine.controller.smoothLeft = 0;
 		machine.controller.smoothForward = 0;
+		yield return null;
 	}
 
 	public override RaccoonState GetNextState()

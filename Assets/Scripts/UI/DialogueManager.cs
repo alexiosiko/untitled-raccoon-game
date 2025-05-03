@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour
 		if (narrationCoroutine != null)
 		{
 			StopCoroutine(narrationCoroutine);
-			Debug.Log("Interrupted narrationCoroutine");
+			Debug.Log("Interrupted narrationCoroutine", this);
 		}
 		narrationCoroutine = StartCoroutine(NarrationCoroutine(text, delaySeconds));
 	}

@@ -14,7 +14,7 @@ public class RaccoonClimbingOverState : BaseState<RaccoonState>
 	public override void EnterState()
 	{
 		machine.animator.CrossFade("Climb Over", 0.25f);
-		if (RaccoonClimbingDownState.CanClimbDown(machine, 3))
+		if (RaccoonClimbingDownState.CanClimbDown(machine, 2f))
 		{
 			machine.SetState(RaccoonState.ClimbingDown, 1f);
 			Debug.Log("Climbing down action sent");
@@ -29,10 +29,13 @@ public class RaccoonClimbingOverState : BaseState<RaccoonState>
 			
 	}
 
-	public override void ExitState()
+	public override IEnumerator ExitState()
 	{
 		machine.controller.smoothLeft = 0;
 		machine.controller.smoothForward = 0;
+		
+		yield return null;
+
 	}
 
 	public override RaccoonState GetNextState()

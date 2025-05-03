@@ -19,11 +19,11 @@ public class RaccoonEatingState : BaseState<RaccoonState>
 	}
 
 
-	public override void ExitState()
+	public override IEnumerator ExitState()
 	{
 		consumable = null;
 		machine.animator.CrossFade("Walking", 0.25f);
-
+	yield return null;
 	}
 
 	public override RaccoonState GetNextState()
@@ -37,7 +37,7 @@ public class RaccoonEatingState : BaseState<RaccoonState>
 		Collider[] colliders = Physics.OverlapSphere(centerEatingSpot, 0.25f);
 		foreach (var c in colliders)
 		{
-			Consumable i = c.GetComponent<Consumable>();
+			Consumable i = c.GetComponentInParent<Consumable>();
 			if (i)
 			{
 				i.Action(machine);

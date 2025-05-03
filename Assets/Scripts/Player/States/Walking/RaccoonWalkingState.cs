@@ -25,6 +25,7 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 			machine.walkingCollider.enabled = true;
 			machine.ResetRotationXZ();
 			machine.rb.useGravity = true;
+			// machine.animator.applyRootMotion = true;
 		}
     }
 
@@ -65,8 +66,9 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 		return RaccoonState.Walking; // Stay in this state for now
 	}
 
-    public override void ExitState()
+    public override IEnumerator ExitState()
     {
+		yield return null;
     }
 
 	

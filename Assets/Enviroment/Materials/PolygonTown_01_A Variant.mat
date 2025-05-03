@@ -12,17 +12,16 @@ Material:
   m_Parent: {fileID: 2100000, guid: 28646867ddcf90a4989276acd313ea43, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - DR_CEL_EXTRA_ON
+  - DR_ENABLE_LIGHTMAP_DIR
   - _BASEMAP_PREMULTIPLY
+  - _CELPRIMARYMODE_STEPS
   - _DETAILMAPBLENDINGMODE_MULTIPLY
   - _EMISSION
-  - _GRADIENTSPACE_LOCAL
+  - _GRADIENTSPACE_WORLD
   - _OUTLINESPACE_OBJECT
   - _TEXTUREBLENDINGMODE_ADD
   - _UNITYSHADOWMODE_COLOR
-  - _UNITYSHADOW_OCCLUSION
-  m_InvalidKeywords:
-  - _CELPRIMARYMODE_NONE
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -31,12 +30,52 @@ Material:
     RenderType: Opaque
   disabledShaderPasses:
   - SRPDEFAULTUNLIT
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _BaseMapPremultiply: 1
+    - _CameraDistanceImpact: 0
+    - _CelExtraEnabled: 0
+    - _CelPrimaryMode: 2
+    - _FlatRimEdgeSmoothness: 0
+    - _FlatRimLightAlign: 0
+    - _FlatRimSize: 0
+    - _LightContribution: 0
+    - _LightFalloffSize: 0
+    - _OverrideLightmapDir: 1
+    - _RimEnabled: 0
+    - _SelfShadingSize: 0.913
+    - _ShadowEdgeSize: 0.5
+    - _TextureBlendingMode: 1
+    - _TextureImpact: 0
+    - _UnityShadowMode: 2
+    - _UnityShadowOcclusion: 0
+    - _UnityShadowPower: 1
+    - _UnityShadowSharpness: 1
+    - _VertexColorsEnabled: 0
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDim: {r: 0, g: 0, b: 0, a: 1}
+    - _ColorDimCurve: {r: 0, g: 0, b: 0, a: 0.85056}
+    - _ColorDimSteps: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+    - _ColorGradient: {r: 1, g: 1, b: 1, a: 1}
+    - _UnityShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+--- !u!114 &9920133453115595
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9

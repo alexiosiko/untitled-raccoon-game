@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RaccoonClimbingDownState : BaseState<RaccoonState>
@@ -18,9 +19,10 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 		machine.SetState(RaccoonState.Falling, 0.5f);
 	}
 
-	public override void ExitState()
+	public override IEnumerator ExitState()
 	{
 		machine.walkingCollider.enabled = true;
+		yield return null;
 	}
 
 	public override RaccoonState GetNextState()
@@ -39,10 +41,8 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 		LayerMask entityLayer = LayerMask.GetMask("Entity");
 		float distance = 1f;
 		#if UNITY_EDITOR
-		// Draw the box cast area (for debugging)
-		Debug.DrawLine(forwardPosAndUp, forwardPosAndUp + Vector3.down * distance, Color.white, 0.5f);
-		// Optional: Draw the box itself
-		CustomDebug.DrawBox(forwardPosAndUp + Vector3.down * distance, boxHalfExtents, Quaternion.identity, Color.cyan);
+		Debug.DrawLine(forwardPosAndUp, forwardPosAndUp + Vector3.down * distance, Color.white, 0.1f);
+		CustomDebug.DrawBox(forwardPosAndUp + Vector3.down * distance, boxHalfExtents, Quaternion.identity, Color.cyan, 0.1f);
 		#endif
 		return !Physics.BoxCast(forwardPosAndUp, boxHalfExtents, Vector3.down, Quaternion.identity, distance, ~entityLayer);
 
