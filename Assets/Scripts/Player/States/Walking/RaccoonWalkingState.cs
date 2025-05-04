@@ -53,7 +53,7 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 				return RaccoonState.Dragging;
 			
 			if (RaccoonGrabbingState.CanGrab(machine) == true)
-				return RaccoonState.StartGrabbing;
+				return RaccoonState.Grabbing;
 				
 			if (RaccoonEatingState.CanEat(machine) == true)
 				return RaccoonState.Eating;

@@ -28,21 +28,17 @@ public abstract class EntityBaseStateMachine<EState> : EntityController where ES
 		}
 	}
 	private Coroutine transitioningStateCoroutine;
-
 	public void SetState(EState stateKey, bool ignoreExitTime = false)
 	{
 
+		// Interrupt any ongoing transition
 		if (transitioningStateCoroutine != null)
 		{
-			#if UNITY_EDITOR
-			Debug.Log("Interrupting SetState coroutine");
-			#endif
 			StopCoroutine(transitioningStateCoroutine);
-
+			transitioningStateCoroutine = null;
 		}
-		// Start the new coroutine and store the reference
+		// Begin the new transition
 		transitioningStateCoroutine = StartCoroutine(TransitioningState(stateKey, ignoreExitTime));
-		
 	}
 
 	IEnumerator TransitioningState(EState stateKey, bool ignoreExitTime = false)

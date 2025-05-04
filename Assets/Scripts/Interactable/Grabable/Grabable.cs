@@ -9,6 +9,7 @@ public class Grabable : Interactable
 	public bool interactive = true;
 	public override void Action(MonoBehaviour sender)
 	{
+		
 	}
 	
 	

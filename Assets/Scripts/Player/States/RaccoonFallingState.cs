@@ -4,10 +4,7 @@ using UnityEngine;
 public class RaccoonFallingState : BaseState<RaccoonState>
 {
     private RaccoonStateMachine machine;
-    public RaccoonFallingState(RaccoonStateMachine machine) : base(RaccoonState.Falling)
-    {
-        this.machine = machine;
-    }
+    public RaccoonFallingState(RaccoonStateMachine machine) : base(RaccoonState.Falling) => this.machine = machine;
 
     public override void EnterState()
     {

@@ -13,14 +13,18 @@ public class RaccoonGrabbingState : BaseState<RaccoonState>
 	{
 		delay = true;
 		machine.StartCoroutine(RemoveDelay());
-		machine.animator.CrossFade("Grabbing", 0.5f);
-
-		grabable.SetGrabState(machine);
+		machine.animator.CrossFade("Start Grabbing", 0.2f);
+		machine.StartCoroutine(SetGrabableState());
 	}
 	IEnumerator RemoveDelay()
 	{
 		yield return new WaitForSeconds(1);
 		delay = false;
+	}
+	IEnumerator SetGrabableState()
+	{
+		yield return new WaitForSeconds(0.5f);
+		grabable.SetGrabState(machine);
 	}
 	public override IEnumerator ExitState()
 	{
