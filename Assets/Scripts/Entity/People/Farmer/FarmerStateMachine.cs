@@ -21,25 +21,10 @@ public class FarmerStateMachine : EntityBaseStateMachine<FarmerState>
 	[SerializeField] Transform[] plants;
 	[SerializeField] string currentStateName;
 	[SerializeField] public Transform carryTransform;
-	protected override void Update()
+	void LateUpdate()
     {
 		base.Update();
 		currentStateName = CurrentState?.ToString();
-
-		if (Input.GetKeyDown(KeyCode.I))
-			SetState(FarmerState.Working);
-
-		if (Input.GetKeyDown(KeyCode.K))
-			SetState(FarmerState.Sitting);
-
-		if (Input.GetKeyDown(KeyCode.M))
-			SetState(FarmerState.Idle);
-
-		if (Input.GetKeyDown(KeyCode.P))
-			SetState(FarmerState.Planting);
-
-		if (Input.GetKeyDown(KeyCode.T))
-			SetState(FarmerState.Chasing);
 
     }
 	
@@ -49,9 +34,9 @@ public class FarmerStateMachine : EntityBaseStateMachine<FarmerState>
 		base.Awake();
 
 		
-		States.Add(FarmerState.Wonder, 			new FarmerWonderState(this));
-		States.Add(FarmerState.Angry, 			new FarmerAngryState(this));
-		States.Add(FarmerState.Cheering, 		new FarmerCheeringState(this));
+		// States.Add(FarmerState.Wonder, 			new FarmerWonderState(this));
+		// States.Add(FarmerState.Angry, 			new FarmerAngryState(this));
+		// States.Add(FarmerState.Cheering, 		new FarmerCheeringState(this));
 		States.Add(FarmerState.Carrying, 		new FarmerCarryingState(this));
 		States.Add(FarmerState.Sitting, 		new FarmerSittingState(this));
 		States.Add(FarmerState.Working, 		new FarmerWorkingState(this));
@@ -62,11 +47,13 @@ public class FarmerStateMachine : EntityBaseStateMachine<FarmerState>
 		SetState(FarmerState.Working);
 
 
-		
 	}
+
+
 
 	public void SetRandomPlantDesination()
 	{
 		destinationTransform = plants[Random.Range(0, plants.Length)];
 	}
+	[SerializeField] public ResettableObject[] resettableObjects;
 }

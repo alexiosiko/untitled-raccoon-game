@@ -34,7 +34,8 @@ public abstract class EntityBaseStateMachine<EState> : EntityController where ES
 		// Interrupt any ongoing transition
 		if (transitioningStateCoroutine != null)
 		{
-			StopCoroutine(transitioningStateCoroutine);
+			StopAllCoroutines(); // This could be buggy IDK
+			// StopCoroutine(transitioningStateCoroutine);
 			transitioningStateCoroutine = null;
 		}
 		// Begin the new transition

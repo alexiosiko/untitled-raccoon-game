@@ -25,9 +25,13 @@ public class RaccoonGrabbingState : BaseState<RaccoonState>
 	{
 		yield return new WaitForSeconds(0.5f);
 		grabable.SetGrabState(machine);
+		grabable.transform.SetParent(machine.grabTransform);
+		grabable.transform.DOLocalMove(Vector3.zero, 0.5f);
+		grabable.transform.DOLocalRotate(Vector3.zero, 0.5f);
 	}
 	public override IEnumerator ExitState()
 	{
+		grabable.UnIsKinematic();
 		grabable.SetDropState(machine);
 		grabable.GetComponent<Rigidbody>().AddForce(machine.transform.forward / 2f);
 		machine.animator.CrossFade("Walking", 0.75f);

@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FarmerWorkingState : BaseState<FarmerState>
 {
 	private FarmerStateMachine machine;
 	public FarmerWorkingState(FarmerStateMachine machine) : base(FarmerState.Working) => this.machine = machine;
-
-
 	public override void EnterState()
 	{
 		delay = true;
@@ -26,14 +25,29 @@ public class FarmerWorkingState : BaseState<FarmerState>
 
 	public override FarmerState GetNextState()
 	{
-		if (!delay && !machine.agent.pathPending && machine.agent.hasPath && machine.agent.remainingDistance < 1f)
+
+		
+		if (delay)
+			return StateKey;
+		if (machine.destinationTransform != null && machine.agent.remainingDistance < 1f)
 			return FarmerState.Planting;
+
+		foreach (var r in machine.resettableObjects)
+		{
+			if (r.needsToBeReset)
+			{
+				machine.destinationTransform = r.transform;
+			 	return FarmerState.Chasing;
+			}
+		}
+
+		
 		return StateKey;
 	}
 	bool delay = false;
 	IEnumerator UnDelay()
 	{
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(2f);
 		delay = false;
 	}
 

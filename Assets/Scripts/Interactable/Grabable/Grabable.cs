@@ -13,36 +13,29 @@ public class Grabable : Interactable
 	}
 	
 	
-	public void SetGrabState(MonoBehaviour sender)
+	public virtual void SetGrabState(MonoBehaviour sender)
 	{
-		var machine = sender as RaccoonStateMachine;
-		transform.SetParent(machine.grabTransform);
-		transform.DOLocalMove(Vector3.zero, 0.5f);
-		transform.DOLocalRotate(Vector3.zero, 0.5f);
-		collider.enabled = false;
+		col.enabled = false;
 		rb.isKinematic = true;
         rb.detectCollisions = false;
-
 	}
-	public void SetDropState(MonoBehaviour sender)
+	public virtual void SetDropState(MonoBehaviour sender)
 	{
-		var machine = sender as RaccoonStateMachine;
+		col.enabled = true;
+		CancelInvoke();
+		Invoke(nameof(UnIsKinematic), 2);
+        rb.detectCollisions = true;
 		transform.SetParent(GameObject.Find("--- ENVIROMENT ---").transform);
 
-		Invoke(nameof(EnableCollider), 0.1f);
-		rb.isKinematic = false;
-        rb.detectCollisions = true;
-		rb.AddForce(machine.transform.forward * 20f);
-
 	}
-	void EnableCollider() => collider.enabled = true;
-	void Awake()
+	public void UnIsKinematic() => rb.isKinematic = false;
+	protected virtual void Awake()
 	{
 		rb = GetComponent<Rigidbody>();	
-		collider = GetComponent<Collider>();
+		col = GetComponent<Collider>();
 	}
-	new Collider collider;
-	protected Rigidbody rb;
+  	[SerializeField] protected Collider col;
+	[SerializeField] protected Rigidbody rb;
 }
 
 

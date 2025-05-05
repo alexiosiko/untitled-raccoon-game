@@ -6,6 +6,7 @@ public class RaccoonIdleState : BaseState<RaccoonState>
     public RaccoonIdleState(RaccoonStateMachine machine) : base(RaccoonState.Idle) => this.machine = machine;
 	public override void EnterState()
 	{
+		machine.animator.CrossFade("Idle", 0.2f);
 	}
 
 	public override IEnumerator ExitState()

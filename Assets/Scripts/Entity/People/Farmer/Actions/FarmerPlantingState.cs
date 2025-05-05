@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class FarmerPlantingState : BaseState<FarmerState>
 {
@@ -12,13 +13,14 @@ public class FarmerPlantingState : BaseState<FarmerState>
 	public override void EnterState()
 	{
 		machine.animator.CrossFade("Start Plant", 0.2f);
-		randomCoroutine = machine.StartCoroutine(RandomCoroutine());
+		// randomCoroutine = machine.StartCoroutine(RandomCoroutine());
+		machine.StartCoroutine(RandomCoroutine());
 	}
 
 	public override IEnumerator ExitState()
 	{  
-		machine.StopCoroutine(randomCoroutine);
-		randomCoroutine = null;
+		// machine.StopCoroutine(randomCoroutine);
+		// randomCoroutine = null;
 		machine.animator.CrossFade("End Plant", 0.2f);
 		yield return new WaitForSeconds(1.1f);
 		
@@ -28,12 +30,12 @@ public class FarmerPlantingState : BaseState<FarmerState>
 	{
 		return StateKey;
 	}
-	Coroutine randomCoroutine;
+	// Coroutine randomCoroutine;
 	IEnumerator RandomCoroutine()
 	{
 		yield return new WaitForSeconds(Random.Range(2, 7));
 		machine.SetState(FarmerState.Working);
-		randomCoroutine = null;
+		// randomCoroutine = null;
 	}
 
 	public override void UpdateState()

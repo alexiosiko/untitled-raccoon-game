@@ -28,11 +28,13 @@ public class EntityController : Interactable
 
 	public void FollowDestination()
 	{
-		if (!destinationTransform)
+		if (destinationTransform != null)
+			agent.SetDestination(destinationTransform.position);
+		
+		if (agent.hasPath == false)
 			return;
 
-		agent.SetDestination(destinationTransform.position);
-
+		
 		// Determine the next corner to navigate towards
 		var corners = agent.path.corners;
 		Vector3 next = (corners.Length > 1) ? corners[1] : corners[0];

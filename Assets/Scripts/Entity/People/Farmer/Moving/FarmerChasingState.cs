@@ -9,7 +9,6 @@ public class FarmerChasingState : BaseState<FarmerState>
 	{
 		machine.isRunning = true;
 		machine.animator.CrossFade("Walking", 0.2f);
-		machine.destinationTransform = GameObject.Find("Raccoon").transform;
 		machine.agent.isStopped = false;
 	}
 
@@ -24,9 +23,8 @@ public class FarmerChasingState : BaseState<FarmerState>
 
 	public override FarmerState GetNextState()
 	{
-		if (machine.agent.remainingDistance < 1f)
+		if (machine.destinationTransform != null && machine.agent.remainingDistance < 0.5f)
 		{
-
 			// var i = machine.destinationTransform.GetComponent<Grabable>();
 			// i.SetDropState(machine);
 			return FarmerState.Carrying;
