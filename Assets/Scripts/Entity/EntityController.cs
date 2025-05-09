@@ -12,7 +12,7 @@ public class EntityController : Interactable
 	public bool freeze = false;
     [HideInInspector] public Animator animator;
     [HideInInspector] public NavMeshAgent agent;
-	[HideInInspector] public bool isRunning = false;
+	public bool isRunning = false;
 	public Transform destinationTransform { get; private set; }
 
     float smoothHorizontal = 0f;
@@ -65,12 +65,13 @@ public class EntityController : Interactable
 			localDir.x * maxHorizontal,
 			Time.deltaTime * agent.angularSpeed
 		);
+		// Debug.Log();
+		// // Calculate forward movement based on agent velocity
+		// Vector3 localVelRaw = transform.InverseTransformDirection(agent.desiredVelocity);
+		float forwardInput = Mathf.Clamp(localDir.z / agent.speed, -1f, 1f);
 
-		// Calculate forward movement based on agent velocity
-		Vector3 localVelRaw = transform.InverseTransformDirection(agent.velocity);
-		float forwardInput = Mathf.Clamp(localVelRaw.z / agent.speed, -1f, 1f);
 		float acceleration = 5f;
-		smoothVertical = Mathf.Lerp(
+		smoothVertical = Mathf.Lerp( 
 			smoothVertical,
 			forwardInput * maxForward,
 			Time.deltaTime * acceleration

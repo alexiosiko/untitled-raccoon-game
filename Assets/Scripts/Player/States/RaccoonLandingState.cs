@@ -8,10 +8,11 @@ public class RaccoonLandingState : BaseState<RaccoonState>
 		this.machine = machine;
 	}
 
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
 		machine.animator.CrossFade("Landing", 0.1f);
 		machine.SetState(RaccoonState.Walking, 1f);	
+		yield return null;
 	}
 
 	public override IEnumerator ExitState()

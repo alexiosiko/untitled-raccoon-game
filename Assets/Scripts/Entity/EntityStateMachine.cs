@@ -14,6 +14,7 @@ public abstract class EntityBaseStateMachine<EState> : EntityController where ES
 	void Start() => CurrentState?.EnterState();
 	protected virtual void Update()
 	{
+
 		if (CurrentState == null)
 			return;
 		EState nextStateKey = CurrentState.GetNextState();
@@ -30,13 +31,13 @@ public abstract class EntityBaseStateMachine<EState> : EntityController where ES
 	private Coroutine transitioningStateCoroutine;
 	public void SetState(EState stateKey, bool ignoreExitTime = false)
 	{
-
 		// Interrupt any ongoing transition
 		if (transitioningStateCoroutine != null)
 		{
-			StopCoroutine(transitioningStateCoroutine);
-			transitioningStateCoroutine = null;
+			Debug.Log("Already transitioning.");
+			return;
 		}
+
 		// Begin the new transition
 		transitioningStateCoroutine = StartCoroutine(TransitioningState(stateKey, ignoreExitTime));
 	}
@@ -53,7 +54,7 @@ public abstract class EntityBaseStateMachine<EState> : EntityController where ES
 			yield return CurrentState?.ExitState();
 		
 		CurrentState = States[stateKey];
-		CurrentState?.EnterState();
+		yield return CurrentState?.EnterState();
 		
 		
 		transitioningStateCoroutine = null; // Clear the reference when done

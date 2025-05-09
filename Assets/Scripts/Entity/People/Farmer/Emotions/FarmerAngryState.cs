@@ -8,8 +8,9 @@ public class FarmerAngryState : BaseState<FarmerState>
 		this.machine = machine;
 	}
 
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
+		yield return null;
 	}
 
 	public override IEnumerator ExitState()

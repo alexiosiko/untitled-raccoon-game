@@ -6,12 +6,13 @@ public class RaccoonFallingState : BaseState<RaccoonState>
     private RaccoonStateMachine machine;
     public RaccoonFallingState(RaccoonStateMachine machine) : base(RaccoonState.Falling) => this.machine = machine;
 
-    public override void EnterState()
+    public override IEnumerator EnterState()
     {
 		machine.rb.useGravity = true;
 		machine.animator.applyRootMotion = false;
 		machine.walkingCollider.enabled = true;
 		machine.animator.CrossFade("Falling", 0.25f);
+		yield return null;
 		// machine.ForwardForce();
     }
 

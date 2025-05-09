@@ -12,10 +12,10 @@ public class RaccoonEatingState : BaseState<RaccoonState>
 		this.machine = machine;
 	}
 
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
 		machine.animator.CrossFade("Eating", 0.5f);
-
+		yield return null;
 	}
 
 

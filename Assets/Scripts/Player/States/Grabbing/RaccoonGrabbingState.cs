@@ -9,12 +9,13 @@ public class RaccoonGrabbingState : BaseState<RaccoonState>
 	public static Grabable grabable;
 	bool delay = false;
 	public RaccoonGrabbingState(RaccoonStateMachine machine) : base(RaccoonState.Grabbing) => this.machine = machine;
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
 		delay = true;
 		machine.StartCoroutine(RemoveDelay());
 		machine.animator.CrossFade("Start Grabbing", 0.2f);
 		machine.StartCoroutine(SetGrabableState());
+		yield return null;
 	}
 	IEnumerator RemoveDelay()
 	{

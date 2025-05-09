@@ -5,11 +5,12 @@ public class FarmerChasingState : BaseState<FarmerState>
 {
 	private FarmerStateMachine machine;
 	public FarmerChasingState(FarmerStateMachine machine) : base(FarmerState.Chasing) => this.machine = machine;
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
 		machine.isRunning = true;
 		machine.animator.CrossFade("Walking", 0.2f);
 		machine.agent.isStopped = false;
+		yield return null;
 	}
 
 	public override IEnumerator ExitState()

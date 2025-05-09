@@ -11,11 +11,13 @@ public class FarmerPlantingState : BaseState<FarmerState>
 		this.machine = machine;
 	}
 
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
-		machine.animator.CrossFade("Start Plant", 0.2f);
+		machine.animator.CrossFade("Plant Start", 0.2f);
 		randomCoroutine = machine.StartCoroutine(RandomCoroutine());
 		machine.StartCoroutine(RandomCoroutine());
+		yield return null;
+		
 	}
 
 	public override IEnumerator ExitState()
@@ -23,7 +25,7 @@ public class FarmerPlantingState : BaseState<FarmerState>
 		if (randomCoroutine != null)
 			machine.StopCoroutine(randomCoroutine);
 
-		machine.animator.CrossFade("End Plant", 0.2f);
+		machine.animator.CrossFade("Plant Exit", 0.2f);
 		yield return new WaitForSeconds(1.1f);
 		
 	}

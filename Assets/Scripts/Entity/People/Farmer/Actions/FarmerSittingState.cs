@@ -9,9 +9,10 @@ public class FarmerSittingState : BaseState<FarmerState>
 		this.machine = machine;
 	}
 
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
 		machine.animator.CrossFade("Start Sit", 0.2f);
+		yield return null;
 	}
 
 	public override IEnumerator ExitState()

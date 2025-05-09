@@ -9,7 +9,7 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 		this.machine = machine;
 	}
 	
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
 		machine.walkingCollider.enabled = false;
 		machine.rb.useGravity = false;
@@ -17,6 +17,7 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 
 		// Make sure this length is the correct length of the animation clip
 		machine.SetState(RaccoonState.Falling, 0.5f);
+		yield return null;
 	}
 
 	public override IEnumerator ExitState()

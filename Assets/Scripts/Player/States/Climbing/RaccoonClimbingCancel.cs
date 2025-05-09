@@ -9,13 +9,13 @@ public class RaccoonClimbingCancelState : BaseState<RaccoonState>
 		this.machine = machine;
 	}
 
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
 		machine.animator.CrossFade("Climb Cancel", 0.25f);
 		// machine.climbingCollider.enabled = false;
 		machine.SetState(RaccoonState.Walking, 0.6f);
 		machine.StartCoroutine(DoMove());
-		
+		yield return null;
 	}
 	IEnumerator DoMove()
 	{

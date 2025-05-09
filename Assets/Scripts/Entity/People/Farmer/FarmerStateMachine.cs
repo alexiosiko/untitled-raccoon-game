@@ -32,7 +32,6 @@ public class FarmerStateMachine : EntityBaseStateMachine<FarmerState>
 			SetState(FarmerState.Walking);
 		}
 
-		Debug.Log(agent.destination);
 
 
 

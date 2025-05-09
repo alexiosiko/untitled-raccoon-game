@@ -8,11 +8,13 @@ public class FarmerWalkingState : BaseState<FarmerState>
 {
 	private FarmerStateMachine machine;
 	public FarmerWalkingState(FarmerStateMachine machine) : base(FarmerState.Walking) => this.machine = machine;
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
 		// machine.StartCoroutine(UnDelay());
+		FarmerPlantingState.SetRandomPlantDesination(machine);
 		machine.agent.isStopped = false;
 		machine.animator.CrossFade("Walking", 0.25f);
+		yield return null;
 	}
 
 	public override IEnumerator ExitState()
@@ -23,18 +25,26 @@ public class FarmerWalkingState : BaseState<FarmerState>
 
 	public override FarmerState GetNextState()
 	{
-		Debug.Log(machine.agent.pathPending + " : " + machine.agent.destination);
-		if (!machine.agent.pathPending && machine.agent.remainingDistance < 1)
-			return FarmerState.Planting;
+		if (!machine.agent.pathPending && machine.destinationTransform != null && machine.agent.remainingDistance < 1)
+		{
+			var r = machine.destinationTransform.GetComponent<ResettableObject>();
+			if (r)
+			{
+				machine.SetDestination(r.transform);
+				return FarmerState.Carrying;
+			}
 
-		// foreach (var r in machine.resettableObjects)
-		// {
-		// 	if (r.needsToBeReset && !r.isGrabbed)
-		// 	{
-		// 		machine.destinationTransform = r.transform;
-		// 	 	return FarmerState.Chasing;
-		// 	}
-		// }
+			return FarmerState.Planting;
+		}
+
+		foreach (var r in machine.resettableObjects)
+		{
+			if (r.needsToBeReset && !r.isGrabbed)
+			{
+				machine.SetDestination(r.transform);
+			 	return FarmerState.Chasing;
+			}
+		}
 
 		
 		return StateKey;

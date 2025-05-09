@@ -23,15 +23,9 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
 	}
 	public void SetState(EState stateKey, float delay = 0, bool ignoreExitTime = false)
 	{
-
 		if (transitioningStateCoroutine != null)
-		{
-			#if UNITY_EDITOR
-			Debug.Log("Interuppting SetState coroutine");
-			#endif
 			StopCoroutine(transitioningStateCoroutine);
 
-		}
 		// Start the new coroutine and store the reference
 		transitioningStateCoroutine = StartCoroutine(TransitioningState(stateKey, delay, ignoreExitTime));
 		
@@ -46,7 +40,7 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
 			yield return CurrentState?.ExitState();
 		
 		CurrentState = States[stateKey];
-		CurrentState.EnterState();
+		yield return CurrentState?.EnterState();
 		
 		
 		transitioningStateCoroutine = null; // Clear the reference when done

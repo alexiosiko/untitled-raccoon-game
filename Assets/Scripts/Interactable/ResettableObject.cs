@@ -33,6 +33,7 @@ public class ResettableObject : Grabable
 	public override void SetGrabState(MonoBehaviour sender)
 	{
 		base.SetGrabState(sender);
+		isGrabbed = true;
 		navObstacle.enabled = false;
 	}
 	public override void SetDropState(MonoBehaviour sender)
@@ -45,8 +46,8 @@ public class ResettableObject : Grabable
 	}
 	public void ResetPositionAndRotation()
 	{
-		transform.DOMove(originalPos, 1f);
-		transform.DORotate(orignialEulerAngles, 1f);
+		transform.DOMove(originalPos, 1.5f);
+		transform.DORotate(orignialEulerAngles, 1.5f);
 	}
 	void Update()
 	{

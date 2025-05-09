@@ -5,9 +5,10 @@ public class FarmerIdleState : BaseState<FarmerState>
 {
 	private FarmerStateMachine machine;
 	public FarmerIdleState(FarmerStateMachine machine) : base(FarmerState.Idle) => this.machine = machine;
-	public override void EnterState()
+	public override IEnumerator EnterState()
 	{
 		machine.animator.CrossFade("Idle", 0.2f);
+		yield return null;
 	}
 	public override IEnumerator ExitState()
 	{

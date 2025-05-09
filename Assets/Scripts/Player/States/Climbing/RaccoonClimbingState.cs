@@ -15,7 +15,7 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
         this.machine = machine;
     }
 
-    public override void EnterState()
+    public override IEnumerator EnterState()
     {
 		// machine.climbingCollider.enabled = true;
 		delay = true;
@@ -34,6 +34,7 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
             Vector3 newPos = hit.point + Vector3.down / 10f + hit.normal / 4f;
             machine.transform.DOMove(newPos, 0.7f);
         }
+		yield return null;
     }
 
     public override void UpdateState()

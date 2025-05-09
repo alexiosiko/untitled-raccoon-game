@@ -11,7 +11,7 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
         this.machine = machine;
     }
 
-    public override void EnterState()
+    public override IEnumerator EnterState()
     {
 		// If can instand climb down, don't set walking params cause
 		// it won't be smooth
@@ -27,6 +27,7 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 			machine.rb.useGravity = true;
 			// machine.animator.applyRootMotion = true;
 		}
+		yield return null;
     }
 
     public override void UpdateState()

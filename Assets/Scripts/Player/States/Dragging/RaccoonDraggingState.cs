@@ -18,14 +18,14 @@ public class RaccoonDraggingState : BaseState<RaccoonState>
         mouthSpringJoint = machine.mouthTransform.GetComponent<SpringJoint>();
     }
 
-    public override void EnterState()
+    public override IEnumerator EnterState()
     {
 		delay = true;
 		machine.animator.CrossFade("Grabbing", 0.2f);
 		machine.StartCoroutine(RemoveDelay());
 		grabLocalPoint = draggable.transform.InverseTransformPoint(hitPoint);
 		SetupGrabJoint(draggable, grabLocalPoint);
-
+		yield return null;
     }
 
     private void SetupGrabJoint(Draggable draggable, Vector3 localGrabPoint)
