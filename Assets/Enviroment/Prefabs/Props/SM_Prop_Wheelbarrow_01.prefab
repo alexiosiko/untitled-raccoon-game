@@ -97,8 +97,8 @@ GameObject:
   - component: {fileID: 4461471347746716}
   - component: {fileID: 33607653288809812}
   - component: {fileID: 23450618755995388}
-  - component: {fileID: 64946848114580358}
   - component: {fileID: 9182453471050835017}
+  - component: {fileID: 3941607018144698172}
   m_Layer: 0
   m_Name: SM_Prop_Wheelbarrow_01
   m_TagString: Untagged
@@ -175,28 +175,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64946848114580358
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359723901517416}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43486423848935680, guid: 1111ec10798c00d4fb1807725ec993ec, type: 2}
 --- !u!54 &9182453471050835017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -224,3 +202,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &3941607018144698172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359723901517416}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8632739, y: 0.9838355, z: 1.6840384}
+  m_Center: {x: -0.00000007450582, y: 0.3466545, z: -0.63966846}

@@ -344,6 +344,32 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-1786733084670521061
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rac_Turn Right STAND 1 new
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 27b63f84beff09644965f12a9fe8f73f, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-1709764180920405680
 AnimatorState:
   serializedVersion: 6
@@ -864,7 +890,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: 3942abdffcd1cc84bb93419df6b3a661, type: 2}
     m_Threshold: 0.5
     m_Position: {x: -2, y: 0}
-    m_TimeScale: 1.5
+    m_TimeScale: 2
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
@@ -872,7 +898,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: 641adf710900a1a42b266f1ce04a9376, type: 2}
     m_Threshold: 0.75
     m_Position: {x: 2, y: 0}
-    m_TimeScale: 1.5
+    m_TimeScale: 2
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
@@ -890,7 +916,7 @@ BlendTree:
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
-  m_BlendType: 2
+  m_BlendType: 1
 --- !u!1102 &6432837088239679797
 AnimatorState:
   serializedVersion: 6
@@ -997,7 +1023,7 @@ AnimatorStateMachine:
     m_Position: {x: 60, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -959782367104477010}
-    m_Position: {x: 390, y: 480, z: 0}
+    m_Position: {x: 350, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2284323984910205382}
     m_Position: {x: -70, y: 480, z: 0}
@@ -1036,10 +1062,13 @@ AnimatorStateMachine:
     m_Position: {x: 140, y: 630, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1709764180920405680}
-    m_Position: {x: 180, y: 480, z: 0}
+    m_Position: {x: 140, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5159770615471533103}
     m_Position: {x: -70, y: 640, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -1786733084670521061}
+    m_Position: {x: 420, y: 250, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

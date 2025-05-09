@@ -34,7 +34,6 @@ public class RaccoonGrabbingState : BaseState<RaccoonState>
 		grabable.UnIsKinematic();
 		grabable.SetDropState(machine);
 		grabable.GetComponent<Rigidbody>().AddForce(machine.transform.forward / 2f);
-		machine.animator.CrossFade("Walking", 0.75f);
 		yield return null;
 	}
 

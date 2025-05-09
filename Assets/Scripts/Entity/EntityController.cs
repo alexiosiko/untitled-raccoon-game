@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,13 +9,23 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EntityFootsteps))]
 public class EntityController : Interactable
 {
+	public bool freeze = false;
     [HideInInspector] public Animator animator;
     [HideInInspector] public NavMeshAgent agent;
 	[HideInInspector] public bool isRunning = false;
-    public Transform destinationTransform;
+	public Transform destinationTransform { get; private set; }
+
     float smoothHorizontal = 0f;
     float smoothVertical = 0f;
     protected AudioSource source;
+
+
+	public void SetDestination(Transform destination)
+	{
+		destinationTransform = destination;
+		agent.SetDestination(destination.position);
+	}
+
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
@@ -28,15 +40,17 @@ public class EntityController : Interactable
 
 	public void FollowDestination()
 	{
-		if (destinationTransform != null)
-			agent.SetDestination(destinationTransform.position);
-		
-		if (agent.hasPath == false)
+		if (destinationTransform == null)
 			return;
 
+		agent.SetDestination(destinationTransform.position);
+
+		if (!agent.hasPath) return;
 		
 		// Determine the next corner to navigate towards
 		var corners = agent.path.corners;
+		if (corners == null || corners.Length == 0)
+			return;
 		Vector3 next = (corners.Length > 1) ? corners[1] : corners[0];
 		Vector3 toNext = (next - transform.position).normalized;
 		Vector3 localDir = transform.InverseTransformDirection(toNext);
@@ -71,6 +85,8 @@ public class EntityController : Interactable
 
     void OnAnimatorMove()
     {
+		if (freeze)
+			return;
         // Apply root rotation and position from animations
         transform.rotation = animator.rootRotation;
         transform.position = agent.nextPosition;

@@ -34,19 +34,19 @@ public class BabyRaccoon : EntityController
         switch (state)
         {
 			case BabyRaccoonState.FollowingOwner:
-				destinationTransform = GameObject.Find("Mom").transform;
+				// destinationTransform = GameObject.Find("Mom").transform;
 				break;
             case BabyRaccoonState.WaitingForFood:
-				source.clip = Resources.Load<AudioClip>("/Audio/cat-meow.mp3");
-				source.PlayDelayed(1);
-				destinationTransform = GameObject.Find("Truck").transform;
+				// source.clip = Resources.Load<AudioClip>("/Audio/cat-meow.mp3");
+				// source.PlayDelayed(1);
+				// destinationTransform = GameObject.Find("Truck").transform;
                 DialogueManager.Singleton.StartNarration("Your baby seems to be hungry ... maybe you can find some food from around the corner.", 5000);
 				GameObject.Find("Food").GetComponent<Grabable>().interactive = true;
                	InvokeRepeating(nameof(Cry), 7, 12f);
                 break;
             case BabyRaccoonState.Eating:
 				agent.stoppingDistance = 0.3f;
-                destinationTransform = GameObject.Find("Food").transform;
+                // destinationTransform = GameObject.Find("Food").transform;
                 break;
         }
     }
@@ -92,7 +92,7 @@ public class BabyRaccoon : EntityController
 				CancelInvoke();
 				break;
 			case BabyRaccoonState.FollowingOwner:
-				destinationTransform = null;
+				// destinationTransform = null;
 				break;
 		}
 	}

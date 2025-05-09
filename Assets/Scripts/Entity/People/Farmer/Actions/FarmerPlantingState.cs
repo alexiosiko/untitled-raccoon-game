@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class FarmerPlantingState : BaseState<FarmerState>
 {
@@ -13,14 +14,15 @@ public class FarmerPlantingState : BaseState<FarmerState>
 	public override void EnterState()
 	{
 		machine.animator.CrossFade("Start Plant", 0.2f);
-		// randomCoroutine = machine.StartCoroutine(RandomCoroutine());
+		randomCoroutine = machine.StartCoroutine(RandomCoroutine());
 		machine.StartCoroutine(RandomCoroutine());
 	}
 
 	public override IEnumerator ExitState()
 	{  
-		// machine.StopCoroutine(randomCoroutine);
-		// randomCoroutine = null;
+		if (randomCoroutine != null)
+			machine.StopCoroutine(randomCoroutine);
+
 		machine.animator.CrossFade("End Plant", 0.2f);
 		yield return new WaitForSeconds(1.1f);
 		
@@ -30,14 +32,20 @@ public class FarmerPlantingState : BaseState<FarmerState>
 	{
 		return StateKey;
 	}
-	// Coroutine randomCoroutine;
+	Coroutine randomCoroutine;
 	IEnumerator RandomCoroutine()
 	{
 		yield return new WaitForSeconds(Random.Range(2, 7));
-		machine.SetState(FarmerState.Working);
+		SetRandomPlantDesination(machine);
+		machine.SetState(FarmerState.Walking);
+		randomCoroutine = null;
 		// randomCoroutine = null;
 	}
-
+	public static void SetRandomPlantDesination(FarmerStateMachine machine)
+	{
+		machine.SetDestination(machine.plants[Random.Range(0, machine.plants.Length)]);
+		// _ = machine.SetDestinationAsync();
+	}
 	public override void UpdateState()
 	{
 	}

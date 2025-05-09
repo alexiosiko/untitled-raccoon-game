@@ -23,7 +23,12 @@ public class FarmerChasingState : BaseState<FarmerState>
 
 	public override FarmerState GetNextState()
 	{
-		if (machine.destinationTransform != null && machine.agent.remainingDistance < 0.5f)
+		// If chasing a resetable object, but needstobereset is off, stop.
+		var r = machine.destinationTransform.GetComponent<ResettableObject>();
+		if (r & r.needsToBeReset == false)
+			return FarmerState.Walking;
+
+		if (machine.destinationTransform != null && machine.agent.remainingDistance < 1f)
 		{
 			// var i = machine.destinationTransform.GetComponent<Grabable>();
 			// i.SetDropState(machine);

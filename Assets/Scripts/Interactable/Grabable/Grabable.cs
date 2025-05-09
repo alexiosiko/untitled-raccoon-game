@@ -34,8 +34,8 @@ public class Grabable : Interactable
 		rb = GetComponent<Rigidbody>();	
 		col = GetComponent<Collider>();
 	}
-  	[SerializeField] protected Collider col;
-	[SerializeField] protected Rigidbody rb;
+  	protected Collider col;
+	protected Rigidbody rb;
 }
 
 

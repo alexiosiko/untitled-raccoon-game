@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.InputSystem.LowLevel;
 public enum FarmerState {
 	Wonder,
 	Angry,
@@ -12,19 +12,29 @@ public enum FarmerState {
 	Sitting,
 
 	Idle,
-	Working,
+	Walking,
 
 	Chasing,
 }
 public class FarmerStateMachine : EntityBaseStateMachine<FarmerState>
 {
-	[SerializeField] Transform[] plants;
+	[SerializeField] public Transform[] plants;
 	[SerializeField] string currentStateName;
 	[SerializeField] public Transform carryTransform;
 	void LateUpdate()
     {
 		base.Update();
 		currentStateName = CurrentState?.ToString();
+
+		if (Input.GetKeyDown(KeyCode.N))
+		{
+			FarmerPlantingState.SetRandomPlantDesination(this);
+			SetState(FarmerState.Walking);
+		}
+
+		Debug.Log(agent.destination);
+
+
 
     }
 	
@@ -39,21 +49,18 @@ public class FarmerStateMachine : EntityBaseStateMachine<FarmerState>
 		// States.Add(FarmerState.Cheering, 		new FarmerCheeringState(this));
 		States.Add(FarmerState.Carrying, 		new FarmerCarryingState(this));
 		States.Add(FarmerState.Sitting, 		new FarmerSittingState(this));
-		States.Add(FarmerState.Working, 		new FarmerWorkingState(this));
+		States.Add(FarmerState.Walking, 		new FarmerWalkingState(this));
 		States.Add(FarmerState.Planting, 		new FarmerPlantingState(this));
 		States.Add(FarmerState.Idle, 			new FarmerIdleState(this));
 		States.Add(FarmerState.Chasing, 		new FarmerChasingState(this));
 
-		SetState(FarmerState.Working);
+		SetState(FarmerState.Walking);
 
 
 	}
 
 
 
-	public void SetRandomPlantDesination()
-	{
-		destinationTransform = plants[Random.Range(0, plants.Length)];
-	}
+
 	[SerializeField] public ResettableObject[] resettableObjects;
 }
