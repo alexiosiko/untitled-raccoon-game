@@ -42,12 +42,14 @@ public class ResettableObject : Grabable
         rb.detectCollisions = true;
 		transform.SetParent(GameObject.Find("--- ENVIROMENT ---").transform);
 		navObstacle.enabled = true;
+		isGrabbed = false;
+
 		rb.isKinematic = false;
 	}
 	public void ResetPositionAndRotation()
 	{
-		transform.DOMove(originalPos, 1.5f);
-		transform.DORotate(orignialEulerAngles, 1.5f);
+		transform.DOMove(originalPos, 0.25f);
+		transform.DORotate(orignialEulerAngles, 0.25f);
 	}
 	void Update()
 	{

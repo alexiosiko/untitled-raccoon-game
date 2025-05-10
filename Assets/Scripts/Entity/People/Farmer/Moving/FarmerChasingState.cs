@@ -29,7 +29,10 @@ public class FarmerChasingState : BaseState<FarmerState>
 		if (r & r.needsToBeReset == false)
 			return FarmerState.Walking;
 
-		if (machine.destinationTransform != null && machine.agent.remainingDistance < 1f)
+		if (r & r.isGrabbed == true)
+			return FarmerState.Walking;
+
+		if (machine.destinationTransform != null && !machine.agent.pathPending && machine.agent.hasPath && machine.agent.remainingDistance < 0.5f)
 		{
 			// var i = machine.destinationTransform.GetComponent<Grabable>();
 			// i.SetDropState(machine);

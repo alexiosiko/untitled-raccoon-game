@@ -17,8 +17,12 @@ public abstract class EntityBaseStateMachine<EState> : EntityController where ES
 
 		if (CurrentState == null)
 			return;
+			
+		if (transitioningStateCoroutine != null)
+			return;
+
 		EState nextStateKey = CurrentState.GetNextState();
-		if (nextStateKey.Equals(CurrentState.StateKey) && transitioningStateCoroutine == null)
+		if (nextStateKey.Equals(CurrentState.StateKey))
 			CurrentState.UpdateState();
 		else if (transitioningStateCoroutine == null)
 		{

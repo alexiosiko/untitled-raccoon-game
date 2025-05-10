@@ -11,9 +11,13 @@ public class FarmerCarryingState : BaseState<FarmerState>
 
 	public override IEnumerator EnterState()
 	{
+		
 		carryItemTransform = machine.destinationTransform;
 		var r = machine.destinationTransform.GetComponent<ResettableObject>();
 		r.SetGrabState(machine);
+
+		// Set new destination
+		machine.SetDestination(r.originalPos);
 
 		yield return PickUpCoroutine(r);
 
@@ -32,10 +36,7 @@ public class FarmerCarryingState : BaseState<FarmerState>
 			yield break;
 		}
 
-		// Set new destination
-		Transform target = new GameObject().transform;
-		target.position = r.originalPos;
-		machine.SetDestination(target);
+
 		
 		// Look at
 		machine.transform.DOLookAt(carryItemTransform.position, 0.5f, AxisConstraint.Y);
@@ -54,26 +55,28 @@ public class FarmerCarryingState : BaseState<FarmerState>
 	}
 	public override IEnumerator ExitState()
 	{
-		machine.transform.DOLookAt(machine.destinationTransform.position, 0.5f, AxisConstraint.Y);
+		machine.transform.DOLookAt(machine.agent.destination, 0.5f, AxisConstraint.Y);
 		machine.animator.CrossFade("Carry Exit", 0.5f);
 
-		if (machine.destinationTransform.name == "TEMP DESTINATION")
-			MonoBehaviour.Destroy(machine.destinationTransform.gameObject);
+
 
 		var r = carryItemTransform.GetComponent<ResettableObject>();
 
-		yield return PickUpCoroutine(r);
-		
+		yield return new WaitForSeconds(1.25f);
+
+		carryItemTransform.SetParent(GameObject.Find("--- ENVIROMENT ---").transform);
 		r.ResetPositionAndRotation();
 
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(1.5f);
 		r.SetDropState(machine);
 	}
 
 	public override FarmerState GetNextState()
 	{
-		if (!machine.agent.pathPending && machine.agent.remainingDistance < 1)
+		if (!machine.agent.pathPending && machine.agent.hasPath && machine.agent.remainingDistance < 1)
+		{
 			return FarmerState.Walking;
+		}
 
 		return StateKey;
 	}

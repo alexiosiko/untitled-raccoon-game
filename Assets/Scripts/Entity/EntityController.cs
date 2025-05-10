@@ -25,6 +25,11 @@ public class EntityController : Interactable
 		destinationTransform = destination;
 		agent.SetDestination(destination.position);
 	}
+	public void SetDestination(Vector3 position)
+	{
+		destinationTransform = null;
+		agent.SetDestination(position);
+	}
 
     protected virtual void Awake()
     {
@@ -40,12 +45,11 @@ public class EntityController : Interactable
 
 	public void FollowDestination()
 	{
-		if (destinationTransform == null)
+		if (destinationTransform != null)
+			agent.SetDestination(destinationTransform.position);
+
+		if (!agent.hasPath)
 			return;
-
-		agent.SetDestination(destinationTransform.position);
-
-		if (!agent.hasPath) return;
 		
 		// Determine the next corner to navigate towards
 		var corners = agent.path.corners;
