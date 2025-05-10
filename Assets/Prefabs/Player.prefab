@@ -649,7 +649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100278, guid: 42b16888dccfed94fb39302aa553204d, type: 3}
       propertyPath: m_Name
-      value: Mom
+      value: Raccoon
       objectReference: {fileID: 0}
     - target: {fileID: 100278, guid: 42b16888dccfed94fb39302aa553204d, type: 3}
       propertyPath: m_Layer
