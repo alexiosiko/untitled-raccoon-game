@@ -15,10 +15,12 @@ public enum RaccoonState
 	Climbing,
 	ClimbingOver,
 	ClimbingDown,
+	Crawling,
+	Drinking,
 }
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody), typeof(Collider))]
-public class RaccoonStateMachine : StateMachine<RaccoonState>
+public class RaccoonStateMachine : PlayerStateMachine<RaccoonState>
 {
     void LateUpdate()
     {
@@ -33,7 +35,7 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
         transform.DOLocalRotate(targetRotation, 0.2f, RotateMode.Fast);
     }
 	public void ForwardForce() => rb.AddForce(transform.forward * 30f);
-	void Awake()
+	protected void Awake()
     {
         // Get required components
         walkingCollider = GetComponent<Collider>();
@@ -53,15 +55,14 @@ public class RaccoonStateMachine : StateMachine<RaccoonState>
 		States.Add(RaccoonState.ClimbingCancel, new RaccoonClimbingCancelState(this));
 		States.Add(RaccoonState.Landing,		new RaccoonLandingState(this));
 		States.Add(RaccoonState.Idle,			new RaccoonIdleState(this));
+		States.Add(RaccoonState.Digging,		new RaccoonDiggingState(this));
         
         // Set initial state
         SetState(RaccoonState.Walking);
     }
 
-	[SerializeField] string currentStateName;
 	public Transform mouthTransform;
 	public Transform grabTransform;
-    [HideInInspector] public Animator animator;
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public Collider walkingCollider;
     // public Collider climbingCollider;

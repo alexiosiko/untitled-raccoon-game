@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 public class RaccoonLandingState : BaseState<RaccoonState>
 {
@@ -11,7 +12,8 @@ public class RaccoonLandingState : BaseState<RaccoonState>
 	public override IEnumerator EnterState()
 	{
 		machine.animator.CrossFade("Landing", 0.1f);
-		machine.SetState(RaccoonState.Walking, 1f);	
+		yield return new WaitForSeconds(1f);
+		machine.SetState(RaccoonState.Walking);	
 		yield return null;
 	}
 

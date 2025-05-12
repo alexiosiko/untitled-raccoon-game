@@ -13,9 +13,9 @@ public class RaccoonClimbingCancelState : BaseState<RaccoonState>
 	{
 		machine.animator.CrossFade("Climb Cancel", 0.25f);
 		// machine.climbingCollider.enabled = false;
-		machine.SetState(RaccoonState.Walking, 0.6f);
 		machine.StartCoroutine(DoMove());
-		yield return null;
+		yield return new WaitForSeconds(0.6f);
+		machine.SetState(RaccoonState.Walking);
 	}
 	IEnumerator DoMove()
 	{

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RaccoonController : MonoBehaviour
 {
+	public static Vector3 halfExtends = new Vector3(0.2f, 0.05f, 0.3f);
 	void Update()
 	{
 		UpdateInput();
@@ -14,7 +15,7 @@ public class RaccoonController : MonoBehaviour
 	{
 		// Define ground check parameters
 		Vector3 boxCenter = centerOfRaccoon + Vector3.down * 0f; // Slightly below raccoon
-		Vector3 boxHalfExtents = new Vector3(0.2f, 0.05f, 0.3f); // Wide but flat box
+		Vector3 boxHalfExtents = halfExtends; // Wide but flat box
 		float maxDistance = 0.4f; // How far to check downward
 		Quaternion orientation = transform.rotation;
 		// Perform the box cast

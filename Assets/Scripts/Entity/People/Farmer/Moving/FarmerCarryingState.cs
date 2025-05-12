@@ -44,7 +44,7 @@ public class FarmerCarryingState : BaseState<FarmerState>
 		// Animation
 		machine.animator.CrossFade("Carry Start", 0.2f);
 
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.8f);
 
 	}
 	void MoveToHands()

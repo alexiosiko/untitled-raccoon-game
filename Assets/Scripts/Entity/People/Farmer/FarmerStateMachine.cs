@@ -16,25 +16,19 @@ public enum FarmerState {
 
 	Chasing,
 }
-public class FarmerStateMachine : EntityBaseStateMachine<FarmerState>
+public class FarmerStateMachine : EntityStateMachine<FarmerState>
 {
 	[SerializeField] public Transform[] plants;
-	[SerializeField] string currentStateName;
 	[SerializeField] public Transform carryTransform;
 	void LateUpdate()
     {
 		base.Update();
 		currentStateName = CurrentState?.ToString();
-
-		if (Input.GetKeyDown(KeyCode.N))
-		{
-			FarmerPlantingState.SetRandomPlantDesination(this);
-			SetState(FarmerState.Walking);
-		}
-
-
-
-
+		// if (Input.GetKeyDown(KeyCode.N))
+		// {
+		// 	FarmerPlantingState.SetRandomPlantDesination(this);
+		// 	SetState(FarmerState.Walking);
+		// }
     }
 	
 

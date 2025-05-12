@@ -58,6 +58,10 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
 				
 			if (RaccoonEatingState.CanEat(machine) == true)
 				return RaccoonState.Eating;
+
+			if (RaccoonDiggingState.CanDig(machine) == true)
+				return RaccoonState.Digging;
+				
 		}
 
 			

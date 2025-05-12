@@ -37,9 +37,9 @@ public class RaccoonFallingState : BaseState<RaccoonState>
 		// Draw the box cast area (for debugging)
 		Debug.DrawLine(startPos, startPos + Vector3.down * distance, Color.black, 0.5f);
 		// Optional: Draw the box itself
-		CustomDebug.DrawBox(startPos + Vector3.down * distance, boxHalfExtents, Quaternion.identity, Color.black);
+		CustomDebug.DrawBox(startPos + Vector3.down * distance, boxHalfExtents, machine.transform.rotation, Color.black);
 		#endif
-		return Physics.BoxCast(startPos, boxHalfExtents, Vector3.down, Quaternion.identity, distance, ~entityLayer);
+		return Physics.BoxCast(startPos, boxHalfExtents, Vector3.down, machine.transform.rotation, distance, ~entityLayer);
 	}
 
 

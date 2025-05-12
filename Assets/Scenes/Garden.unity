@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.024
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1936969718}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2526,6 +2526,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3660057806217969842, guid: c242fba14c07c6b49a927e79bd08da47, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660057806217969842, guid: c242fba14c07c6b49a927e79bd08da47, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660057806217969842, guid: c242fba14c07c6b49a927e79bd08da47, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[16]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660057806217969842, guid: c242fba14c07c6b49a927e79bd08da47, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[21]'
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3660057806231539842, guid: c242fba14c07c6b49a927e79bd08da47, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -2993,6 +3009,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Art_04
       objectReference: {fileID: 0}
+    - target: {fileID: 1159627099123434, guid: fbf147e3f7c168c419e8ff3588163840, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4307341707630840, guid: fbf147e3f7c168c419e8ff3588163840, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.176
@@ -3355,7 +3375,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.06666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 800255dfa4e8f334cb07190f4c943e0b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 66e70a6f43f55f54c9626bf0d2247a7f, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &796572930
 PrefabInstance:
@@ -3544,6 +3564,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   agent: {fileID: 0}
   isRunning: 0
+  currentStateName: 
   plants:
   - {fileID: 1436027531}
   - {fileID: 132671337}
@@ -3574,7 +3595,6 @@ MonoBehaviour:
   - {fileID: 433809045}
   - {fileID: 243843947}
   - {fileID: 748104059}
-  currentStateName: 
   carryTransform: {fileID: 959032574}
   resettableObjects:
   - {fileID: 1775831088}
@@ -4214,6 +4234,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 753937673}
     m_Modifications:
+    - target: {fileID: 1178597275348878, guid: 0a8f55cd7b76a0445a9d1482e6cfed9f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1429945603137650, guid: 0a8f55cd7b76a0445a9d1482e6cfed9f, type: 3}
       propertyPath: m_Name
       value: SM_Bld_GardenShed_01
@@ -5665,6 +5689,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 753937673}
     m_Modifications:
+    - target: {fileID: 1118719469104212, guid: 084d28d6af044e044b776a448e46c8de, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355576875243324, guid: 084d28d6af044e044b776a448e46c8de, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1812950521713652, guid: 084d28d6af044e044b776a448e46c8de, type: 3}
       propertyPath: m_Name
       value: SM_Prop_LetterBox_01
@@ -7017,6 +7049,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   agent: {fileID: 0}
   isRunning: 0
+  currentStateName: 
   plants:
   - {fileID: 1436027531}
   - {fileID: 132671337}
@@ -7047,7 +7080,6 @@ MonoBehaviour:
   - {fileID: 433809045}
   - {fileID: 243843947}
   - {fileID: 748104059}
-  currentStateName: 
   carryTransform: {fileID: 2101237526}
   resettableObjects:
   - {fileID: 1775831088}
@@ -8293,7 +8325,7 @@ GameObject:
   - component: {fileID: 1936969718}
   - component: {fileID: 1936969717}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8333,19 +8365,19 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 6.09
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -8372,7 +8404,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -8395,13 +8427,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936969716}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.8394133, y: 0.21406057, z: -0.25748345, w: 0.42809537}
+  m_LocalRotation: {x: 0.23327287, y: 0.7422835, z: -0.6281701, w: -0.0011877987}
   m_LocalPosition: {x: -0.67, y: 1.08, z: 0.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 124.011, y: 26.432999, z: -14.380005}
+  m_LocalEulerAnglesHint: {x: 111.25, y: 54.435997, z: -106.341}
 --- !u!1001 &1959075255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8524,6 +8556,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23541685718146370, guid: 5afed722cc07f0045bfb9c283f384e9c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 28646867ddcf90a4989276acd313ea43, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

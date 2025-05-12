@@ -49,7 +49,7 @@ public class RaccoonGrabbingState : BaseState<RaccoonState>
 		Vector3 pos = machine.controller.centerOfRaccoon + machine.transform.forward / 2f;
 		float radius = 0.5f;
 		Collider[] colliders = Physics.OverlapSphere(pos, radius );
-		CustomDebug.DebugSphere(pos, radius, Quaternion.identity, Color.green, radius );
+		CustomDebug.DebugSphere(pos, radius, machine.transform.rotation, Color.green, radius );
 		foreach (var c in colliders)
 		{
 			Grabable i = c.GetComponentInParent<Grabable>();

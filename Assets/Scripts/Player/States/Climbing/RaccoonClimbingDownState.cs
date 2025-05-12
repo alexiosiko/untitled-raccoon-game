@@ -16,8 +16,8 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 		machine.animator.CrossFade("Climb Down", 0.25f);
 
 		// Make sure this length is the correct length of the animation clip
-		machine.SetState(RaccoonState.Falling, 0.5f);
-		yield return null;
+		yield return new WaitForSeconds(0.5f);
+		machine.SetState(RaccoonState.Falling);
 	}
 
 	public override IEnumerator ExitState()
@@ -43,9 +43,9 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 		float distance = 1f;
 		#if UNITY_EDITOR
 		Debug.DrawLine(forwardPosAndUp, forwardPosAndUp + Vector3.down * distance, Color.white, 0.1f);
-		CustomDebug.DrawBox(forwardPosAndUp + Vector3.down * distance, boxHalfExtents, Quaternion.identity, Color.cyan, 0.1f);
+		CustomDebug.DrawBox(forwardPosAndUp + Vector3.down * distance, boxHalfExtents, machine.transform.rotation, Color.cyan, 0.1f);
 		#endif
-		return !Physics.BoxCast(forwardPosAndUp, boxHalfExtents, Vector3.down, Quaternion.identity, distance, ~entityLayer);
+		return !Physics.BoxCast(forwardPosAndUp, boxHalfExtents, Vector3.down, machine.transform.rotation, distance, ~entityLayer);
 
 		
 	}

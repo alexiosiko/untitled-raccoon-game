@@ -38,7 +38,6 @@ public class EntityController : Interactable
         agent = GetComponent<NavMeshAgent>();
 
         agent.updatePosition = false;
-
         agent.updateRotation = false;
     }
 

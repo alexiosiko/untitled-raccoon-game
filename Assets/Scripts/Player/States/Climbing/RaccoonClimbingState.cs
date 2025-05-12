@@ -76,7 +76,7 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
         Vector3 halfExtents = Vector3.one / 8f;
 
         if (!climbOverDelay &&  !Physics.BoxCast(topCenterAndBack, halfExtents, machine.transform.forward, 
-            Quaternion.identity, climbingHorizontalDistance / 1.2f))
+            machine.transform.rotation, climbingHorizontalDistance / 1.2f))
             return RaccoonState.ClimbingOver;
 
 		if (!delay && Input.GetKeyDown(KeyCode.Space) && machine.animator.GetBool("IsGrounded"))

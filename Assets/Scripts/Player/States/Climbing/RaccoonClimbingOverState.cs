@@ -16,13 +16,15 @@ public class RaccoonClimbingOverState : BaseState<RaccoonState>
 		machine.animator.CrossFade("Climb Over", 0.25f);
 		if (RaccoonClimbingDownState.CanClimbDown(machine, 2f))
 		{
-			machine.SetState(RaccoonState.ClimbingDown, 1f);
+			yield return new WaitForSeconds(1f);
+			machine.SetState(RaccoonState.ClimbingDown);
 			Debug.Log("Climbing down action sent");
 		}
 		else
 		{
 
-			machine.SetState(RaccoonState.Walking, 1.2f);
+			yield return new WaitForSeconds(1.2f);
+			machine.SetState(RaccoonState.Walking);
 			Debug.Log("Walking action sent");
 
 		}
