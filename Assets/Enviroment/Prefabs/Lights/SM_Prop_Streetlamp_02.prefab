@@ -177,10 +177,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 8.06
-  m_SpotAngle: 136.17177
-  m_InnerSpotAngle: 136.17177
+  m_Intensity: 2
+  m_Range: 10
+  m_SpotAngle: 146.17798
+  m_InnerSpotAngle: 146.17798
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
