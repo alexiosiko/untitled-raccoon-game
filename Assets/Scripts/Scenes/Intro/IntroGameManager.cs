@@ -10,13 +10,5 @@ public class IntroGameManager : MonoBehaviour
 	void Other()
 	{
         DialogueManager.Singleton.StartNarration("Move mouse to look around.");
-
 	}
-	public void EatApple()
-	{
-		DialogueManager.Singleton.StartNarration("That was delicious. Let's keep exploring");
-	}
-
-
-
 }

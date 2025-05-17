@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_SecurityLights_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1392155918058486, guid: be6b10186da090d46835641419cb2459, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4509517174630252, guid: be6b10186da090d46835641419cb2459, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.016002417
