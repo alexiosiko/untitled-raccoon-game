@@ -88,19 +88,16 @@ public class EntityController : Interactable
 
 
     void OnAnimatorMove()
-    {
-		if (freeze)
-			return;
-        // Apply root rotation and position from animations
-        transform.rotation = animator.rootRotation;
-        transform.position = agent.nextPosition;
-        
-        // Get root motion movement from the animator
-        Vector3 rootMotionPosition = animator.deltaPosition;
-        
-        // Move the character controller using root motion
-        agent.nextPosition = transform.position + rootMotionPosition;
-    }
+	{
+		if (freeze) return;
+
+		Vector3 rootMotion = animator.deltaPosition;
+		Vector3 nextPosition = agent.nextPosition + new Vector3(rootMotion.x, 0, rootMotion.z);
+		transform.position = nextPosition;
+		transform.rotation = animator.rootRotation;
+		agent.nextPosition = transform.position;
+	}
+
 
     public override void Action(MonoBehaviour caller) {}
 }

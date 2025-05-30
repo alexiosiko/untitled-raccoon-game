@@ -2739,7 +2739,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -3006,11 +3006,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStateName: 
   animator: {fileID: 0}
-  mouthTransform: {fileID: 6724795898480913104}
-  grabTransform: {fileID: 3266759500571243716}
   rb: {fileID: 0}
   walkingCollider: {fileID: 0}
   controller: {fileID: 0}
+  mouthTransform: {fileID: 6724795898480913104}
+  grabTransform: {fileID: 3266759500571243716}
+  raccoonScream: {fileID: 8300000, guid: 1feecf6e646d6634299ed5ebf64e2d38, type: 3}
 --- !u!114 &8518787032728717573
 MonoBehaviour:
   m_ObjectHideFlags: 0
