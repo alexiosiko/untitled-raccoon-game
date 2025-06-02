@@ -15,7 +15,6 @@ public enum RaccoonState
 	Climbing,
 	ClimbingOver,
 	ClimbingDown,
-	Crawling,
 	Drinking,
 	Screaming
 }

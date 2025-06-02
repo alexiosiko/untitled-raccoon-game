@@ -18,14 +18,14 @@ public class RaccoonClimbingOverState : BaseState<RaccoonState>
 		{
 			yield return new WaitForSeconds(1f);
 			machine.SetState(RaccoonState.ClimbingDown, true);
-			Debug.Log("Climbing down action sent");
+			// Debug.Log("Climbing down action sent");
 		}
 		else
 		{
 
 			yield return new WaitForSeconds(1.2f);
 			machine.SetState(RaccoonState.Walking);
-			Debug.Log("Walking action sent");
+			// Debug.Log("Walking action sent");
 
 		}
 			yield return null;

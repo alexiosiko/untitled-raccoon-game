@@ -34,7 +34,7 @@ public abstract class PlayerStateMachine<EState> : MonoBehaviour where EState : 
 		if (transitioningStateCoroutine != null)
 		{
 			StopCoroutine(transitioningStateCoroutine);
-			Debug.Log("Interrupting transition.", this);
+			// Debug.Log("Interrupting transition.", this);
 
 		}
 
