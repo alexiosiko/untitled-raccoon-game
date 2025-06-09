@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4311639132665270}
   - component: {fileID: 33139854606497806}
   - component: {fileID: 23443302319017238}
+  - component: {fileID: 1994158246883483331}
   m_Layer: 0
   m_Name: SM_Env_PathBlock_01
   m_TagString: Untagged
@@ -86,3 +87,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1994158246883483331
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076412814031030}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 56ecc13a039c66b4ab37e755b13f921c, type: 3}

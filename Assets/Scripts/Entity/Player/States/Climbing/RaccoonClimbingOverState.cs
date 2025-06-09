@@ -35,7 +35,6 @@ public class RaccoonClimbingOverState : BaseState<RaccoonState>
 	{
 		machine.controller.smoothLeft = 0;
 		machine.controller.smoothForward = 0;
-		
 		yield return null;
 
 	}

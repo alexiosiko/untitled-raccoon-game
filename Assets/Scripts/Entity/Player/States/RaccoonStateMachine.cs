@@ -16,7 +16,8 @@ public enum RaccoonState
 	ClimbingOver,
 	ClimbingDown,
 	Drinking,
-	Screaming
+	Screaming,
+	Search
 }
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody), typeof(Collider))]
@@ -44,18 +45,18 @@ public class RaccoonStateMachine : PlayerStateMachine<RaccoonState>
 		controller = GetComponent<RaccoonController>();
 
 		// Initialize all states
-		States.Add(RaccoonState.Walking, new RaccoonWalkingState(this));
-		States.Add(RaccoonState.Climbing, new RaccoonClimbingState(this));
-		States.Add(RaccoonState.ClimbingOver, new RaccoonClimbingOverState(this));
-		States.Add(RaccoonState.ClimbingDown, new RaccoonClimbingDownState(this));
-		States.Add(RaccoonState.Falling, new RaccoonFallingState(this));
-		States.Add(RaccoonState.Eating, new RaccoonEatingState(this));
-		States.Add(RaccoonState.Grabbing, new RaccoonGrabbingState(this));
-		States.Add(RaccoonState.Dragging, new RaccoonDraggingState(this));
+		States.Add(RaccoonState.Walking,		new RaccoonWalkingState(this));
+		States.Add(RaccoonState.Climbing, 		new RaccoonClimbingState(this));
+		States.Add(RaccoonState.ClimbingOver, 	new RaccoonClimbingOverState(this));
+		States.Add(RaccoonState.ClimbingDown, 	new RaccoonClimbingDownState(this));
+		States.Add(RaccoonState.Falling, 		new RaccoonFallingState(this));
+		States.Add(RaccoonState.Eating, 		new RaccoonEatingState(this));
+		States.Add(RaccoonState.Grabbing, 		new RaccoonGrabbingState(this));
+		States.Add(RaccoonState.Dragging, 		new RaccoonDraggingState(this));
 		States.Add(RaccoonState.ClimbingCancel, new RaccoonClimbingCancelState(this));
-		States.Add(RaccoonState.Landing, new RaccoonLandingState(this));
-		States.Add(RaccoonState.Idle, new RaccoonIdleState(this));
-		States.Add(RaccoonState.Digging, new RaccoonDiggingState(this));
+		States.Add(RaccoonState.Landing, 		new RaccoonLandingState(this));
+		States.Add(RaccoonState.Idle, 			new RaccoonIdleState(this));
+		States.Add(RaccoonState.Digging, 		new RaccoonDiggingState(this));
 
 		// Set initial state
 		SetState(RaccoonState.Walking);

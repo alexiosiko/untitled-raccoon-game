@@ -77,3 +77,41 @@ Release a string of sausages into the street to lure guests
 Steal the DJ’s headphones mid-set, cut the music
 
 Scurry off as chaos erupts, leaving the neighborhood in uproar
+
+
+
+🌲 Scene 1: Forest Tutorial
+Start: Raccoon awakens in a cozy forest den.
+
+Movement Tutorial: Player learns basic controls (walk, run, jump, crouch).
+
+Environmental Interaction: Climb trees, dig through leaves, sniff around.
+
+Collectibles: Find shiny objects or food items.
+
+Obstacle Navigation: Traverse logs, rocks, and small streams.
+
+End: Reach the forest edge, revealing a suburban neighborhood in the distance.
+VidaBytes
+
+🏡 Scene 2: Neighborhood Mischief
+Entry: Raccoon sneaks into the neighborhood at dusk.
+
+Objective Introduction: Player is prompted to cause playful chaos.
+
+Actions:
+
+Knock over trash cans.
+
+Steal food from picnics or open windows.
+
+Dig up flower beds.
+
+Climb onto rooftops or fences.
+
+Avoidance Mechanics: Evade humans and pets; hide in bushes or under decks.
+
+Progression: Unlock new tools or abilities (e.g., distraction techniques).
+
+End: Trigger a humorous cutscene showing the neighborhood in disarray.
+

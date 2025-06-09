@@ -22,7 +22,7 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 		climbOverDelay = true;
 		machine.StartCoroutine(RemoveClimbingParams());
 		machine.StartCoroutine(RemoveClimbingParams());
-        machine.animator.SetBool("Climbing", true);
+        machine.animator.CrossFade("Start Climbing", 0.2f);
         machine.walkingCollider.enabled = false;
         machine.rb.useGravity = false;
         
@@ -52,7 +52,7 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
     public override IEnumerator ExitState()
     {
 		// machine.climbingCollider.enabled = false;
-        machine.animator.SetBool("Climbing", false);
+        // machine.animator.SetBool("Climbing", false);
 		yield return null;
     }
     private void PositionAndRotateClimb()
