@@ -51,7 +51,7 @@ public class RaccoonController : MonoBehaviour
 		}
 
 
-		smoothLeft = Mathf.Lerp(smoothLeft, rawHorizontal,  Time.deltaTime * 20f);
+		smoothLeft = Mathf.Lerp(smoothLeft, rawHorizontal,  Time.deltaTime * 25f);
 		smoothForward = Mathf.Lerp(smoothForward, rawVertical, Time.deltaTime * 3f);
 	}
 	void UpdateAnimatorParameters()

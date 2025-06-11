@@ -65,7 +65,6 @@ public class RaccoonStateMachine : PlayerStateMachine<RaccoonState>
 
 	[HideInInspector] public Rigidbody rb;
 	[HideInInspector] public Collider walkingCollider;
-	// public Collider climbingCollider;
 	[HideInInspector] public RaccoonController controller;
 	public Transform mouthTransform;
 	public Transform grabTransform;
