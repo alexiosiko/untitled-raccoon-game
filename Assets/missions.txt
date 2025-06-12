@@ -115,3 +115,19 @@ Progression: Unlock new tools or abilities (e.g., distraction techniques).
 
 End: Trigger a humorous cutscene showing the neighborhood in disarray.
 
+
+
+
+ ✅ Introduce one mechanic at a time, tied to context:
+
+Start with Walking and Idle when the raccoon spawns in the forest. Tutorial: move around.
+
+Add Falling, Landing by having a small drop off for players to learn jump control and response.
+
+Teach Grabbing and Eating in the forest: pick up an acorn, eat it.
+
+Introduce Climbing and its related states (ClimbingOver, ClimbingDown, ClimbingCancel) when encountering a climbable log or tree.
+
+Next, Digging with a patch of dirt containing buried treats.
+
+Finally layer Dragging by having the raccoon move a small object like a stick or toy.

@@ -34,11 +34,11 @@ public class RaccoonClimbingDownState : BaseState<RaccoonState>
 	public override void UpdateState()
 	{
 	}
-	public static bool CanClimbDown(RaccoonStateMachine machine, float forwardMultiplier = 1f)
+	public static bool CanClimbDown(RaccoonStateMachine machine)
 	{
 		
-		Vector3 forwardPosAndUp = machine.controller.centerOfRaccoon + machine.transform.forward / 3f * forwardMultiplier + machine.transform.up / 4f;
-		Vector3 boxHalfExtents = new Vector3(0.25f, 0.05f, 0.4f); // Wide but flat box
+		Vector3 forwardPosAndUp = machine.controller.centerOfRaccoon + machine.transform.forward / 1f + machine.transform.up / 4f;
+		Vector3 boxHalfExtents = new Vector3(0.15f, 0.05f, 0.4f); // Wide but flat box
 		LayerMask entityLayer = LayerMask.GetMask("Entity");
 		float distance = 1f;
 		#if UNITY_EDITOR

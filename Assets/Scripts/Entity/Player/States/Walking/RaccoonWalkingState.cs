@@ -15,7 +15,7 @@ public class RaccoonWalkingState : BaseState<RaccoonState>
     {
 		// If can instand climb down, don't set walking params cause
 		// it won't be smooth
-		if (RaccoonClimbingDownState.CanClimbDown(machine, 2))
+		if (RaccoonClimbingDownState.CanClimbDown(machine))
 			machine.SetState(RaccoonState.ClimbingDown);
 		else
 		{

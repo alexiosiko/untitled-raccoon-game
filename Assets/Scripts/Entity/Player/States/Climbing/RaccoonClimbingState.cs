@@ -72,11 +72,9 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 
     public override RaccoonState GetNextState()
 	{
-		Vector3 topCenterAndBack = machine.transform.position + Vector3.up / 1.05f; // This value is also in parentw
-        Vector3 halfExtents = Vector3.one / 8f;
 
-        if (!climbOverDelay &&  !Physics.BoxCast(topCenterAndBack, halfExtents, machine.transform.forward, 
-            machine.transform.rotation, climbingHorizontalDistance / 1.2f))
+
+        if (!climbOverDelay &&  RaccoonClimbingOverState.CanClimbOver(machine, climbingHorizontalDistance))
             return RaccoonState.ClimbingOver;
 
 		if (!delay && Input.GetKeyDown(KeyCode.Space) && machine.animator.GetBool("IsGrounded"))
@@ -84,5 +82,6 @@ public class RaccoonClimbingState : BaseState<RaccoonState>
 
 		return StateKey;
 	}
-	public static bool CanClimb(RaccoonStateMachine machine) => Physics.Raycast( machine.controller.centerOfRaccoon, machine.transform.forward, RaccoonClimbingState.climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
+
+	public static bool CanClimb(RaccoonStateMachine machine) => Physics.Raycast(machine.controller.centerOfRaccoon, machine.transform.forward, RaccoonClimbingState.climbingHorizontalDistance, LayerMask.GetMask("Climbable"));
 }
